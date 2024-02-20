@@ -1,6 +1,6 @@
 import React from "react";
 import { List, Coin } from "react-bootstrap-icons";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Container, Nav, Navbar, Offcanvas } from "react-bootstrap";
 import useAuth from "~/lib/hooks/useAuth";
 import { logout } from "../../lib/apis/user";
@@ -10,13 +10,14 @@ const EXPAND_BREAKPOINT = "md";
 
 export default function Navibar({ brandTitle, offCanvasTitle = undefined }) {
   const { user, clientLogout } = useAuth();
-
+  const navigate = useNavigate();
   const postLogout = async () => {
     try {
       const response = await logout();
       console.log(response);
       removeCookie("token");
       clientLogout();
+      navigate("/");
     } catch (err) {
       console.error(err);
     }

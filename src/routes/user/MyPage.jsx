@@ -116,7 +116,11 @@ const MyPage = () => {
   console.log("data.dateArray", data?.dateArray);
   return (
     <Container>
-      <Visualizer dateArray={data?.dateArray} />
+      {data?.questionArray.length != 0 ? (
+        <Visualizer dateArray={data?.dateArray} />
+      ) : (
+        <></>
+      )}
       <MyList
         handleSelectOptionChange={handleSelectOptionChange}
         options={options}

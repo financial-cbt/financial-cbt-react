@@ -37,18 +37,12 @@ export const mainRouter = [
       },
       {
         path: "mypage",
-        children: [
-          {
-            path: "",
-            index: true,
-            element: <MyPage />
-          },
-          {
-            path: "visualizer",
-            index: true,
-            element: <Visualizer />,
-          },
-        ],
+        index: true,
+        element: (
+          <PrivateRoute>
+            <MyPage />
+          </PrivateRoute>
+        ),
       },
       {
         path: "articlelist",
@@ -89,22 +83,38 @@ export const mainRouter = [
           {
             path: "",
             index: true,
-            element: <Board />,
+            element: (
+              <PrivateRoute>
+                <Board />
+              </PrivateRoute>
+            ),
           },
           {
             path: ":boardId",
             index: true,
-            element: <BoardDetail />,
+            element: (
+              <PrivateRoute>
+                <BoardDetail />
+              </PrivateRoute>
+            ),
           },
           {
             path: ":boardId/edit",
-            element: <BoardWrite />,
+            element: (
+              <PrivateRoute>
+                <BoardWrite />
+              </PrivateRoute>
+            ),
             index: true,
           },
           {
             path: "write",
             index: true,
-            element: <BoardWrite />,
+            element: (
+              <PrivateRoute>
+                <BoardWrite />
+              </PrivateRoute>
+            ),
           },
         ],
       },

@@ -13,6 +13,7 @@ const Signup = () => {
   const postSignup = async (email, password, nickname) => {
     try {
       const response = await signup(email, password, nickname);
+      console.log(response);
       if (
         response.response &&
         response.response.data.message ===
