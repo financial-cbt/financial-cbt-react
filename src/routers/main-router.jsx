@@ -4,7 +4,8 @@ import MainPage from "../routes/MainPage";
 import Layout from "../routes/layout";
 import Signup from "../components/Signup";
 import Login from "../components/Login";
-import ArticleList from "../routes/article/ArticleList";
+import ArticleList from "../routes/article/page";
+import ArticleDetail from "../routes/article/detail/page";
 import RandomQuiz from "../routes/Quiz/RandomQuiz";
 import Quiz from "../routes/Quiz/Quiz";
 
@@ -19,11 +20,6 @@ export const mainRouter = [
         element: <MainPage />,
       },
       {
-        path: "example",
-        index: true,
-        element: <ExamplePage />,
-      },
-      {
         path: "signup",
         index: true,
         element: <Signup />,
@@ -35,8 +31,18 @@ export const mainRouter = [
       },
       {
         path: "articlelist",
-        index: true,
-        element: <ArticleList />,
+        children: [
+          {
+            path: "",
+            element: <ArticleList />,
+            index: true,
+          },
+          {
+            path: ":articleId",
+            element: <ArticleDetail />,
+            index: true,
+          },
+        ],
       },
       {
         path: "quiz",
