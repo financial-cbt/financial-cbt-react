@@ -12,7 +12,6 @@ export default function Navibar({ brandTitle, offCanvasTitle = undefined }) {
       expand={EXPAND_BREAKPOINT}
       className="mb-3"
       sticky="top"
-      // bg=""
       variant="dark"
     >
       <Container style={{ position: "relative" }} fluid>
@@ -67,7 +66,7 @@ export default function Navibar({ brandTitle, offCanvasTitle = undefined }) {
               {/* 비로그인 상태 */}
               <>
                 <Link
-                  to="/game"
+                  to="/quiz"
                   className="text-decoration-none flex-grow-1 text-center border border-dark border-end-0"
                 >
                   <Nav.Link
