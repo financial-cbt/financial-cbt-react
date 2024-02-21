@@ -1,7 +1,10 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 const Login = () => {
+  const navigate = useNavigate();
+
   return (
     <SignupContainer>
       <LogoImg alt="로고" />
@@ -16,7 +19,7 @@ const Login = () => {
         </Label>
         <StyledButton>로그인</StyledButton>
       </Form>
-      <NavDiv>회원가입</NavDiv>
+      <NavDiv onClick={() => navigate("/signup")}>회원가입</NavDiv>
     </SignupContainer>
   );
 };
