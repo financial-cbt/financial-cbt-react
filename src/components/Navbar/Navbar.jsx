@@ -78,7 +78,7 @@ export default function Navibar({ brandTitle, offCanvasTitle = undefined }) {
                   </Nav.Link>
                 </Link>
                 <Link
-                  to="/article"
+                  to="/articlelist"
                   className="text-decoration-none flex-grow-1 text-center border border-dark border-end-0"
                 >
                   <Nav.Link
@@ -129,7 +129,7 @@ export default function Navibar({ brandTitle, offCanvasTitle = undefined }) {
                   </Nav.Link>
                 </Link>
                 <Link
-                  to="/article"
+                  to="/articlelist"
                   className="text-decoration-none flex-grow-1 text-center border border-dark border-end-0"
                 >
                   <Nav.Link style={{ color: "#4E5968", fontWeight: "500" }} as="div" className="">
