@@ -91,7 +91,7 @@ export default function Navibar({ brandTitle, offCanvasTitle = undefined }) {
                   </Nav.Link>
                 </Link>
                 <Link
-                  to="/signin"
+                  to="/login"
                   className="text-decoration-none flex-grow-1 text-center border border-dark border-end-0"
                 >
                   <Nav.Link
