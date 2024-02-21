@@ -3,6 +3,8 @@ import { createBrowserRouter } from "react-router-dom";
 import MainPage from "../routes/page";
 import ExamplePage from "../routes/example/page";
 import Layout from "../routes/layout";
+import Signup from "../components/Signup";
+import Login from "../components/Login";
 
 export const mainRouter = [
   {
@@ -19,16 +21,16 @@ export const mainRouter = [
         index: true,
         element: <ExamplePage />,
       },
-      // {
-      //   path: "signup",
-      //   index: true,
-      //   element: <SignUpPage />,
-      // },
-      // {
-      //   path: "signin",
-      //   index: true,
-      //   element: <SignInPage />,
-      // },
+      {
+        path: "signup",
+        index: true,
+        element: <Signup />,
+      },
+      {
+        path: "login",
+        index: true,
+        element: <Login />,
+      },
     ],
   },
 ];
