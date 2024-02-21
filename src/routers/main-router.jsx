@@ -1,7 +1,6 @@
 import * as React from "react";
 import { createBrowserRouter } from "react-router-dom";
 import MainPage from "../routes/MainPage";
-import ExamplePage from "../routes/example/page";
 import Layout from "../routes/layout";
 import Signup from "../components/Signup";
 import Login from "../components/Login";
