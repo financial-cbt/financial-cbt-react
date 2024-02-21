@@ -1,19 +1,14 @@
-import React, { useState } from "react";
+import React from "react";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
-const Signup = () => {
-  const [nickname, setNickname] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [passwordCheck, setPasswordCheck] = useState("");
+const Login = () => {
+  const navigate = useNavigate();
 
   return (
     <SignupContainer>
+      <LogoImg alt="로고" />
       <Form>
-        <Label>
-          <Img src="public/Signature.svg" alt="닉네임" />
-          <StyledInput placeholder="닉네임"></StyledInput>
-        </Label>
         <Label>
           <Img src="public/Envelope.svg" alt="이메일" />
           <StyledInput placeholder="이메일"></StyledInput>
@@ -22,23 +17,23 @@ const Signup = () => {
           <Img src="public/lock.svg" alt="비밀번호" />
           <StyledInput placeholder="비밀번호"></StyledInput>
         </Label>
-        <Label>
-          <Img src="public/lock.svg" alt="비밀번호 확인" />
-          <StyledInput placeholder="비밀번호 확인"></StyledInput>
-        </Label>
-        <StyledButton>회원가입</StyledButton>
+        <StyledButton>로그인</StyledButton>
       </Form>
+      <NavDiv onClick={() => navigate("/signup")}>회원가입</NavDiv>
     </SignupContainer>
   );
 };
-export default Signup;
+export default Login;
 
 const SignupContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 32px;
+`;
+
+const LogoImg = styled.img`
+  margin-bottom: 100px;
 `;
 
 const Form = styled.form`
@@ -90,4 +85,14 @@ const StyledButton = styled.button`
   font-style: normal;
   font-weight: 400;
   line-height: normal;
+`;
+
+const NavDiv = styled.div`
+  color: #8b8b8b;
+  text-align: center;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  margin-top: 40px;
 `;
