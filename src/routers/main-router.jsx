@@ -6,6 +6,8 @@ import Layout from "../routes/layout";
 import Signup from "../components/Signup";
 import Login from "../components/Login";
 import ArticleList from "../routes/article/ArticleList";
+import RandomQuiz from "../routes/Quiz/RandomQuiz";
+import Quiz from "../routes/Quiz/Quiz";
 
 export const mainRouter = [
   {
@@ -36,6 +38,16 @@ export const mainRouter = [
         path: "articlelist",
         index: true,
         element: <ArticleList />,
+      },
+      {
+        path: "quiz",
+        index: true,
+        element: <RandomQuiz />,
+      },
+      {
+        path: "quizground",
+        index: true,
+        element: <Quiz />,
       },
     ],
   },
