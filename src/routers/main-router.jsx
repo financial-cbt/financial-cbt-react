@@ -1,8 +1,14 @@
 import * as React from "react";
 import { createBrowserRouter } from "react-router-dom";
-import MainPage from "../routes/page";
-import ExamplePage from "../routes/example/page";
+import MainPage from "../routes/MainPage";
 import Layout from "../routes/layout";
+import Signup from "../components/Signup";
+import Login from "../components/Login";
+import ArticleList from "../routes/article/page";
+import ArticleDetail from "../routes/article/detail/page";
+import RandomQuiz from "../routes/Quiz/RandomQuiz";
+import Quiz from "../routes/Quiz/Quiz";
+import MyPage from "../routes/user/MyPage";
 
 export const mainRouter = [
   {
@@ -15,20 +21,45 @@ export const mainRouter = [
         element: <MainPage />,
       },
       {
-        path: "example",
+        path: "signup",
         index: true,
-        element: <ExamplePage />,
+        element: <Signup />,
       },
-      // {
-      //   path: "signup",
-      //   index: true,
-      //   element: <SignUpPage />,
-      // },
-      // {
-      //   path: "signin",
-      //   index: true,
-      //   element: <SignInPage />,
-      // },
+      {
+        path: "login",
+        index: true,
+        element: <Login />,
+      },
+      {
+        path: "mypage",
+        index: true,
+        element: <MyPage />,
+      },
+      {
+        path: "articlelist",
+        children: [
+          {
+            path: "",
+            element: <ArticleList />,
+            index: true,
+          },
+          {
+            path: ":articleId",
+            element: <ArticleDetail />,
+            index: true,
+          },
+        ],
+      },
+      {
+        path: "quiz",
+        index: true,
+        element: <RandomQuiz />,
+      },
+      {
+        path: "quizground",
+        index: true,
+        element: <Quiz />,
+      },
     ],
   },
 ];

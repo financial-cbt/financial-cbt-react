@@ -1,54 +1,62 @@
 import React, { useState } from "react";
-import { login } from "~/lib/apis/user";
-import { setCookie } from "~/lib/apis/cookie";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import useAuth from "~/lib/hooks/useAuth";
+import { signup } from "~/lib/apis/user";
 
-const Login = () => {
-  const navigate = useNavigate();
+const Signup = () => {
+  const [nickname, setNickname] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const { user, clientLogin } = useAuth();
+  const [passwordCheck, setPasswordCheck] = useState("");
+  const navigate = useNavigate();
 
-  const postLogin = async (email, password) => {
+  const postSignup = async (email, password, nickname) => {
     try {
-      const response = await login(email, password);
-      setCookie("token", response.data.token, {
-        path: "/",
-        // secure: true,
-      });
-      const user = response.data;
-      if (user.token) {
-        clientLogin(user);
-        navigate("/");
-        window.scrollTo(0, 0);
-      }
-      console.log(response.data);
-
-      console.log(response);
-      return response;
-    } catch (err) {
-      console.error(err);
+      await signup(email, password, nickname);
+      alert("회원가입이 완료되었습니다.");
+      navigate("/");
+      window.scrollTo(0, 0);
+    } catch (error) {
+      console.error(error);
     }
   };
 
-  const onLogin = (e) => {
+  const onSignup = (e) => {
     e.preventDefault();
-    postLogin(email, password);
-
-    setEmail("");
-    setPassword("");
+    if (emailCheck(email)) {
+      alert("유효한 이메일 형식으로 입력해주세요.");
+    } else if (password === passwordCheck) {
+      postSignup(email, password, nickname);
+      setEmail("");
+      setPassword("");
+      setPasswordCheck("");
+      setNickname("");
+    } else {
+      alert("비밀번호가 일치하지 않습니다.");
+      setPassword("");
+      setPasswordCheck("");
+    }
   };
+
+  function emailCheck(email_address) {
+    const email_regex = new RegExp(/^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]+$/);
+    return !email_regex.test(email_address);
+  }
 
   return (
     <SignupContainer>
-      <LogoImg alt="로고" />
-      <Form onSubmit={onLogin}>
+      <Form onSubmit={onSignup}>
+        <Label>
+          <Img src="public/Signature.svg" alt="닉네임" />
+          <StyledInput
+            placeholder="닉네임"
+            value={nickname}
+            onChange={(e) => setNickname(e.target.value)}
+          ></StyledInput>
+        </Label>
         <Label>
           <Img src="public/Envelope.svg" alt="이메일" />
           <StyledInput
-            type="text"
             placeholder="이메일"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
@@ -57,30 +65,37 @@ const Login = () => {
         <Label>
           <Img src="public/lock.svg" alt="비밀번호" />
           <StyledInput
-            type="password"
             placeholder="비밀번호"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
+            type="password"
             autoComplete="off"
           ></StyledInput>
         </Label>
-        <StyledButton type="submit">로그인</StyledButton>
+        <Label>
+          <Img src="public/lock.svg" alt="비밀번호 확인" />
+          <StyledInput
+            placeholder="비밀번호 확인"
+            value={passwordCheck}
+            onChange={(e) => setPasswordCheck(e.target.value)}
+            type="password"
+            autoComplete="off"
+          ></StyledInput>
+        </Label>
+        <StyledButton type="submit">회원가입</StyledButton>
       </Form>
-      <NavDiv onClick={() => navigate("/signup")}>회원가입</NavDiv>
     </SignupContainer>
   );
 };
-export default Login;
+export default Signup;
 
 const SignupContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-`;
-
-const LogoImg = styled.img`
-  margin-bottom: 100px;
+  height: calc(100vh - 42px);
+  gap: 32px;
 `;
 
 const Form = styled.form`
@@ -131,14 +146,4 @@ const StyledButton = styled.button`
   font-style: normal;
   font-weight: 400;
   line-height: normal;
-`;
-
-const NavDiv = styled.div`
-  color: #8b8b8b;
-  text-align: center;
-  font-size: 20px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
-  margin-top: 40px;
 `;
