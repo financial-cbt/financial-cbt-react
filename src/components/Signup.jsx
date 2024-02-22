@@ -1,32 +1,88 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
+import { signup } from "~/lib/apis/user";
 
 const Signup = () => {
   const [nickname, setNickname] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [passwordCheck, setPasswordCheck] = useState("");
+  const navigate = useNavigate();
+
+  const postSignup = async (email, password, nickname) => {
+    try {
+      await signup(email, password, nickname);
+      alert("회원가입이 완료되었습니다.");
+      navigate("/");
+      window.scrollTo(0, 0);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const onSignup = (e) => {
+    e.preventDefault();
+    if (emailCheck(email)) {
+      alert("유효한 이메일 형식으로 입력해주세요.");
+    } else if (password === passwordCheck) {
+      postSignup(email, password, nickname);
+      setEmail("");
+      setPassword("");
+      setPasswordCheck("");
+      setNickname("");
+    } else {
+      alert("비밀번호가 일치하지 않습니다.");
+      setPassword("");
+      setPasswordCheck("");
+    }
+  };
+
+  function emailCheck(email_address) {
+    const email_regex = new RegExp(/^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]+$/);
+    return !email_regex.test(email_address);
+  }
 
   return (
     <SignupContainer>
-      <Form>
+      <Form onSubmit={onSignup}>
         <Label>
           <Img src="public/Signature.svg" alt="닉네임" />
-          <StyledInput placeholder="닉네임"></StyledInput>
+          <StyledInput
+            placeholder="닉네임"
+            value={nickname}
+            onChange={(e) => setNickname(e.target.value)}
+          ></StyledInput>
         </Label>
         <Label>
           <Img src="public/Envelope.svg" alt="이메일" />
-          <StyledInput placeholder="이메일"></StyledInput>
+          <StyledInput
+            placeholder="이메일"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          ></StyledInput>
         </Label>
         <Label>
           <Img src="public/lock.svg" alt="비밀번호" />
-          <StyledInput placeholder="비밀번호"></StyledInput>
+          <StyledInput
+            placeholder="비밀번호"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            type="password"
+            autoComplete="off"
+          ></StyledInput>
         </Label>
         <Label>
           <Img src="public/lock.svg" alt="비밀번호 확인" />
-          <StyledInput placeholder="비밀번호 확인"></StyledInput>
+          <StyledInput
+            placeholder="비밀번호 확인"
+            value={passwordCheck}
+            onChange={(e) => setPasswordCheck(e.target.value)}
+            type="password"
+            autoComplete="off"
+          ></StyledInput>
         </Label>
-        <StyledButton>회원가입</StyledButton>
+        <StyledButton type="submit">회원가입</StyledButton>
       </Form>
     </SignupContainer>
   );
@@ -38,6 +94,7 @@ const SignupContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  height: calc(100vh - 42px);
   gap: 32px;
 `;
 
@@ -71,7 +128,6 @@ const StyledInput = styled.input`
   font-style: normal;
   font-weight: 400;
   line-height: normal;
-  text-transform: capitalize;
 
   &::placeholder {
     color: rgba(186, 186, 186, 0.8);
