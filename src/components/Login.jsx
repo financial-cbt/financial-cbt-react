@@ -11,11 +11,11 @@ const Login = () => {
       <Form>
         <Label>
           <Img src="public/Envelope.svg" alt="이메일" />
-          <StyledInput placeholder="이메일"></StyledInput>
+          <StyledInput type="text" placeholder="이메일"></StyledInput>
         </Label>
         <Label>
           <Img src="public/lock.svg" alt="비밀번호" />
-          <StyledInput placeholder="비밀번호"></StyledInput>
+          <StyledInput type="password" placeholder="비밀번호"></StyledInput>
         </Label>
         <StyledButton>로그인</StyledButton>
       </Form>
