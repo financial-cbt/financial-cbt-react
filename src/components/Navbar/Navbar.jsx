@@ -1,11 +1,30 @@
 import React from "react";
 import { List, Coin } from "react-bootstrap-icons";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { Container, Nav, Navbar, Offcanvas } from "react-bootstrap";
-const EXPAND_BREAKPOINT = "md";
+import useAuth from "~/lib/hooks/useAuth";
+import { logout } from "../../lib/apis/user";
+import { removeCookie } from "../../lib/apis/cookie";
 import "./Navbar.css";
+
+const EXPAND_BREAKPOINT = "md";
+
+// TODO : 닉네임
 export default function Navibar({ brandTitle, offCanvasTitle = undefined }) {
-  const navigate = useNavigate();
+  const { user, clientLogout } = useAuth();
+
+  const postLogout = async () => {
+    try {
+      const response = await logout();
+      console.log(response);
+      removeCookie("token");
+      clientLogout();
+    } catch (err) {
+      console.error(err);
+    }
+  };
+  console.log(user);
+
   return (
     <Navbar
       style={{ backgroundColor: "white" }}
@@ -62,8 +81,6 @@ export default function Navibar({ brandTitle, offCanvasTitle = undefined }) {
               style={{ color: "#4E5968", border: "none", marginRight: "50px" }}
               className={`justify-content-around flex-row pb-4 pb-${EXPAND_BREAKPOINT}-0`}
             >
-              {/* {!user ? ( */}
-              {/* 비로그인 상태 */}
               <>
                 <Link
                   to="/quiz"
@@ -89,83 +106,74 @@ export default function Navibar({ brandTitle, offCanvasTitle = undefined }) {
                     기사
                   </Nav.Link>
                 </Link>
-                <Link
-                  to="/login"
-                  className="text-decoration-none flex-grow-1 text-center border border-dark border-end-0"
-                >
-                  <Nav.Link
-                    style={{ color: "#4E5968", fontWeight: "500" }}
-                    as="div"
-                    className=""
-                  >
-                    로그인
-                  </Nav.Link>
-                </Link>
-                <Link
-                  to="/signup"
-                  className="text-decoration-none flex-grow-1 text-center border border-dark"
-                >
-                  <Nav.Link
-                    style={{
-                      color: "#4E5968",
-                      border: "none",
-                      fontWeight: "500",
-                    }}
-                    as="div"
-                    className=""
-                  >
-                    회원가입
-                  </Nav.Link>
-                </Link>
+                {!user ? (
+                  <>
+                    <Link
+                      to="/login"
+                      className="text-decoration-none flex-grow-1 text-center border border-dark border-end-0"
+                    >
+                      <Nav.Link
+                        style={{ color: "#4E5968", fontWeight: "500" }}
+                        as="div"
+                        className=""
+                      >
+                        로그인
+                      </Nav.Link>
+                    </Link>
+                    <Link
+                      to="/signup"
+                      className="text-decoration-none flex-grow-1 text-center border border-dark"
+                    >
+                      <Nav.Link
+                        style={{
+                          color: "#4E5968",
+                          border: "none",
+                          fontWeight: "500",
+                        }}
+                        as="div"
+                        className=""
+                      >
+                        회원가입
+                      </Nav.Link>
+                    </Link>
+                  </>
+                ) : (
+                  <>
+                    <Nav.Link
+                      style={{ color: "#4E5968", fontWeight: "500" }}
+                      as="div"
+                      className=""
+                    >
+                      닉네임
+                    </Nav.Link>
+                    <Link
+                      to="/mypage"
+                      className="text-decoration-none flex-grow-1 text-center border border-dark border-end-0"
+                    >
+                      <Nav.Link
+                        style={{ color: "#4E5968", fontWeight: "500" }}
+                        as="div"
+                        className=""
+                      >
+                        마이페이지
+                      </Nav.Link>
+                    </Link>
+                    <Nav.Link
+                      style={{
+                        color: "#4E5968",
+                        border: "none",
+                        fontWeight: "500",
+                      }}
+                      as="div"
+                      className=""
+                      onClick={postLogout}
+                    >
+                      로그아웃
+                    </Nav.Link>
+                  </>
+                )}
               </>
-              {/* ) : ( */}
-              {/* 로그인 상태 */}
-              {/* <Link
-                  to="/game"
-                  className="text-decoration-none flex-grow-1 text-center border border-dark border-end-0"
-                >
-                  <Nav.Link style={{ color: "#4E5968", fontWeight: "500" }} as="div" className="">
-                    게임
-                  </Nav.Link>
-                </Link>
-                <Link
-                  to="/articlelist"
-                  className="text-decoration-none flex-grow-1 text-center border border-dark border-end-0"
-                >
-                  <Nav.Link style={{ color: "#4E5968", fontWeight: "500" }} as="div" className="">
-                    기사
-                  </Nav.Link>
-                </Link>
-                <Link
-                  to="/mypage"
-                  className="text-decoration-none flex-grow-1 text-center border border-dark border-end-0"
-                >
-                  <Nav.Link style={{ color: "#4E5968", fontWeight: "500" }} as="div" className="">
-                    마이페이지
-                  </Nav.Link>
-                </Link>
-              <Link>
-                <Nav.Link
-                style={{ color: "#4E5968", fontWeight: "500" }}
-                  as="div"
-                  className=""
-                  onClick={() => {
-                    clientLogout();
-                    logout().then((resp) => {});
-                  }}
-                >
-                  로그아웃
-                </Nav.Link>
-              </Link> */}
-              {/* )} */}
             </Nav>
-            {/* <Nav className="justify-content-start flex-grow-1 pe-3">
-              <Link to="/" className="text-decoration-none">
-                <Nav.Link style={{ color: "#4E5968" }} as="div">
-                  Home
-                </Nav.Link>
-              </Link>
-            </Nav> */}
           </Offcanvas.Body>
         </Navbar.Offcanvas>
       </Container>
