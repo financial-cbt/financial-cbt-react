@@ -8,6 +8,7 @@ import ArticleList from "../routes/article/page";
 import ArticleDetail from "../routes/article/detail/page";
 import RandomQuiz from "../routes/Quiz/RandomQuiz";
 import Quiz from "../routes/Quiz/Quiz";
+import MyPage from "../routes/user/MyPage";
 
 export const mainRouter = [
   {
@@ -28,6 +29,11 @@ export const mainRouter = [
         path: "login",
         index: true,
         element: <Login />,
+      },
+      {
+        path: "mypage",
+        index: true,
+        element: <MyPage />,
       },
       {
         path: "articlelist",

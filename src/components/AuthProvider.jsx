@@ -1,8 +1,8 @@
-import React, { createContext, useCallback, useEffect, useState } from 'react';
+import React, { createContext, useCallback, useEffect, useState } from "react";
 
 export const AuthContext = createContext();
 
-const AUTH_KEY = 'AUTH_USER';
+const AUTH_KEY = "AUTH_USER";
 
 export default function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
