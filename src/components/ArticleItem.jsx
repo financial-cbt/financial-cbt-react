@@ -17,11 +17,11 @@ const Container = styled.div`
 `;
 
 const ArticleItem = ({ newArticle }) => {
-  const { articleId, title, content, photoUrl } = newArticle;
+  const { id, title, content, photoUrl } = newArticle;
 
   return (
     <Container>
-      <CardLink to={`${articleId}`}>
+      <CardLink to={`${id}`}>
         <div
           className="card"
           style={{
