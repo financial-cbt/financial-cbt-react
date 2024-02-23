@@ -1,23 +1,70 @@
-import React from "react";
+import React, { useState } from "react";
+import { login } from "~/lib/apis/user";
+import { setCookie } from "~/lib/apis/cookie";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
+import useAuth from "~/lib/hooks/useAuth";
 
 const Login = () => {
   const navigate = useNavigate();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const { user, clientLogin } = useAuth();
+
+  const postLogin = async (email, password) => {
+    try {
+      const response = await login(email, password);
+      setCookie("token", response.data.token, {
+        path: "/",
+        // secure: true,
+      });
+      const user = response.data;
+      if (user.token) {
+        clientLogin(user);
+        navigate("/");
+        window.scrollTo(0, 0);
+      }
+      console.log(response.data);
+
+      console.log(response);
+      return response;
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+  const onLogin = (e) => {
+    e.preventDefault();
+    postLogin(email, password);
+
+    setEmail("");
+    setPassword("");
+  };
 
   return (
     <SignupContainer>
       <LogoImg alt="로고" />
-      <Form>
+      <Form onSubmit={onLogin}>
         <Label>
           <Img src="public/Envelope.svg" alt="이메일" />
-          <StyledInput type="text" placeholder="이메일"></StyledInput>
+          <StyledInput
+            type="text"
+            placeholder="이메일"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          ></StyledInput>
         </Label>
         <Label>
           <Img src="public/lock.svg" alt="비밀번호" />
-          <StyledInput type="password" placeholder="비밀번호"></StyledInput>
+          <StyledInput
+            type="password"
+            placeholder="비밀번호"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            autoComplete="off"
+          ></StyledInput>
         </Label>
-        <StyledButton>로그인</StyledButton>
+        <StyledButton type="submit">로그인</StyledButton>
       </Form>
       <NavDiv onClick={() => navigate("/signup")}>회원가입</NavDiv>
     </SignupContainer>
@@ -66,7 +113,6 @@ const StyledInput = styled.input`
   font-style: normal;
   font-weight: 400;
   line-height: normal;
-  text-transform: capitalize;
 
   &::placeholder {
     color: rgba(186, 186, 186, 0.8);
