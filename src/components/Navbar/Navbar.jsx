@@ -9,7 +9,6 @@ import "./Navbar.css";
 
 const EXPAND_BREAKPOINT = "md";
 
-// TODO : 닉네임
 export default function Navibar({ brandTitle, offCanvasTitle = undefined }) {
   const { user, clientLogout } = useAuth();
 
@@ -139,13 +138,6 @@ export default function Navibar({ brandTitle, offCanvasTitle = undefined }) {
                   </>
                 ) : (
                   <>
-                    <Nav.Link
-                      style={{ color: "#4E5968", fontWeight: "500" }}
-                      as="div"
-                      className=""
-                    >
-                      닉네임
-                    </Nav.Link>
                     <Link
                       to="/mypage"
                       className="text-decoration-none flex-grow-1 text-center border border-dark border-end-0"

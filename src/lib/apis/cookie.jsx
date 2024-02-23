@@ -3,8 +3,7 @@ import { Cookies } from "react-cookie";
 const cookies = new Cookies();
 
 export const setCookie = (name, value, option) => {
-  const tokenValue = value.replace("Bearer ", "");
-  return cookies.set(name, tokenValue, { ...option });
+  return cookies.set(name, value, { ...option });
 };
 
 export const getCookie = (name) => {
