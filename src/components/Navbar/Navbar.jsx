@@ -157,7 +157,7 @@ export default function Navibar({ brandTitle, offCanvasTitle = undefined }) {
                         fontWeight: "500",
                       }}
                       as="div"
-                      className=""
+                      className="text-decoration-none flex-grow-1 text-center border border-dark border-end-0"
                       onClick={postLogout}
                     >
                       로그아웃

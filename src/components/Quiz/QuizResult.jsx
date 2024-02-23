@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from "react";
-import { Hr } from "react-bootstrap-icons";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
+import { postMyQuiz } from "~/lib/apis/quiz";
+import useAuth from "~/lib/hooks/useAuth";
 
-const QuizResult = ({ isRight, dummy }) => {
+const QuizResult = ({ isRight, quizList, allQuiz, answers }) => {
   const [visibleQuestionList, setVisibleQuestionList] = useState("all");
   const navigate = useNavigate();
+  const { user } = useAuth();
+
   useEffect(() => {
     document.body.style.cssText = `
               position: fixed; 
@@ -18,8 +21,7 @@ const QuizResult = ({ isRight, dummy }) => {
       window.scrollTo(0, parseInt(scrollY || "0", 10) * -1);
     };
   }, []);
-  console.log(isRight);
-  console.log("dummy", dummy);
+
   const rightLength = isRight.filter((element) => true === element).length;
   const wrongLength = isRight.filter((element) => false === element).length;
 
@@ -34,8 +36,24 @@ const QuizResult = ({ isRight, dummy }) => {
     }
   });
 
-  console.log(rightIdx);
-  console.log(wrongIdx);
+  console.log("userId", user._id);
+  console.log("allQuiz", allQuiz);
+  console.log("accuracy", isRight);
+  console.log("userAnswer", answers);
+
+  const postMyAnswers = async (userId, allQuiz, accuracy, userAnswer) => {
+    try {
+      const res = await postMyQuiz(userId, allQuiz, accuracy, userAnswer);
+      console.log(res);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const onClick = (path) => {
+    postMyAnswers(user._id, allQuiz, isRight, answers);
+    navigate(path);
+  };
 
   return (
     <>
@@ -57,15 +75,15 @@ const QuizResult = ({ isRight, dummy }) => {
             </WrongWrapper>
           </AnswerRow>
           <QuestionList>
-            {dummy?.map((item, index) => {
+            {quizList?.map((item, index) => {
               if (
                 visibleQuestionList === "all" ||
                 (visibleQuestionList === "right" && rightIdx.includes(index)) ||
                 (visibleQuestionList === "wrong" && wrongIdx.includes(index))
               ) {
                 return (
-                  <QuestionItem key={item.id}>
-                    <QNum>{item.id + 1}번</QNum>
+                  <QuestionItem key={item._id}>
+                    <QNum>{index + 1}번</QNum>
                     <QContent>{item.question}</QContent>
                   </QuestionItem>
                 );
@@ -75,8 +93,18 @@ const QuizResult = ({ isRight, dummy }) => {
             })}
           </QuestionList>
           <ButtonWrapper>
-            <NavButton onClick={() => navigate("/")}>홈으로 이동</NavButton>
-            <NavButton onClick={() => navigate("/mypage")}>
+            <NavButton
+              onClick={() => {
+                onClick("/");
+              }}
+            >
+              홈으로 이동
+            </NavButton>
+            <NavButton
+              onClick={() => {
+                onClick("/mypage");
+              }}
+            >
               성적표 확인
             </NavButton>
           </ButtonWrapper>
