@@ -3,7 +3,7 @@ import { List, Coin } from "react-bootstrap-icons";
 import { Link, useNavigate } from "react-router-dom";
 import { Container, Nav, Navbar, Offcanvas } from "react-bootstrap";
 const EXPAND_BREAKPOINT = "md";
-import "./Navbar.css";
+
 export default function Navibar({ brandTitle, offCanvasTitle = undefined }) {
   const navigate = useNavigate();
   return (
@@ -89,34 +89,65 @@ export default function Navibar({ brandTitle, offCanvasTitle = undefined }) {
                     기사
                   </Nav.Link>
                 </Link>
-                <Link
-                  to="/login"
-                  className="text-decoration-none flex-grow-1 text-center border border-dark border-end-0"
-                >
-                  <Nav.Link
-                    style={{ color: "#4E5968", fontWeight: "500" }}
-                    as="div"
-                    className=""
-                  >
-                    로그인
-                  </Nav.Link>
-                </Link>
-                <Link
-                  to="/signup"
-                  className="text-decoration-none flex-grow-1 text-center border border-dark"
-                >
-                  <Nav.Link
-                    style={{
-                      color: "#4E5968",
-                      border: "none",
-                      fontWeight: "500",
-                    }}
-                    as="div"
-                    className=""
-                  >
-                    회원가입
-                  </Nav.Link>
-                </Link>
+                {!user ? (
+                  <>
+                    <Link
+                      to="/login"
+                      className="text-decoration-none flex-grow-1 text-center border border-dark border-end-0"
+                    >
+                      <Nav.Link
+                        style={{ color: "#4E5968", fontWeight: "500" }}
+                        as="div"
+                        className=""
+                      >
+                        로그인
+                      </Nav.Link>
+                    </Link>
+                    <Link
+                      to="/signup"
+                      className="text-decoration-none flex-grow-1 text-center border border-dark"
+                    >
+                      <Nav.Link
+                        style={{
+                          color: "#4E5968",
+                          border: "none",
+                          fontWeight: "500",
+                        }}
+                        as="div"
+                        className=""
+                      >
+                        회원가입
+                      </Nav.Link>
+                    </Link>
+                  </>
+                ) : (
+                  <>
+                    <Link
+                      to="/mypage"
+                      className="text-decoration-none flex-grow-1 text-center border border-dark border-end-0"
+                    >
+                      <Nav.Link
+                        style={{ color: "#4E5968", fontWeight: "500" }}
+                        as="div"
+                        className=""
+                      >
+                        마이페이지
+                      </Nav.Link>
+                    </Link>
+                    <Nav.Link
+                      style={{
+                        color: "#4E5968",
+                        border: "none",
+                        fontWeight: "500",
+                      }}
+                      as="div"
+                      className=""
+                      onClick={postLogout}
+                    >
+                      로그아웃
+                    </Nav.Link>
+                  </>
+                )}
               </>
               {/* ) : ( */}
               {/* 로그인 상태 */}
