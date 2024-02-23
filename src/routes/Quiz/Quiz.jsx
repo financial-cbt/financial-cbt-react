@@ -96,7 +96,7 @@ const Quiz = () => {
       setIsRight((prevIsRight) => prevIsRight.concat(isCorrect));
       setCurrentQuestionIdx((prevIdx) => prevIdx + 1);
 
-      setSec(6);
+      setSec(60);
     }
   };
 
