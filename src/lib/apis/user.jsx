@@ -1,12 +1,12 @@
 import instance from "./base";
 
 export const signup = async (email, password, nickname) => {
-  const baseUrl = "users/signup";
+  const baseUrl = "/users/signup";
   try {
     const response = await instance.post(baseUrl, {
       email: email,
       password: password,
-      nickname: nickname,
+      nickName: nickname,
     });
     const data = response.data;
     console.log(data);
@@ -16,7 +16,7 @@ export const signup = async (email, password, nickname) => {
 };
 
 export const login = async (email, password) => {
-  const baseUrl = "users/login";
+  const baseUrl = "/users/login";
   try {
     const response = await instance.post(baseUrl, {
       email: email,
@@ -26,12 +26,13 @@ export const login = async (email, password) => {
     console.log(data);
     return data;
   } catch (err) {
-    console.error(err);
+    // console.error(err);
+    return err;
   }
 };
 
 export const logout = async () => {
-  const baseUrl = "users/logout";
+  const baseUrl = "/users/logout";
   try {
     const response = await instance.post(baseUrl);
     const data = response.data;

@@ -14,6 +14,13 @@ const Login = () => {
   const postLogin = async (email, password) => {
     try {
       const response = await login(email, password);
+      if (
+        response.response &&
+        response.response.data.message === "email, password를 확인해주세요."
+      ) {
+        alert("email, password를 확인해주세요.");
+        return;
+      }
       setCookie("token", response.data.token, {
         path: "/",
         // secure: true,

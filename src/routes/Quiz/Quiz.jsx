@@ -3,66 +3,85 @@ import styled from "styled-components";
 import ProgressBar from "@ramonak/react-progress-bar";
 import OX from "../../components/Quiz/OX";
 import QuizResult from "../../components/Quiz/QuizResult";
+import { fetchQuizList } from "~/lib/apis/quiz";
 
 const Quiz = () => {
-  const [sec, setSec] = useState(600);
+  const [sec, setSec] = useState(60);
   const [alertShown, setAlertShown] = useState(false);
   const [popupVisible, setPopupVisible] = useState(false);
   const [currentQuestionIdx, setCurrentQuestionIdx] = useState(0);
   const [answers, setAnswers] = useState(Array(10).fill(-1));
   const [isRight, setIsRight] = useState([]);
   const [showAnswer, setShowAnswer] = useState(false);
+  const [quizList, setQuizList] = useState([]);
 
-  // useEffect(() => {
-  //   if (sec === 0 && !alertShown) {
-  //     const interval = setInterval(() => {
-  //       setShowAnswer(false);
-  //       setAlertShown(true);
-  //       alert("넘어가기");
-  //       handleNextQuestion();
-  //       clearInterval(interval);
-  //     }, 0);
-  //   }
-  // }, [sec, alertShown]);
+  const fetchQuizData = async () => {
+    try {
+      const quizData = await fetchQuizList();
+      console.log(quizData);
+      setQuizList(quizData);
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
-  // useEffect(() => {
-  //   const interval = setInterval(() => {
-  //     setSec((prevSec) => {
-  //       if (prevSec === 0) {
-  //         clearInterval(interval);
-  //         return 0;
-  //       }
-  //       return prevSec - 1;
-  //     });
-  //   }, 1000);
+  useEffect(() => {
+    fetchQuizData();
+  }, []);
 
-  //   return () => clearInterval(interval);
-  // }, []);
+  const allQuiz = quizList.map((item) => item.num);
+  console.log("allQuiz", allQuiz);
+
+  useEffect(() => {
+    if (sec === 0 && !alertShown) {
+      const interval = setInterval(() => {
+        setShowAnswer(false);
+        setAlertShown(true);
+        alert("넘어가기");
+        handleNextQuestion();
+        clearInterval(interval);
+      }, 0);
+    }
+  }, [sec, alertShown]);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setSec((prevSec) => {
+        if (prevSec === 0) {
+          clearInterval(interval);
+          return 0;
+        }
+        return prevSec - 1;
+      });
+    }, 1000);
+
+    return () => clearInterval(interval);
+  }, []);
 
   const [check, setCheck] = useState(null);
   const [end, setEnd] = useState(false);
 
   const handlePopupToggle = () => {
-    if (answers[currentQuestionIdx] === -1) {
+    if (answers[currentQuestionIdx] == -1) {
       alert("정답을 선택해주세요.");
     } else {
       setPopupVisible(!popupVisible);
       setShowAnswer(true);
       const userAnswer = answers[currentQuestionIdx];
-      const correctAnswer = dummy[currentQuestionIdx].answer;
-      setCheck(userAnswer === correctAnswer);
+      const correctAnswer = quizList[currentQuestionIdx].answer;
+      setCheck(userAnswer == correctAnswer);
       setTimeout(() => {
         setPopupVisible(false);
       }, 1500);
     }
   };
   const handleNextQuestion = () => {
-    if (answers[currentQuestionIdx] === -1 && alertShown) {
+    if (answers[currentQuestionIdx] == -1 && alertShown) {
       alert("정답을 선택해주세요.");
     } else if (currentQuestionIdx === 9) {
       const userAnswer = answers[currentQuestionIdx];
-      const correctAnswer = dummy[currentQuestionIdx].answer;
-      const isCorrect = userAnswer === correctAnswer;
+      const correctAnswer = quizList[currentQuestionIdx].answer;
+      const isCorrect = userAnswer == correctAnswer;
       setIsRight((prevIsRight) => prevIsRight.concat(isCorrect));
       setAlertShown(true);
       setEnd(true);
@@ -70,13 +89,14 @@ const Quiz = () => {
       setShowAnswer(false);
       setAlertShown(false);
       const userAnswer = answers[currentQuestionIdx];
-      const correctAnswer = dummy[currentQuestionIdx].answer;
-      const isCorrect = userAnswer === correctAnswer;
-
+      const correctAnswer = quizList[currentQuestionIdx].answer;
+      const isCorrect = userAnswer == correctAnswer;
+      console.log("userAnswer", userAnswer);
+      console.log("correctAnswer", correctAnswer);
       setIsRight((prevIsRight) => prevIsRight.concat(isCorrect));
       setCurrentQuestionIdx((prevIdx) => prevIdx + 1);
 
-      setSec(6);
+      setSec(60);
     }
   };
 
@@ -88,130 +108,72 @@ const Quiz = () => {
     });
   };
 
-  const dummy = [
-    {
-      id: 0,
-      question:
-        "0발행기관이 파산할 경우 다른 채권자 부채를 모두 청산한 다음 마지막으로 상환받을 수 있는 채권은?",
-      answers: ["1특수채", "2회사채", "3국채", "후순위채"],
-      answer: 2,
-    },
-    {
-      id: 1,
-      question:
-        "1발행기관이 파산할 경우 다른 채권자 부채를 모두 청산한 다음 마지막으로 상환받을 수 있는 채권은?",
-      answers: ["1특수채", "2회사채", "3국채", "후순위채"],
-      answer: 2,
-    },
-    {
-      id: 2,
-      question:
-        "2발행기관이 파산할 경우 다른 채권자 부채를 모두 청산한 다음 마지막으로 상환받을 수 있는 채권은?",
-      answers: ["1특수채", "2회사채", "3국채", "후순위채"],
-      answer: 2,
-    },
-    {
-      id: 3,
-      question:
-        "3발행기관이 파산할 경우 다른 채권자 부채를 모두 청산한 다음 마지막으로 상환받을 수 있는 채권은?",
-      answers: ["1특수채", "2회사채", "3국채", "후순위채"],
-      answer: 2,
-    },
-    {
-      id: 4,
-      question:
-        "4발행기관이 파산할 경우 다른 채권자 부채를 모두 청산한 다음 마지막으로 상환받을 수 있는 채권은?",
-      answers: ["1특수채", "2회사채", "3국채", "후순위채"],
-      answer: 2,
-    },
-    {
-      id: 5,
-      question:
-        "5발행기관이 파산할 경우 다른 채권자 부채를 모두 청산한 다음 마지막으로 상환받을 수 있는 채권은?",
-      answers: ["1특수채", "2회사채", "3국채", "후순위채"],
-      answer: 2,
-    },
-    {
-      id: 6,
-      question:
-        "6발행기관이 파산할 경우 다른 채권자 부채를 모두 청산한 다음 마지막으로 상환받을 수 있는 채권은?",
-      answers: ["1특수채", "2회사채", "3국채", "후순위채"],
-      answer: 2,
-    },
-    {
-      id: 7,
-      question:
-        "7발행기관이 파산할 경우 다른 채권자 부채를 모두 청산한 다음 마지막으로 상환받을 수 있는 채권은?",
-      answers: ["1특수채", "2회사채", "3국채", "후순위채"],
-      answer: 2,
-    },
-    {
-      id: 8,
-      question:
-        "8발행기관이 파산할 경우 다른 채권자 부채를 모두 청산한 다음 마지막으로 상환받을 수 있는 채권은?",
-      answers: ["1특수채", "2회사채", "3국채", "후순위채"],
-      answer: 2,
-    },
-    {
-      id: 9,
-      question:
-        "9발행기관이 파산할 경우 다른 채권자 부채를 모두 청산한 다음 마지막으로 상환받을 수 있는 채권은?",
-      answers: ["1특수채", "2회사채", "3국채", "후순위채"],
-      answer: 2,
-    },
-  ];
-
-  const currentQuestion = dummy[currentQuestionIdx];
+  const currentQuestion = quizList[currentQuestionIdx];
+  console.log(currentQuestion);
 
   console.log(answers);
   console.log(isRight);
+
   return (
     <Container>
-      <ImgContainer>
-        <Div></Div>
-        <Img src="public/shinhan1.svg" alt="캐릭터1" />
-      </ImgContainer>
-      <QuizContainer>
-        <Question>
-          <div style={{ marginBottom: 10 }}>
-            {currentQuestion.id + 1}번 문제입니다!
-          </div>
-          {currentQuestion.question}
-        </Question>
-        <AnswerContainer>
-          {currentQuestion.answers.map((answer, index) => (
-            <Answer
-              key={index}
-              onClick={() => handleAnswerClick(index + 1)} // 선택한 답변의 인덱스 전달
-              selected={answers[currentQuestionIdx] === index + 1}
-              disabled={showAnswer}
-            >
-              {answer}
-            </Answer>
-          ))}
-          {end && <QuizResult isRight={isRight} dummy={dummy} />}
-        </AnswerContainer>
-        <Row>
-          <TimerContainer>
-            <Column>
-              <Icon src="public/stopwatch.svg" alt="시계" />
-              <Time>{sec}초</Time>
-            </Column>
-            <ProgressBar
-              completed={(sec / 60) * 100}
-              bgColor="#002DAB"
-              width="359px"
-              height="9px"
-              isLabelVisible={false}
-            />
-            <NavContainer>
-              <NavDiv onClick={handlePopupToggle}>정답보기</NavDiv>
-              <NavDiv onClick={handleNextQuestion}>다음문제</NavDiv>
-            </NavContainer>
-          </TimerContainer>
-        </Row>
-        {popupVisible && <OX check={check} />}
-      </QuizContainer>
+      {currentQuestion ? (
+        <>
+          <ImgContainer>
+            <Div></Div>
+            <Img src="public/shinhan1.svg" alt="캐릭터1" />
+          </ImgContainer>
+          <QuizContainer>
+            <Question>
+              <div style={{ marginBottom: 10 }}>
+                {currentQuestionIdx + 1}번 문제입니다!
+              </div>
+              {currentQuestion.question}
+            </Question>
+            <AnswerContainer>
+              {currentQuestion.option.map((answer, index) => (
+                <Answer
+                  key={index}
+                  onClick={() => handleAnswerClick(index + 1)} // 선택한 답변의 인덱스 전달
+                  selected={answers[currentQuestionIdx] == index + 1}
+                  disabled={showAnswer}
+                >
+                  {answer}
+                </Answer>
+              ))}
+              {end && (
+                <QuizResult
+                  isRight={isRight}
+                  quizList={quizList}
+                  allQuiz={allQuiz}
+                  answers={answers}
+                />
+              )}
+            </AnswerContainer>
+            <Row>
+              <TimerContainer>
+                <Column>
+                  <Icon src="public/stopwatch.svg" alt="시계" />
+                  <Time>{sec}초</Time>
+                </Column>
+                <ProgressBar
+                  completed={(sec / 60) * 100}
+                  bgColor="#002DAB"
+                  width="359px"
+                  height="9px"
+                  isLabelVisible={false}
+                />
+                <NavContainer>
+                  <NavDiv onClick={handlePopupToggle}>정답보기</NavDiv>
+                  <NavDiv onClick={handleNextQuestion}>다음문제</NavDiv>
+                </NavContainer>
+              </TimerContainer>
+            </Row>
+            {popupVisible && <OX check={check} />}
+          </QuizContainer>
+        </>
+      ) : (
+        <>loading...</>
+      )}
     </Container>
   );
 };
