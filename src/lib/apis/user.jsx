@@ -12,6 +12,7 @@ export const signup = async (email, password, nickname) => {
     console.log(data);
   } catch (err) {
     console.error(err);
+    return err;
   }
 };
 

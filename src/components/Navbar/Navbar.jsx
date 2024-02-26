@@ -90,7 +90,7 @@ export default function Navibar({ brandTitle, offCanvasTitle = undefined }) {
                     as="div"
                     className=""
                   >
-                    게임
+                    퀴즈
                   </Nav.Link>
                 </Link>
                 <Link
