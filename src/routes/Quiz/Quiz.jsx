@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import styled from "styled-components";
 import ProgressBar from "@ramonak/react-progress-bar";
 import OX from "../../components/Quiz/OX";
@@ -7,12 +7,12 @@ import { fetchQuizList } from "~/lib/apis/quiz";
 
 const Quiz = () => {
   const [sec, setSec] = useState(60);
-  const [alertShown, setAlertShown] = useState(false);
+  const [alertShown, setAlertShown] = useState(false); // 넘어가기 alert
   const [popupVisible, setPopupVisible] = useState(false);
   const [currentQuestionIdx, setCurrentQuestionIdx] = useState(0);
   const [answers, setAnswers] = useState(Array(10).fill(-1));
   const [isRight, setIsRight] = useState([]);
-  const [showAnswer, setShowAnswer] = useState(false);
+  const [showAnswer, setShowAnswer] = useState(false); // 정답 확인 후 변경 못하게
   const [quizList, setQuizList] = useState([]);
 
   const fetchQuizData = async () => {
@@ -30,7 +30,6 @@ const Quiz = () => {
   }, []);
 
   const allQuiz = quizList.map((item) => item.num);
-  console.log("allQuiz", allQuiz);
 
   useEffect(() => {
     if (sec === 0 && !alertShown) {
@@ -61,7 +60,7 @@ const Quiz = () => {
   const [check, setCheck] = useState(null);
   const [end, setEnd] = useState(false);
 
-  const handlePopupToggle = () => {
+  const handlePopupToggle = useCallback(() => {
     if (answers[currentQuestionIdx] == -1) {
       alert("정답을 선택해주세요.");
     } else {
@@ -74,8 +73,9 @@ const Quiz = () => {
         setPopupVisible(false);
       }, 1500);
     }
-  };
-  const handleNextQuestion = () => {
+  }, [answers, currentQuestionIdx, popupVisible, quizList]);
+
+  const handleNextQuestion = useCallback(() => {
     if (answers[currentQuestionIdx] == -1 && alertShown) {
       alert("정답을 선택해주세요.");
     } else if (currentQuestionIdx === 9) {
@@ -85,34 +85,61 @@ const Quiz = () => {
       setIsRight((prevIsRight) => prevIsRight.concat(isCorrect));
       setAlertShown(true);
       setEnd(true);
+      setSec(0);
     } else {
       setShowAnswer(false);
       setAlertShown(false);
       const userAnswer = answers[currentQuestionIdx];
       const correctAnswer = quizList[currentQuestionIdx].answer;
       const isCorrect = userAnswer == correctAnswer;
-      console.log("userAnswer", userAnswer);
-      console.log("correctAnswer", correctAnswer);
       setIsRight((prevIsRight) => prevIsRight.concat(isCorrect));
       setCurrentQuestionIdx((prevIdx) => prevIdx + 1);
-
       setSec(60);
     }
-  };
+  }, [alertShown, answers, currentQuestionIdx, quizList]);
 
-  const handleAnswerClick = (selectedAnswer) => {
-    setAnswers((prevAnswers) => {
-      const updatedAnswers = [...prevAnswers];
-      updatedAnswers[currentQuestionIdx] = selectedAnswer;
-      return updatedAnswers;
-    });
-  };
+  const handleAnswerClick = useCallback(
+    (selectedAnswer) => {
+      setAnswers((prevAnswers) => {
+        const updatedAnswers = [...prevAnswers];
+        updatedAnswers[currentQuestionIdx] = selectedAnswer;
+        return updatedAnswers;
+      });
+    },
+    [currentQuestionIdx]
+  );
 
   const currentQuestion = quizList[currentQuestionIdx];
   console.log(currentQuestion);
 
   console.log(answers);
   console.log(isRight);
+
+  const preventClose = useCallback((e) => {
+    e.preventDefault();
+    e.returnValue = "";
+  }, []);
+
+  useEffect(() => {
+    (() => {
+      window.addEventListener("beforeunload", preventClose);
+    })();
+    return () => {
+      window.removeEventListener("beforeunload", preventClose);
+    };
+  }, []);
+
+  const preventGoBack = useCallback(() => {
+    history.pushState(null, "", location.href);
+  }, [preventClose]);
+
+  useEffect(() => {
+    history.pushState(null, "", location.href);
+    window.addEventListener("popstate", preventGoBack);
+    return () => {
+      window.removeEventListener("popstate", preventGoBack);
+    };
+  }, [preventGoBack]);
 
   return (
     <Container>
