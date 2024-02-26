@@ -32,10 +32,24 @@ const MyList = ({ options, handleSelectOptionChange, list, numbersObject }) => {
       </SelectContainer>
       <ListContainer>
         {list.map((item, index) => (
-          <ListItem key={index}>
+          <ListDiv key={index}>
             <Correction>{item.accuracy ? "O" : "X"}</Correction>
-            <Question>{item.question}</Question>
-          </ListItem>
+            <ListItem>
+              <Question>{item.question}</Question>
+            </ListItem>
+            <ListItem2>
+              {item.userAnswer === item.correctAnswer ? (
+                <>
+                  <Question>정답 : {item.correctAnswer}</Question>
+                </>
+              ) : (
+                <>
+                  <Answer>나의 답안 : {item.userAnswer}</Answer>
+                  <Answer>정답 : {item.correctAnswer}</Answer>
+                </>
+              )}
+            </ListItem2>
+          </ListDiv>
         ))}
       </ListContainer>
     </Container>
@@ -129,11 +143,35 @@ const ListContainer = styled.div`
 
 const ListItem = styled.div`
   display: flex;
+  gap: 30px;
+`;
+
+const ListItem2 = styled.div`
+  display: none;
+`;
+
+const ListDiv = styled.div`
+  display: flex;
   flex-direction: row;
   width: 70vw;
   padding: 15px;
   border: 1px solid black;
   margin-bottom: 10px;
+
+  &:hover {
+    background-color: black;
+    color: white;
+  }
+
+  &:hover > ${ListItem} {
+    display: none;
+  }
+
+  &:hover > ${ListItem2} {
+    display: flex;
+    gap: 50px;
+    margin-left: auto;
+  }
 `;
 
 const Correction = styled.div`
@@ -145,6 +183,8 @@ const Correction = styled.div`
 const Question = styled.div`
   margin: auto 50px auto 50px;
 `;
+
+const Answer = styled.div``;
 
 const SelectContainer = styled.div`
   width: 80%;

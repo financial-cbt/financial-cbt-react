@@ -116,8 +116,16 @@ const QuizResult = ({ isRight, quizList, allQuiz, answers }) => {
                       <QContent>{item.question}</QContent>
                     </QuestionItem>
                     <QuestionItem2>
-                      <Visible>나의 답안 : {item.userAnswer}</Visible>
-                      <QContent>정답 : {item.answer}</QContent>
+                      {item.userAnswer === item.answer ? (
+                        <>
+                          <QContent>정답 : {item.answer}</QContent>
+                        </>
+                      ) : (
+                        <>
+                          <Visible>나의 답안 : {item.userAnswer}</Visible>
+                          <QContent>정답 : {item.answer}</QContent>
+                        </>
+                      )}
                     </QuestionItem2>
                   </QuestionDiv>
                 );
