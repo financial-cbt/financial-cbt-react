@@ -16,7 +16,6 @@ import {
 } from "react-vis";
 
 const Visualizer = ({ dateArray }) => {
-  console.log("dateArray", dateArray);
   const { user } = useAuth();
   const [data, setData] = useState([]);
   const [dates, setDates] = useState([]);
