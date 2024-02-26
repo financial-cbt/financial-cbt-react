@@ -43,31 +43,42 @@ export const deleteComment = async ({ boardId, commentId }) => {
     console.error(err);
   }
 };
-export const insertComment = async ({ boardId, content, user }) => {
+export const insertComment = async ({ boardId, content, author, nickname }) => {
   const baseUrl = `/board/${boardId}/comment`;
   try {
-    const response = await instance.post(baseUrl, { content, user });
+    const response = await instance.post(baseUrl, {
+      content,
+      author,
+      nickname,
+    });
     console.log("res", response);
     return response;
   } catch (err) {
     console.error(err);
   }
 };
-export async function postBoard({ title, content, user }) {
+export async function postBoard({ title, content, author, nickname }) {
   const baseUrl = "/board";
-  const response = await instance.post(baseUrl, {
-    title: title,
-    content: content,
-    user,
-  });
-  return response.data;
+  try {
+    const response = await instance.post(baseUrl, {
+      title,
+      content,
+      author,
+      nickname,
+    });
+    console.log(response);
+    return response.data;
+  } catch (err) {
+    console.error(err);
+  }
 }
-export async function editBoard({ boardId, title, content, user }) {
+export async function editBoard({ boardId, title, content, author, nickname }) {
   const baseUrl = `/board/${boardId}`;
   const response = await instance.put(baseUrl, {
     title: title,
     content: content,
-    user
+    author,
+    nickname,
   });
   return response.data;
 }

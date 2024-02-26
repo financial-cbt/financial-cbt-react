@@ -49,11 +49,11 @@ export default function page() {
     try {
       const res = await commentView(params);
       console.log(res);
-      setComments(res);
+      setComments(res); // 기존 상태를 유지하면서 새로운 배열을 생성하여 업데이트
     } catch (err) {
       console.error(err);
     }
-  }, [params, comments]);
+  }, [params, setComments]);
   //댓글 삭제하기
   const deleteCommentBtn = useCallback(
     async (commentId) => {
@@ -69,7 +69,7 @@ export default function page() {
         console.error(err);
       }
     },
-    [params, showComment]
+    [params, comments]
   );
 
   const insertCommentBtn = useCallback(async () => {
@@ -77,7 +77,8 @@ export default function page() {
       const res = await insertComment({
         boardId: params,
         content: newComment,
-        user,
+        author: user._id,
+        nickname: user.nickname,
       });
     } catch (err) {
       console.error(err);
@@ -183,14 +184,16 @@ export default function page() {
                   <Card.Text>
                     {comment.content}
                     <br />
-                    {user && user.nickname === comment.nickname && (<div
-                      style={{ textAlign: "right", cursor: "pointer" }}
-                      onClick={() => {
-                        deleteCommentBtn(comment._id);
-                      }}
-                    >
-                      삭제
-                    </div>)}
+                    {user && user.nickname === comment.nickname && (
+                      <div
+                        style={{ textAlign: "right", cursor: "pointer" }}
+                        onClick={() => {
+                          deleteCommentBtn(comment._id);
+                        }}
+                      >
+                        삭제
+                      </div>
+                    )}
                   </Card.Text>
                 </Card.Body>
               </Card>

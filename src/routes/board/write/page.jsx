@@ -9,18 +9,29 @@ export default function page() {
   const [content, setContent] = useState("");
   const navigate = useNavigate();
   const { boardId } = useParams();
-  const user = useAuth();
-
+  const {user} = useAuth();
+  console.log("user", user);
   const onSubmit = useCallback(
-    (title, content) => {
+    (title, content, author, nickname) => {
       if (boardId) {
         // boardEdit 일 경우
-        editBoard({ boardId, title, content, user }).then((resp) => {
+        editBoard({
+          boardId,
+          title,
+          content,
+          author: user._id,
+          nickname: user.nickname,
+        }).then((resp) => {
           navigate(`/board/${boardId}`);
         });
       } else {
         // board Write 일 경우
-        postBoard({ title, content, user }).then((resp) => {
+        postBoard({
+          title,
+          content,
+          author: user._id,
+          nickname: user.nickname,
+        }).then((resp) => {
           navigate("/board");
         });
       }
@@ -75,7 +86,8 @@ export default function page() {
             </Form.Group>
             <Button
               onClick={() => {
-                onSubmit(title, content, user);
+                onSubmit(title, content);
+                console.log(user._id);
               }}
               style={{ float: "right" }}
               type="button"
