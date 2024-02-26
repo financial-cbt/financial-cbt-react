@@ -17,7 +17,7 @@ export default function ArticleDetailpage() {
     photoUrl: "",
     reporter: "",
     title: "",
-    word: "",
+    word: [],
   });
 
   const fetchArticle = async () => {
@@ -44,7 +44,8 @@ export default function ArticleDetailpage() {
     fetchData();
   }, []);
 
-  const { body, date, photoUrl, reporter, title, word } = articles;
+  let { body, date, photoUrl, reporter, title, word } = articles;
+  // const newWord = word.sort((a, b) => a.start - b.start);
 
   const addTooltip = (word, mean, idx) => {
     return (
@@ -79,13 +80,16 @@ export default function ArticleDetailpage() {
   const renderText = () => {
     const result = [];
     let cursor = 0;
+    console.log(Array.isArray(word));
+    word.sort((a, b) => parseInt(a.start) - parseInt(b.start));
+    // word.sort((a, b) => a.start - b.start);
     for (let itemIdx in word) {
       const item = word[itemIdx];
-      result.push(body.substring(cursor, item.start - 1));
+      result.push(body.substring(cursor, item.start));
 
-      const words = body.substring(item.start, item.end + 1);
+      const words = body.substring(item.start, item.end);
       result.push(addTooltip(words, item.commentary, itemIdx));
-      cursor = item.end + 1;
+      cursor = item.end;
     }
     result.push(body.substring(cursor));
     // console.log(result);
