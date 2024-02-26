@@ -72,7 +72,7 @@ const Pagination = ({ totalPosts, limit, page, setPage }) => {
               </Button>
             );
           } else {
-            return null; // 페이지 수를 넘어가는 경우 null을 반환하여 렌더링하지 않음
+            return null;
           }
         })}
       <Button
