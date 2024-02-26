@@ -48,6 +48,7 @@ export default function page() {
   const showComment = useCallback(async () => {
     try {
       const res = await commentView(params);
+      console.log(res);
       setComments(res);
     } catch (err) {
       console.error(err);
@@ -70,7 +71,7 @@ export default function page() {
     },
     [params, showComment]
   );
- 
+
   const insertCommentBtn = useCallback(async () => {
     try {
       const res = await insertComment({
@@ -94,9 +95,11 @@ export default function page() {
   }, []);
   return (
     <div style={{ padding: "50px" }}>
-      <Link to={`/board/${params}/edit`}>
-        <Button>수정하기</Button>
-      </Link>
+      {user && user.nickname === nickname && (
+        <Link to={`/board/${params}/edit`}>
+          <Button>수정하기</Button>
+        </Link>
+      )}
       <Card
         // bg={variant.toLowerCase()}
         text={"Light".toLowerCase() === "light" ? "dark" : "white"}
