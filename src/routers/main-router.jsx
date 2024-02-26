@@ -1,7 +1,6 @@
 import * as React from "react";
 import { createBrowserRouter } from "react-router-dom";
-import MainPage from "../routes/page";
-import ExamplePage from "../routes/example/page";
+import MainPage from "../routes/MainPage";
 import Layout from "../routes/layout";
 import Signup from "../components/Signup";
 import Login from "../components/Login";
@@ -26,20 +25,82 @@ export const mainRouter = [
         element: <MainPage />,
       },
       {
-        path: "example",
+        path: "signup",
         index: true,
-        element: <ExamplePage />,
+        element: <Signup />,
       },
-      // {
-      //   path: "signup",
-      //   index: true,
-      //   element: <SignUpPage />,
-      // },
-      // {
-      //   path: "signin",
-      //   index: true,
-      //   element: <SignInPage />,
-      // },
+      {
+        path: "login",
+        index: true,
+        element: <Login />,
+      },
+      {
+        path: "mypage",
+        index: true,
+        element: (
+          <PrivateRoute>
+            <MyPage />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "articlelist",
+        children: [
+          {
+            path: "",
+            element: <ArticleList />,
+            index: true,
+          },
+          {
+            path: ":articleId",
+            element: <ArticleDetail />,
+            index: true,
+          },
+        ],
+      },
+      {
+        path: "quiz",
+        index: true,
+        element: (
+          <PrivateRoute>
+            <RandomQuiz />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "quizground",
+        index: true,
+        element: (
+          <PrivateRoute>
+            <Quiz />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "board",
+        children: [
+          {
+            path: "",
+            index: true,
+            element: <Board />,
+          },
+          {
+            path: ":boardId",
+            index: true,
+            element: <BoardDetail />,
+          },
+          {
+            path: ":boardId/edit",
+            element: <BoardWrite />,
+            index: true,
+          },
+          {
+            path: "write",
+            index: true,
+            element: <BoardWrite />,
+          },
+        ],
+      },
     ],
   },
 ];
