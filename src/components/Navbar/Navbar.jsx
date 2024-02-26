@@ -44,7 +44,7 @@ export default function Navibar({ brandTitle, offCanvasTitle = undefined }) {
             }}
           >
             <img
-              src="public/QnALogo.png"
+              src="/QnALogo.png"
               alt="로고"
               style={{ height: "45px", width: "157px" }}
             />
