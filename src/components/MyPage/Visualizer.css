@@ -1,0 +1,5 @@
+.visualizer-container {
+    width: 500px; /* 화면에 보여지는 너비를 고정 */
+    height: 500px;
+    overflow-x: scroll; /* 가로 스크롤 생성 */
+}
