@@ -4,9 +4,8 @@ import { Link } from "react-router-dom";
 import { commentView } from "../lib/apis/board";
 
 export default function BoardItem({ board }) {
-  const { _id, title, content, createdAt, author } = board;
+  const { _id, title, content, createdAt, author, nickname } = board;
   const [comment, setComment] = useState([]);
-  // console.log(board);
   //댓글 수 구하기
   const showComment = useCallback(async () => {
     try {
@@ -39,7 +38,7 @@ export default function BoardItem({ board }) {
             }}
           >
             <div style={{ flex: "7" }}>{title}</div>
-            <div style={{ flex: "1.5", overflow: "hidden" }}>{author}</div>
+            <div style={{ flex: "1.5", overflow: "hidden" }}>{nickname}</div>
             <div style={{ flex: "1.5", overflow: "hidden" }}>
               {createdAt.slice(0, 10)}
             </div>
