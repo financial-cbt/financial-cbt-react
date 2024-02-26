@@ -37,7 +37,7 @@ export const mainRouter = [
           {
             path: "",
             index: true,
-            element: <MyPage />,
+            element: <MyPage />
           },
           {
             path: "visualizer",
