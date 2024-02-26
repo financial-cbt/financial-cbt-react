@@ -121,6 +121,7 @@ export default function page() {
               gap: "10px",
               alignItems: "center",
               position: "relative",
+              margin: "0 10px",
             }}
           >
             <img
@@ -147,12 +148,14 @@ export default function page() {
           <div style={{ flex: "1", fontSize: "40px" }}>{title}</div>
         </Card.Header>
         <Card.Body style={{ textAlign: "left" }}>
-          <Card.Text>{content}</Card.Text>
+          <Card.Text style={{ margin: "0 10px" }}>{content}</Card.Text>
         </Card.Body>
       </Card>
       <br />
 
-      <h3 style={{ textAlign: "left" }}>댓글 쓰기({comments.length})</h3>
+      <h3 style={{ textAlign: "left", margin: "5px 10px" }}>
+        댓글 쓰기({comments.length})
+      </h3>
 
       <div>
         {comments.map((comment) => {
@@ -164,13 +167,14 @@ export default function page() {
                     style={{
                       display: "flex",
                       justifyContent: "space-between",
+                      margin: "0 10px",
                     }}
                   >
                     <div>{comment.nickname}</div>
                     <div>{comment.createdAt.slice(0, 10)}</div>
                   </div>
                 </Card.Header>
-                <Card.Body style={{ textAlign: "left" }}>
+                <Card.Body style={{ textAlign: "left", margin: "0 10px" }}>
                   {/* <Card.Text> 댓글:{comment._id} </Card.Text> */}
                   <Card.Text>
                     {comment.content}

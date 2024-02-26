@@ -143,7 +143,7 @@ export default function ArticleDetailpage() {
         }}
       >
         <div style={{ maxWidth: "50%" }}>
-          <img src={photoUrl} alt="11" style={{ minWidth: "500px" }} />
+          <img src={photoUrl} alt="11" style={{ minWidth: "1024px" }} />
         </div>
         <div
           style={{
