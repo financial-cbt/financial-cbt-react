@@ -9,6 +9,7 @@ import {
 } from "../../../lib/apis/board";
 import Card from "react-bootstrap/Card";
 import useAuth from "../../../lib/hooks/useAuth";
+import user_blue from "../../../imgs/user_blue.png";
 
 export default function page() {
   const { user } = useAuth();
@@ -101,11 +102,6 @@ export default function page() {
   }, [showComment, params]);
   return (
     <div style={{ padding: "50px" }}>
-      {user && user.nickname === nickname && (
-        <Link to={`/board/${params}/edit`}>
-          <Button>수정하기</Button>
-        </Link>
-      )}
       <Card
         // bg={variant.toLowerCase()}
         text={"Light".toLowerCase() === "light" ? "dark" : "white"}
@@ -119,19 +115,87 @@ export default function page() {
             backgroundColor: "#DCEDF6",
           }}
         >
-          <div style={{ flex: "1", fontSize: "40px" }}>{title}</div>
-          <div style={{ flex: "1" }}>{nickname}</div>
-          <div style={{ flex: "1", color: "rgba(0,0,0,.5)" }}>
-            {createdAt.slice(0, 10)}
+          <div
+            style={{
+              display: "flex",
+              gap: "10px",
+              alignItems: "center",
+              position: "relative",
+              margin: "0 10px",
+            }}
+          >
+            <img
+              src={user_blue}
+              alt="user"
+              style={{ width: "35px", height: "35px" }}
+            />
+            <div style={{ display: "flex", flexDirection: "column" }}>
+              <div style={{}}>{nickname}</div>
+              <div style={{ color: "rgba(0,0,0,.5)" }}>
+                {createdAt.slice(0, 10)}
+              </div>
+            </div>
+            {user && user.nickname === nickname && (
+              <Link
+                to={`/board/${params}/edit`}
+                style={{ position: "absolute", right: "0" }}
+              >
+                <Button>수정하기</Button>
+              </Link>
+            )}
           </div>
+
+          <div style={{ flex: "1", fontSize: "40px" }}>{title}</div>
         </Card.Header>
         <Card.Body style={{ textAlign: "left" }}>
-          <Card.Text>{content}</Card.Text>
+          <Card.Text style={{ margin: "0 10px" }}>{content}</Card.Text>
         </Card.Body>
       </Card>
       <br />
-      <h3 style={{ textAlign: "left" }}>댓글 쓰기({comments.length})</h3>
-      <br />
+
+      <h3 style={{ textAlign: "left", margin: "5px 10px" }}>
+        댓글 쓰기({comments.length})
+      </h3>
+
+      <div>
+        {comments.map((comment) => {
+          return (
+            <div key={comment._id} style={{ marginBottom: "30px" }}>
+              <Card style={{ width: "100%" }} className="mb-2">
+                <Card.Header style={{ backgroundColor: "#DCEDF6" }}>
+                  <div
+                    style={{
+                      display: "flex",
+                      justifyContent: "space-between",
+                      margin: "0 10px",
+                    }}
+                  >
+                    <div>{comment.nickname}</div>
+                    <div>{comment.createdAt.slice(0, 10)}</div>
+                  </div>
+                </Card.Header>
+                <Card.Body style={{ textAlign: "left", margin: "0 10px" }}>
+                  {/* <Card.Text> 댓글:{comment._id} </Card.Text> */}
+                  <Card.Text>
+                    {comment.content}
+                    <br />
+                    {user && user.nickname === comment.nickname && (
+                      <div
+                        style={{ textAlign: "right", cursor: "pointer" }}
+                        onClick={() => {
+                          deleteCommentBtn(comment._id);
+                        }}
+                      >
+                        삭제
+                      </div>
+                    )}
+                  </Card.Text>
+                </Card.Body>
+              </Card>
+            </div>
+          );
+        })}
+      </div>
       <form
         action=""
         style={{
@@ -164,45 +228,6 @@ export default function page() {
         </Button>
       </form>
       <br />
-      <div>
-        {comments.map((comment) => {
-          return (
-            <div key={comment._id} style={{ marginBottom: "30px" }}>
-              <Card style={{ width: "100%" }} className="mb-2">
-                <Card.Header style={{ backgroundColor: "#DCEDF6" }}>
-                  <div
-                    style={{
-                      display: "flex",
-                      justifyContent: "space-between",
-                    }}
-                  >
-                    <div>{comment.nickname}</div>
-                    <div>{comment.createdAt.slice(0, 10)}</div>
-                  </div>
-                </Card.Header>
-                <Card.Body style={{ textAlign: "left" }}>
-                  {/* <Card.Text> 댓글:{comment._id} </Card.Text> */}
-                  <Card.Text>
-                    {comment.content}
-                    <br />
-                    {user && user.nickname === comment.nickname && (
-                      <div
-                        style={{ textAlign: "right", cursor: "pointer" }}
-                        onClick={() => {
-                          deleteCommentBtn(comment._id);
-                        }}
-                      >
-                        삭제
-                      </div>
-                    )}
-                  </Card.Text>
-                </Card.Body>
-              </Card>
-            </div>
-          );
-        })}
-      </div>
-
       <div style={{ display: "flex", justifyContent: "space-between" }}>
         <Button
           style={{

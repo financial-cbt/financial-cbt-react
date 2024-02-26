@@ -7,7 +7,7 @@ export default function page() {
   return (
     <>
       <div style={{ width: "1200px", margin: "0 auto" }}>
-        <h1 style={{ textAlign: "center" }}>BoardList</h1>
+        <h1 style={{ textAlign: "center" }}>질문해봐요</h1>
         <hr
           style={{
             border: "solid 4px blue",

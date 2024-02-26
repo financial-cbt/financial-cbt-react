@@ -22,21 +22,46 @@ export default function BoardList({ fetchBoard }) {
   return (
     <div>
       <Container>
-        <Link to={"/board/write"}>
-          <Button>작성하기</Button>
-        </Link>
-
         <div
           style={{
             display: "flex",
             padding: " 0 20px 0 30px",
             marginTop: "50px",
             marginBottom: "20px",
+            alignItems: "center",
           }}
         >
-          <div style={{ flex: "7" }}>제목</div>
-          <div style={{ flex: "1.5" }}>작성자</div>
-          <div style={{ flex: "1.5" }}>날짜</div>
+          <div style={{ flex: "6.8", fontSize: "20px", fontWeight: "600" }}>
+            제목
+          </div>
+          <div style={{ flex: "1.52", fontSize: "20px", fontWeight: "600" }}>
+            작성자
+          </div>
+          <div
+            style={{
+              flex: "1.6",
+              fontSize: "20px",
+              fontWeight: "600",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "space-between",
+            }}
+          >
+            <div>날짜</div>
+            <Link to={"/board/write"}>
+              <Button
+                variant="light"
+                style={{
+                  height: "40px",
+                  padding: "0",
+                  fontWeight: "600",
+                  fontSize: "20px",
+                }}
+              >
+                글 쓰기
+              </Button>
+            </Link>
+          </div>
         </div>
         {boards.map((board) => (
           <BoardItem board={board} key={board._id} />
