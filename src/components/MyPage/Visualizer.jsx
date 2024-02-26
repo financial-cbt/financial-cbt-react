@@ -15,16 +15,13 @@ import {
     LineSeries
 } from 'react-vis';
 
-const Visualizer = (props) => {
+const Visualizer = ({ userId }) => {
     const { user } = useAuth();
     const [data, setData] = useState([]);
     const [dates, setDates] = useState([]);
 
     useEffect(() => {
-        console.log(user)
-
-        // fetchDates("65d82829f00705e880e44390")
-        fetchDates(user?._id)
+        fetchDates(userId)
             .then(dateStrings => {
                 setDates(dateStrings
                     .map(dateString => new Date(dateString))
@@ -38,7 +35,6 @@ const Visualizer = (props) => {
     useEffect(() => {
         let maps = new Map();
 
-        console.log("dates: ", dates);
         for (const date of dates) {
             const year = date.getFullYear();
             const month = date.getMonth() + 1;
@@ -58,8 +54,6 @@ const Visualizer = (props) => {
             result.push({ x: key[0], y: key[1] });
         }
         setData(result);
-        console.log("data: ", data);
-
     }, [dates]);
 
     const XtickValues = useMemo(() => {
