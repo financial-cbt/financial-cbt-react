@@ -11,8 +11,8 @@ import Quiz from "../routes/Quiz/Quiz";
 import MyPage from "../routes/user/MyPage";
 import Board from "../routes/board/page";
 import BoardDetail from "../routes/board/detail/page";
-import BoardWrite from "../routes/board/wrtie/page";
-import PrivateRoute from "~/components/PrivateRoute";
+import BoardWrite from "../routes/board/write/page";
+import PrivateRoute from "../components/PrivateRoute";
 
 export const mainRouter = [
   {

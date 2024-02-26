@@ -170,7 +170,7 @@ export default function page() {
                       justifyContent: "space-between",
                     }}
                   >
-                    <div>{nickname}</div>
+                    <div>{comment.nickname}</div>
                     <div>{comment.createdAt.slice(0, 10)}</div>
                   </div>
                 </Card.Header>
