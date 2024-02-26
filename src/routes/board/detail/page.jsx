@@ -53,7 +53,7 @@ export default function page() {
     } catch (err) {
       console.error(err);
     }
-  }, [params]);
+  }, [params, comments]);
   //댓글 삭제하기
   const deleteCommentBtn = useCallback(
     async (commentId) => {
@@ -79,20 +79,16 @@ export default function page() {
         content: newComment,
         user,
       });
-      showComment();
     } catch (err) {
       console.error(err);
     }
   }, [params, showComment, newComment, user]);
 
-  // useEffect(() => {
-  //   showDetail();
-  //   showComment();
-  //   deleteCommentBtn(commentId);
-  //   insertCommentBtn({
-  //     user, // 유저 정보
-  //   });
-  // }, []);
+  const onSubmit = async (e) => {
+    e.preventDefault();
+    setNewComment("");
+    await insertCommentBtn();
+  };
 
   useEffect(() => {
     showDetail();
@@ -142,7 +138,7 @@ export default function page() {
           display: "flex",
           gap: "1rem",
         }}
-        onSubmit={insertCommentBtn}
+        onSubmit={onSubmit}
       >
         <input
           placeholder="댓글을 입력하세요."
@@ -187,14 +183,14 @@ export default function page() {
                   <Card.Text>
                     {comment.content}
                     <br />
-                    {user && user.nickname === comment.nickname && (<div
+                    <div
                       style={{ textAlign: "right", cursor: "pointer" }}
                       onClick={() => {
                         deleteCommentBtn(comment._id);
                       }}
                     >
                       삭제
-                    </div>)}
+                    </div>
                   </Card.Text>
                 </Card.Body>
               </Card>
@@ -226,7 +222,7 @@ export default function page() {
             navigate("/");
           }}
         >
-          Front{">"}
+          Home{">"}
         </Button>
       </div>
     </div>
