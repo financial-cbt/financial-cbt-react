@@ -15,20 +15,16 @@ import {
     LineSeries
 } from 'react-vis';
 
-const Visualizer = ({ userId }) => {
+const Visualizer = ({ dateArray }) => {
     const { user } = useAuth();
     const [data, setData] = useState([]);
     const [dates, setDates] = useState([]);
 
     useEffect(() => {
-        fetchDates(userId)
-            .then(dateStrings => {
-                setDates(dateStrings
-                    .map(dateString => new Date(dateString))
-                    .sort((a, b) => a.getTime() - b.getTime())
-                );
-            })
-            .catch(err => console.log(err));
+        setDates(dateArray
+            .map(dateString => new Date(dateString))
+            .sort((a, b) => a.getTime() - b.getTime())
+        );
     }, [user]);
 
 
