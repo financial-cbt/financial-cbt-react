@@ -5,6 +5,7 @@ import Pagination from "~/components/MyPage/Pagination";
 import { fetchMyList } from "../../lib/apis/mypage";
 import useAuth from "~/lib/hooks/useAuth";
 import { Spinner } from "react-bootstrap";
+import Visualizer from "../../components/MyPage/Visualizer";
 
 const MyPage = () => {
   const { user } = useAuth();
@@ -112,9 +113,10 @@ const MyPage = () => {
       </SpinnerContainer>
     );
   }
-
+  console.log("data.dateArray", data?.dateArray);
   return (
     <Container>
+      <Visualizer dateArray={data?.dateArray} />
       <MyList
         handleSelectOptionChange={handleSelectOptionChange}
         options={options}
@@ -136,6 +138,7 @@ export default MyPage;
 const Container = styled.div`
   display: flex;
   flex-direction: column;
+  align-items: center;
 `;
 
 const SpinnerContainer = styled.div`
