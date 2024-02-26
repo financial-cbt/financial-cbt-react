@@ -9,6 +9,9 @@ import ArticleDetail from "../routes/article/detail/page";
 import RandomQuiz from "../routes/Quiz/RandomQuiz";
 import Quiz from "../routes/Quiz/Quiz";
 import MyPage from "../routes/user/MyPage";
+import Board from "../routes/board/page";
+import BoardDetail from "../routes/board/detail/page";
+import BoardWrite from "../routes/board/wrtie/page";
 
 export const mainRouter = [
   {
@@ -59,6 +62,31 @@ export const mainRouter = [
         path: "quizground",
         index: true,
         element: <Quiz />,
+      },
+      {
+        path: "board",
+        children: [
+          {
+            path: "",
+            index: true,
+            element: <Board />,
+          },
+          {
+            path: ":boardId",
+            index: true,
+            element: <BoardDetail />,
+          },
+          {
+            path: ":boardId/edit",
+            element: <BoardWrite />,
+            index: true,
+          },
+          {
+            path: "write",
+            index: true,
+            element: <BoardWrite />,
+          },
+        ],
       },
     ],
   },
