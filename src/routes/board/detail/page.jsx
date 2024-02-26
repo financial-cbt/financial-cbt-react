@@ -187,14 +187,14 @@ export default function page() {
                   <Card.Text>
                     {comment.content}
                     <br />
-                    <div
+                    {user && user.nickname === comment.nickname && (<div
                       style={{ textAlign: "right", cursor: "pointer" }}
                       onClick={() => {
                         deleteCommentBtn(comment._id);
                       }}
                     >
                       삭제
-                    </div>
+                    </div>)}
                   </Card.Text>
                 </Card.Body>
               </Card>
