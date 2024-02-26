@@ -43,7 +43,7 @@ const Login = () => {
 
   return (
     <SignupContainer>
-      <LogoImg alt="로고" />
+      <LogoImg src="public/QnALogo.png" alt="로고" />
       <Form onSubmit={onLogin}>
         <Label>
           <Img src="public/Envelope.svg" alt="이메일" />
@@ -77,10 +77,13 @@ const SignupContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  height: cal(100vh - 42px);
 `;
 
 const LogoImg = styled.img`
-  margin-bottom: 100px;
+  margin-top: 50px;
+  margin-bottom: 70px;
+  width: 250px;
 `;
 
 const Form = styled.form`
