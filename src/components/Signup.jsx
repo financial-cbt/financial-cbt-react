@@ -12,7 +12,15 @@ const Signup = () => {
 
   const postSignup = async (email, password, nickname) => {
     try {
-      await signup(email, password, nickname);
+      const response = await signup(email, password, nickname);
+      if (
+        response.response &&
+        response.response.data.message ===
+          "email, password, nickName을 정확히 입력해주세요."
+      ) {
+        alert("이미 가입된 이메일입니다.");
+        return;
+      }
       alert("회원가입이 완료되었습니다.");
       navigate("/");
       window.scrollTo(0, 0);

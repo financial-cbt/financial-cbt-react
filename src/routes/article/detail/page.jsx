@@ -10,6 +10,7 @@ import axios from "axios";
 export default function ArticleDetailpage() {
   const navigate = useNavigate();
   const param = useParams();
+  console.log(param);
   const articleId = param.articleId;
   const [articles, setArticles] = useState({
     body: "",
@@ -17,14 +18,16 @@ export default function ArticleDetailpage() {
     photoUrl: "",
     reporter: "",
     title: "",
-    word: "",
+    word: [],
   });
-
+  console.log(1);
   const fetchArticle = async () => {
+    console.log(111);
     try {
       const response = await axios.get(
         `http://127.0.0.1:3000/api/article/${articleId}`
       );
+      console.log(response.data);
       return response.data[0];
     } catch (err) {
       console.error(err);
@@ -44,7 +47,8 @@ export default function ArticleDetailpage() {
     fetchData();
   }, []);
 
-  const { body, date, photoUrl, reporter, title, word } = articles;
+  let { body, date, photoUrl, reporter, title, word } = articles;
+  // const newWord = word.sort((a, b) => a.start - b.start);
 
   const addTooltip = (word, mean, idx) => {
     return (
@@ -79,13 +83,15 @@ export default function ArticleDetailpage() {
   const renderText = () => {
     const result = [];
     let cursor = 0;
+    word.sort((a, b) => parseInt(a.start) - parseInt(b.start));
+    // word.sort((a, b) => a.start - b.start);
     for (let itemIdx in word) {
       const item = word[itemIdx];
-      result.push(body.substring(cursor, item.start - 1));
+      result.push(body.substring(cursor, item.start));
 
-      const words = body.substring(item.start, item.end + 1);
+      const words = body.substring(item.start, item.end);
       result.push(addTooltip(words, item.commentary, itemIdx));
-      cursor = item.end + 1;
+      cursor = item.end;
     }
     result.push(body.substring(cursor));
     // console.log(result);
@@ -112,7 +118,9 @@ export default function ArticleDetailpage() {
           <h6 style={{ marginRight: "10px", marginBottom: "0px" }}>
             {reporter}
           </h6>
-          <h6 style={{ marginBottom: "0px" }}>{date}</h6>
+          <h6 style={{ marginBottom: "0px", color: "rgba(0,0,0,.5)" }}>
+            {date.slice(0, 10)}
+          </h6>
         </div>
 
         <hr />
@@ -128,7 +136,14 @@ export default function ArticleDetailpage() {
         <div style={{ maxWidth: "50%" }}>
           <img src={photoUrl} alt="11" />
         </div>
-        <div style={{ minWidth: "50%", lineBreak: "anywhere" }}>
+        <div
+          style={{
+            minWidth: "50%",
+            lineBreak: "anywhere",
+            fontSize: "20px",
+            lineHeight: "1.5",
+          }}
+        >
           {renderText()}
         </div>
       </div>
