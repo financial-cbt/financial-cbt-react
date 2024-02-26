@@ -207,7 +207,7 @@ export default function page() {
             fontWeight: "600",
           }}
           onClick={(e) => {
-            navigate(-1);
+            navigate("/board");
           }}
         >
           {"<"} Back
