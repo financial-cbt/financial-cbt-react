@@ -88,7 +88,11 @@ export default function Navibar({ brandTitle, offCanvasTitle = undefined }) {
                   className="text-decoration-none flex-grow-1 text-center border border-dark border-end-0"
                 >
                   <Nav.Link
-                    style={{ color: "#4E5968", fontWeight: "500" }}
+                    style={{
+                      color: "#4E5968",
+                      fontWeight: "500",
+                      fontSize: "20px",
+                    }}
                     as="div"
                     className=""
                   >
@@ -100,7 +104,11 @@ export default function Navibar({ brandTitle, offCanvasTitle = undefined }) {
                   className="text-decoration-none flex-grow-1 text-center border border-dark border-end-0"
                 >
                   <Nav.Link
-                    style={{ color: "#4E5968", fontWeight: "500" }}
+                    style={{
+                      color: "#4E5968",
+                      fontWeight: "500",
+                      fontSize: "20px",
+                    }}
                     as="div"
                     className=""
                   >
@@ -114,7 +122,11 @@ export default function Navibar({ brandTitle, offCanvasTitle = undefined }) {
                       className="text-decoration-none flex-grow-1 text-center border border-dark border-end-0"
                     >
                       <Nav.Link
-                        style={{ color: "#4E5968", fontWeight: "500" }}
+                        style={{
+                          color: "#4E5968",
+                          fontWeight: "500",
+                          fontSize: "20px",
+                        }}
                         as="div"
                         className=""
                       >
@@ -130,6 +142,7 @@ export default function Navibar({ brandTitle, offCanvasTitle = undefined }) {
                           color: "#4E5968",
                           border: "none",
                           fontWeight: "500",
+                          fontSize: "20px",
                         }}
                         as="div"
                         className=""
@@ -145,7 +158,11 @@ export default function Navibar({ brandTitle, offCanvasTitle = undefined }) {
                       className="text-decoration-none flex-grow-1 text-center border border-dark border-end-0"
                     >
                       <Nav.Link
-                        style={{ color: "#4E5968", fontWeight: "500" }}
+                        style={{
+                          color: "#4E5968",
+                          fontWeight: "500",
+                          fontSize: "20px",
+                        }}
                         as="div"
                         className=""
                       >
@@ -157,7 +174,11 @@ export default function Navibar({ brandTitle, offCanvasTitle = undefined }) {
                       className="text-decoration-none flex-grow-1 text-center border border-dark border-end-0"
                     >
                       <Nav.Link
-                        style={{ color: "#4E5968", fontWeight: "500" }}
+                        style={{
+                          color: "#4E5968",
+                          fontWeight: "500",
+                          fontSize: "20px",
+                        }}
                         as="div"
                         className=""
                       >
@@ -169,6 +190,7 @@ export default function Navibar({ brandTitle, offCanvasTitle = undefined }) {
                         color: "#4E5968",
                         border: "none",
                         fontWeight: "500",
+                        fontSize: "20px",
                       }}
                       as="div"
                       className="text-decoration-none flex-grow-1 text-center border border-dark border-end-0"

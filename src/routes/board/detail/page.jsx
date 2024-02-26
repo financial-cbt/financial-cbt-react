@@ -9,6 +9,7 @@ import {
 } from "../../../lib/apis/board";
 import Card from "react-bootstrap/Card";
 import useAuth from "../../../lib/hooks/useAuth";
+import user_blue from "../../../imgs/user_blue.png";
 
 export default function page() {
   const { user } = useAuth();
@@ -101,11 +102,6 @@ export default function page() {
   }, [showComment, params]);
   return (
     <div style={{ padding: "50px" }}>
-      {user && user.nickname === nickname && (
-        <Link to={`/board/${params}/edit`}>
-          <Button>수정하기</Button>
-        </Link>
-      )}
       <Card
         // bg={variant.toLowerCase()}
         text={"Light".toLowerCase() === "light" ? "dark" : "white"}
@@ -119,51 +115,45 @@ export default function page() {
             backgroundColor: "#DCEDF6",
           }}
         >
-          <div style={{ flex: "1", fontSize: "40px" }}>{title}</div>
-          <div style={{ flex: "1" }}>{nickname}</div>
-          <div style={{ flex: "1", color: "rgba(0,0,0,.5)" }}>
-            {createdAt.slice(0, 10)}
+          <div
+            style={{
+              display: "flex",
+              gap: "10px",
+              alignItems: "center",
+              position: "relative",
+            }}
+          >
+            <img
+              src={user_blue}
+              alt="user"
+              style={{ width: "35px", height: "35px" }}
+            />
+            <div style={{ display: "flex", flexDirection: "column" }}>
+              <div style={{}}>{nickname}</div>
+              <div style={{ color: "rgba(0,0,0,.5)" }}>
+                {createdAt.slice(0, 10)}
+              </div>
+            </div>
+            {user && user.nickname === nickname && (
+              <Link
+                to={`/board/${params}/edit`}
+                style={{ position: "absolute", right: "0" }}
+              >
+                <Button>수정하기</Button>
+              </Link>
+            )}
           </div>
+
+          <div style={{ flex: "1", fontSize: "40px" }}>{title}</div>
         </Card.Header>
         <Card.Body style={{ textAlign: "left" }}>
           <Card.Text>{content}</Card.Text>
         </Card.Body>
       </Card>
       <br />
+
       <h3 style={{ textAlign: "left" }}>댓글 쓰기({comments.length})</h3>
-      <br />
-      <form
-        action=""
-        style={{
-          width: "100%",
-          height: "4rem",
-          display: "flex",
-          gap: "1rem",
-        }}
-        onSubmit={onSubmit}
-      >
-        <input
-          placeholder="댓글을 입력하세요."
-          type="text"
-          style={{ flex: "4" }}
-          onChange={(e) => setNewComment(e.target.value)}
-          value={newComment}
-        />
-        <Button
-          type="submit"
-          variant="dark"
-          style={{
-            flex: "1",
-            backgroundColor: "#DCEDF6",
-            border: "none",
-            fontSize: "20px",
-            color: "#000",
-          }}
-        >
-          click
-        </Button>
-      </form>
-      <br />
+
       <div>
         {comments.map((comment) => {
           return (
@@ -202,7 +192,38 @@ export default function page() {
           );
         })}
       </div>
-
+      <form
+        action=""
+        style={{
+          width: "100%",
+          height: "4rem",
+          display: "flex",
+          gap: "1rem",
+        }}
+        onSubmit={onSubmit}
+      >
+        <input
+          placeholder="댓글을 입력하세요."
+          type="text"
+          style={{ flex: "4" }}
+          onChange={(e) => setNewComment(e.target.value)}
+          value={newComment}
+        />
+        <Button
+          type="submit"
+          variant="dark"
+          style={{
+            flex: "1",
+            backgroundColor: "#DCEDF6",
+            border: "none",
+            fontSize: "20px",
+            color: "#000",
+          }}
+        >
+          click
+        </Button>
+      </form>
+      <br />
       <div style={{ display: "flex", justifyContent: "space-between" }}>
         <Button
           style={{

@@ -84,8 +84,15 @@ const ArticleList = () => {
   ];
 
   return (
-    <div>
-      <h1 style={{ marginLeft: "40px" }}>기사 사이트</h1>
+    <div style={{ margin: "0 auto" }}>
+      <h1 style={{ textAlign: "center" }}>기사를 통해 공부해요</h1>
+      <hr
+        style={{
+          border: "solid 4px blue",
+          width: "20%",
+          margin: "auto", // 가운데 정렬을 위해 margin: auto; 추가
+        }}
+      />
       <ArticleListContainer>
         {testArticles.map((newArticle) => (
           <ArticleItem newArticle={newArticle} key={newArticle.id} />

@@ -103,7 +103,22 @@ export default function ArticleDetailpage() {
   return (
     <ArticleContainer>
       <DetailContainer>
-        <div style={{ display: "flex", alignItems: "center" }}>
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-between",
+          }}
+        >
+          <div>
+            <h6 style={{ marginRight: "10px", marginBottom: "0px" }}>
+              {reporter}
+            </h6>
+            <h6 style={{ marginBottom: "0px", color: "rgba(0,0,0,.5)" }}>
+              {date.slice(0, 10)}
+            </h6>
+          </div>
+
           <Button
             style={{
               marginRight: "10px",
@@ -115,12 +130,6 @@ export default function ArticleDetailpage() {
           >
             뒤로가기
           </Button>
-          <h6 style={{ marginRight: "10px", marginBottom: "0px" }}>
-            {reporter}
-          </h6>
-          <h6 style={{ marginBottom: "0px", color: "rgba(0,0,0,.5)" }}>
-            {date.slice(0, 10)}
-          </h6>
         </div>
 
         <hr />
@@ -134,14 +143,14 @@ export default function ArticleDetailpage() {
         }}
       >
         <div style={{ maxWidth: "50%" }}>
-          <img src={photoUrl} alt="11" />
+          <img src={photoUrl} alt="11" style={{ minWidth: "500px" }} />
         </div>
         <div
           style={{
             minWidth: "50%",
             lineBreak: "anywhere",
             fontSize: "20px",
-            lineHeight: "1.5",
+            lineHeight: "1.7",
           }}
         >
           {renderText()}
@@ -157,9 +166,9 @@ const ArticleContainer = styled.div`
   justify-content: center;
   /* padding: 50px 200px; */
   padding: 50px 20px;
-  margin: auto;
+  margin: 0 auto;
   /* max-width: 100%; */
-  width: 1140px;
+  width: 1040px;
 
   box-sizing: content-box;
 `;
