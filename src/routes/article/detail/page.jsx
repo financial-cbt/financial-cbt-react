@@ -118,7 +118,9 @@ export default function ArticleDetailpage() {
           <h6 style={{ marginRight: "10px", marginBottom: "0px" }}>
             {reporter}
           </h6>
-          <h6 style={{ marginBottom: "0px" }}>{date}</h6>
+          <h6 style={{ marginBottom: "0px", color: "rgba(0,0,0,.5)" }}>
+            {date.slice(0, 10)}
+          </h6>
         </div>
 
         <hr />
@@ -134,7 +136,14 @@ export default function ArticleDetailpage() {
         <div style={{ maxWidth: "50%" }}>
           <img src={photoUrl} alt="11" />
         </div>
-        <div style={{ minWidth: "50%", lineBreak: "anywhere" }}>
+        <div
+          style={{
+            minWidth: "50%",
+            lineBreak: "anywhere",
+            fontSize: "20px",
+            lineHeight: "1.5",
+          }}
+        >
           {renderText()}
         </div>
       </div>

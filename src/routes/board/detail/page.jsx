@@ -43,7 +43,7 @@ export default function page() {
     } catch (err) {
       console.error(err);
     }
-  }, []);
+  }, [params]);
   // 댓글 불러오기
   const showComment = useCallback(async () => {
     try {
@@ -53,7 +53,7 @@ export default function page() {
     } catch (err) {
       console.error(err);
     }
-  }, []);
+  }, [params]);
   //댓글 삭제하기
   const deleteCommentBtn = useCallback(
     async (commentId) => {
@@ -85,14 +85,22 @@ export default function page() {
     }
   }, [params, showComment, newComment, user]);
 
+  // useEffect(() => {
+  //   showDetail();
+  //   showComment();
+  //   deleteCommentBtn(commentId);
+  //   insertCommentBtn({
+  //     user, // 유저 정보
+  //   });
+  // }, []);
+
   useEffect(() => {
     showDetail();
+  }, [showDetail]);
+
+  useEffect(() => {
     showComment();
-    deleteCommentBtn(commentId);
-    insertCommentBtn({
-      user, // 유저 정보
-    });
-  }, []);
+  }, [showComment, params]);
   return (
     <div style={{ padding: "50px" }}>
       {user && user.nickname === nickname && (
