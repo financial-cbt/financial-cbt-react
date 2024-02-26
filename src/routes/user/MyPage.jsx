@@ -4,10 +4,12 @@ import MyList from "~/components/MyPage/MyList";
 import Pagination from "~/components/MyPage/Pagination";
 import { fetchMyList } from "../../lib/apis/mypage";
 import useAuth from "~/lib/hooks/useAuth";
+import { Spinner } from "react-bootstrap";
 
 const MyPage = () => {
   const { user } = useAuth();
   const [data, setData] = useState(null);
+  const [loading, setLoading] = useState(false);
   const [page, setPage] = useState(1);
   const limit = 10;
   const offset = (page - 1) * limit;
@@ -19,6 +21,7 @@ const MyPage = () => {
 
   const fetchMyPageData = async () => {
     try {
+      setLoading(true);
       if (user) {
         const response = await fetchMyList(user._id);
         console.log(response);
@@ -26,6 +29,8 @@ const MyPage = () => {
       }
     } catch (error) {
       console.error(error);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -98,6 +103,16 @@ const MyPage = () => {
     { value: "wrong", label: "오답" },
   ];
 
+  if (loading) {
+    return (
+      <SpinnerContainer>
+        <Spinner animation="border" role="status">
+          <span className="sr-only"></span>
+        </Spinner>
+      </SpinnerContainer>
+    );
+  }
+
   return (
     <Container>
       <MyList
@@ -121,4 +136,11 @@ export default MyPage;
 const Container = styled.div`
   display: flex;
   flex-direction: column;
+`;
+
+const SpinnerContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
 `;
