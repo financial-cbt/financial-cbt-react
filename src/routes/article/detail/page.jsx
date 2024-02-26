@@ -10,6 +10,7 @@ import axios from "axios";
 export default function ArticleDetailpage() {
   const navigate = useNavigate();
   const param = useParams();
+  console.log(param);
   const articleId = param.articleId;
   const [articles, setArticles] = useState({
     body: "",
@@ -19,12 +20,14 @@ export default function ArticleDetailpage() {
     title: "",
     word: [],
   });
-
+  console.log(1);
   const fetchArticle = async () => {
+    console.log(111);
     try {
       const response = await axios.get(
         `http://127.0.0.1:3000/api/article/${articleId}`
       );
+      console.log(response.data);
       return response.data[0];
     } catch (err) {
       console.error(err);
@@ -80,7 +83,6 @@ export default function ArticleDetailpage() {
   const renderText = () => {
     const result = [];
     let cursor = 0;
-    console.log(Array.isArray(word));
     word.sort((a, b) => parseInt(a.start) - parseInt(b.start));
     // word.sort((a, b) => a.start - b.start);
     for (let itemIdx in word) {
