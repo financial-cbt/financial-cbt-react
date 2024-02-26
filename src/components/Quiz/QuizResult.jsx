@@ -84,8 +84,22 @@ const QuizResult = ({ isRight, quizList, allQuiz, answers }) => {
                 return (
                   <QuestionItem key={item._id}>
                     <QNum>{index + 1}번</QNum>
-                    <QContent>{item.question}</QContent>
-                  </QuestionItem>
+                    <QuestionItem>
+                      <QContent>{item.question}</QContent>
+                    </QuestionItem>
+                    <QuestionItem2>
+                      {item.userAnswer === item.answer ? (
+                        <>
+                          <QContent>정답 : {item.answer}</QContent>
+                        </>
+                      ) : (
+                        <>
+                          <Visible>나의 답안 : {item.userAnswer}</Visible>
+                          <QContent>정답 : {item.answer}</QContent>
+                        </>
+                      )}
+                    </QuestionItem2>
+                  </QuestionDiv>
                 );
               } else {
                 return null;
