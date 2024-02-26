@@ -22,8 +22,7 @@ const RandomQuiz = () => {
       >
         <Category>A형</Category>
         <Title>
-          경제 · 금융 <br />
-          상식 모의고사
+          경제 · 금융 <br />~ 상식 퀴즈 ~
         </Title>
         <Candidate>
           {user ? truncateNickname(user.nickname) : truncateNickname("OOO")}님
@@ -35,8 +34,7 @@ const RandomQuiz = () => {
       >
         <Category>B형</Category>
         <Title>
-          경제 · 금융 <br />
-          상식 모의고사
+          경제 · 금융 <br />~ 상식 퀴즈 ~
         </Title>
         <Candidate>
           {user ? truncateNickname(user.nickname) : "OOO"}님

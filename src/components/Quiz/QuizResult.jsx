@@ -8,6 +8,7 @@ const QuizResult = ({ isRight, quizList, allQuiz, answers }) => {
   const [visibleQuestionList, setVisibleQuestionList] = useState("all");
   const navigate = useNavigate();
   const { user } = useAuth();
+  console.log("quizList", quizList);
 
   useEffect(() => {
     document.body.style.cssText = `
@@ -21,6 +22,22 @@ const QuizResult = ({ isRight, quizList, allQuiz, answers }) => {
       window.scrollTo(0, parseInt(scrollY || "0", 10) * -1);
     };
   }, []);
+
+  const quizResult = (quiz, userAnswer) => {
+    return quiz.map((question, index) => {
+      const userChoice = question.option[userAnswer[index] - 1];
+      const correctAnswer = question.option[parseInt(question.answer) - 1];
+
+      return {
+        id: index,
+        userAnswer: userChoice || "미입력",
+        answer: correctAnswer,
+      };
+    });
+  };
+
+  const resultList = quizResult(quizList, answers);
+  console.log("resultList", resultList);
 
   const rightLength = isRight.filter((element) => true === element).length;
   const wrongLength = isRight.filter((element) => false === element).length;
@@ -55,6 +72,17 @@ const QuizResult = ({ isRight, quizList, allQuiz, answers }) => {
     navigate(path);
   };
 
+  const combineResultsWithQuiz = (resultList, quizList) => {
+    return resultList.map((resultItem, index) => ({
+      ...resultItem,
+      question: quizList[index].question,
+      _id: quizList[index]._id,
+    }));
+  };
+
+  const combinedList = combineResultsWithQuiz(resultList, quizList);
+  console.log(combinedList);
+
   return (
     <>
       <PopupBg></PopupBg>
@@ -75,17 +103,23 @@ const QuizResult = ({ isRight, quizList, allQuiz, answers }) => {
             </WrongWrapper>
           </AnswerRow>
           <QuestionList>
-            {quizList?.map((item, index) => {
+            {combinedList?.map((item, index) => {
               if (
                 visibleQuestionList === "all" ||
                 (visibleQuestionList === "right" && rightIdx.includes(index)) ||
                 (visibleQuestionList === "wrong" && wrongIdx.includes(index))
               ) {
                 return (
-                  <QuestionItem key={item._id}>
+                  <QuestionDiv key={item._id}>
                     <QNum>{index + 1}번</QNum>
-                    <QContent>{item.question}</QContent>
-                  </QuestionItem>
+                    <QuestionItem>
+                      <QContent>{item.question}</QContent>
+                    </QuestionItem>
+                    <QuestionItem2>
+                      <Visible>나의 답안 : {item.userAnswer}</Visible>
+                      <QContent>정답 : {item.answer}</QContent>
+                    </QuestionItem2>
+                  </QuestionDiv>
                 );
               } else {
                 return null;
@@ -248,11 +282,39 @@ const QuestionList = styled.div``;
 
 const QuestionItem = styled.div`
   display: flex;
+  gap: 30px;
+`;
+
+const QuestionItem2 = styled.div`
+  display: none;
+`;
+
+const QuestionDiv = styled.div`
+  display: flex;
   margin-bottom: 10px;
   border: 1px solid black;
   padding: 20px;
   gap: 20px;
+  width: 75vw;
+  font-size: 20px;
+
+  &:hover {
+    background-color: black;
+    color: white;
+  }
+
+  &:hover > ${QuestionItem} {
+    display: none;
+  }
+
+  &:hover > ${QuestionItem2} {
+    display: flex;
+    gap: 50px;
+    margin-left: auto;
+  }
 `;
+
+const Visible = styled.div``;
 
 const QNum = styled.div``;
 
