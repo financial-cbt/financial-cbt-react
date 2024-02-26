@@ -187,7 +187,7 @@ const Question = styled.div`
 const Answer = styled.div``;
 
 const SelectContainer = styled.div`
-  width: 80%;
+  margin-left: auto;
 `;
 
 const StyledSelect = styled(Select)`

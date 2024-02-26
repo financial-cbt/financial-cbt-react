@@ -1,8 +1,6 @@
 import React, { useState, useEffect, useMemo, useContext } from "react";
 import useAuth from "../../lib/hooks/useAuth";
-import { curveCatmullRom } from "d3-shape";
 import "react-vis/dist/style.css";
-import { fetchDates } from "../../lib/apis/mypage";
 import "react-vis/dist/style.css";
 import "./Visualizer.css";
 
