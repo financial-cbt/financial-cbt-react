@@ -37,9 +37,11 @@ export default function BoardItem({ board }) {
               alignItems: "center",
             }}
           >
-            <div style={{ flex: "7" }}>{title}</div>
-            <div style={{ flex: "1.5", overflow: "hidden" }}>{nickname}</div>
-            <div style={{ flex: "1.5", overflow: "hidden" }}>
+            <div style={{ flex: "7", fontSize: "18px" }}>{title}</div>
+            <div style={{ flex: "1.5", overflow: "hidden", fontSize: "18px" }}>
+              {nickname}
+            </div>
+            <div style={{ flex: "1.5", overflow: "hidden", fontSize: "18px" }}>
               {createdAt.slice(0, 10)}
             </div>
           </div>
