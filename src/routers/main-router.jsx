@@ -9,6 +9,7 @@ import ArticleDetail from "../routes/article/detail/page";
 import RandomQuiz from "../routes/Quiz/RandomQuiz";
 import Quiz from "../routes/Quiz/Quiz";
 import MyPage from "../routes/user/MyPage";
+import Visualizer from "../components/MyPage/Visualizer";
 
 export const mainRouter = [
   {
@@ -32,8 +33,18 @@ export const mainRouter = [
       },
       {
         path: "mypage",
-        index: true,
-        element: <MyPage />,
+        children: [
+          {
+            path: "",
+            index: true,
+            element: <MyPage />
+          },
+          {
+            path: "visualizer",
+            index: true,
+            element: <Visualizer />,
+          },
+        ],
       },
       {
         path: "articlelist",
