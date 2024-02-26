@@ -80,6 +80,7 @@ export default function page() {
         author: user._id,
         nickname: user.nickname,
       });
+      showComment();
     } catch (err) {
       console.error(err);
     }
