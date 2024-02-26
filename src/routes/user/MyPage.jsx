@@ -37,6 +37,8 @@ const MyPage = () => {
     id: index,
     accuracy: data.accuracyArray[index],
     question: question,
+    correctAnswer: data.correctArray[index],
+    userAnswer: data.userArray[index],
   }));
 
   console.log("questionObjects", questionObjects);
