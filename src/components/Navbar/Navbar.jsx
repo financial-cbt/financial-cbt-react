@@ -6,7 +6,6 @@ import useAuth from "~/lib/hooks/useAuth";
 import { logout } from "../../lib/apis/user";
 import { removeCookie } from "../../lib/apis/cookie";
 import "./Navbar.css";
-
 const EXPAND_BREAKPOINT = "md";
 
 export default function Navibar({ brandTitle, offCanvasTitle = undefined }) {
@@ -44,8 +43,11 @@ export default function Navibar({ brandTitle, offCanvasTitle = undefined }) {
               fontWeight: "700",
             }}
           >
-            <Coin />
-            {brandTitle}
+            <img
+              src="public/QnALogo.png"
+              alt="로고"
+              style={{ height: "45px", width: "157px" }}
+            />
           </Navbar.Brand>
         </Link>
         <Navbar.Toggle
@@ -138,7 +140,7 @@ export default function Navibar({ brandTitle, offCanvasTitle = undefined }) {
                   </>
                 ) : (
                   <>
-                  <Link
+                    <Link
                       to="/board"
                       className="text-decoration-none flex-grow-1 text-center border border-dark border-end-0"
                     >
