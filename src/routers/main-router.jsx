@@ -12,6 +12,7 @@ import MyPage from "../routes/user/MyPage";
 import Board from "../routes/board/page";
 import BoardDetail from "../routes/board/detail/page";
 import BoardWrite from "../routes/board/wrtie/page";
+import PrivateRoute from "../components/PrivateRoute";
 
 export const mainRouter = [
   {
@@ -36,7 +37,11 @@ export const mainRouter = [
       {
         path: "mypage",
         index: true,
-        element: <MyPage />,
+        element: (
+          <PrivateRoute>
+            <MyPage />
+          </PrivateRoute>
+        ),
       },
       {
         path: "articlelist",
@@ -56,12 +61,20 @@ export const mainRouter = [
       {
         path: "quiz",
         index: true,
-        element: <RandomQuiz />,
+        element: (
+          <PrivateRoute>
+            <RandomQuiz />
+          </PrivateRoute>
+        ),
       },
       {
         path: "quizground",
         index: true,
-        element: <Quiz />,
+        element: (
+          <PrivateRoute>
+            <Quiz />
+          </PrivateRoute>
+        ),
       },
       {
         path: "board",
