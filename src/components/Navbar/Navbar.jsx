@@ -138,6 +138,18 @@ export default function Navibar({ brandTitle, offCanvasTitle = undefined }) {
                   </>
                 ) : (
                   <>
+                  <Link
+                      to="/board"
+                      className="text-decoration-none flex-grow-1 text-center border border-dark border-end-0"
+                    >
+                      <Nav.Link
+                        style={{ color: "#4E5968", fontWeight: "500" }}
+                        as="div"
+                        className=""
+                      >
+                        게시판
+                      </Nav.Link>
+                    </Link>
                     <Link
                       to="/mypage"
                       className="text-decoration-none flex-grow-1 text-center border border-dark border-end-0"
