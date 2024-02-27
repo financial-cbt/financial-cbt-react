@@ -8,6 +8,7 @@ export const BodyContainer = styled.div`
   background: #fff;
 
   @media (max-width: 500px) {
+    width: 100vw;
     justify-content: center;
     align-items: center;
   }
@@ -23,7 +24,7 @@ export const MainContainer = styled.div`
   margin-left: 60px;
 
   @media (max-width: 500px) {
-    margin-left: 0;
+    margin: 0 auto;
   }
 `;
 
