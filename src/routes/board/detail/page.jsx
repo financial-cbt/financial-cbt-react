@@ -6,6 +6,7 @@ import {
   commentView,
   deleteComment,
   insertComment,
+  deleteBoard,
 } from "../../../lib/apis/board";
 import Card from "react-bootstrap/Card";
 import useAuth from "../../../lib/hooks/useAuth";
@@ -72,7 +73,15 @@ export default function page() {
     },
     [params, comments]
   );
-
+  // 게시글 삭제
+  const deleteBoardBtn = useCallback(async () => {
+    console.log(22);
+    try {
+      const res = await deleteBoard(params);
+    } catch (err) {
+      console.error(err);
+    }
+  }, [params]);
   const insertCommentBtn = useCallback(async () => {
     try {
       const res = await insertComment({
@@ -138,9 +147,14 @@ export default function page() {
             {user && user.nickname === nickname && (
               <Link
                 to={`/board/${params}/edit`}
-                style={{ position: "absolute", right: "0" }}
+                style={{ position: "absolute", right: "90px" }}
               >
                 <Button>수정하기</Button>
+              </Link>
+            )}
+            {user && user.nickname === nickname && (
+              <Link to={"/board"} style={{ position: "absolute", right: "0" }}>
+                <Button onClick={deleteBoardBtn}>삭제하기</Button>
               </Link>
             )}
           </div>
