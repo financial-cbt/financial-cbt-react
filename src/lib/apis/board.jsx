@@ -44,6 +44,18 @@ export const deleteComment = async ({ boardId, commentId }) => {
     console.error(err);
   }
 };
+export const updateComment = async ({ boardId, commentId, content }) => {
+  const baseUrl = `/board/${boardId}/comment/${commentId}`;
+  try {
+    const response = await instance.put(baseUrl, {
+      content
+    });
+    console.log(response);
+    return response;
+  } catch (err) {
+    console.error(err);
+  }
+};
 export const insertComment = async ({ boardId, content, author, nickname }) => {
   const baseUrl = `/board/${boardId}/comment`;
   try {
@@ -83,7 +95,7 @@ export async function editBoard({ boardId, title, content, author, nickname }) {
   });
   return response.data;
 }
-export async function deleteBoard( boardId ) {
+export async function deleteBoard(boardId) {
   const baseUrl = `/board/${boardId}`;
   try {
     const response = await instance.delete(baseUrl);

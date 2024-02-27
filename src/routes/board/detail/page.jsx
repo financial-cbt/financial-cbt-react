@@ -7,6 +7,7 @@ import {
   deleteComment,
   insertComment,
   deleteBoard,
+  updateComment,
 } from "../../../lib/apis/board";
 import Card from "react-bootstrap/Card";
 import useAuth from "../../../lib/hooks/useAuth";
@@ -25,6 +26,8 @@ export default function page() {
   const [comments, setComments] = useState([]);
   const [commentId, setCommentId] = useState("");
   const [newComment, setNewComment] = useState("");
+  const [editingCommentId, setEditingCommentId] = useState(null);
+  const [editingCommentContent, setEditingCommentContent] = useState("");
   const params = useParams().boardId;
   const navigate = useNavigate();
 
@@ -73,6 +76,32 @@ export default function page() {
     },
     [params, comments]
   );
+  const editComment = useCallback((commentId, content) => {
+    setEditingCommentId(commentId);
+    setEditingCommentContent(content);
+  }, []);
+
+  const cancelEdit = useCallback(() => {
+    setEditingCommentId(null);
+    setEditingCommentContent("");
+  }, []);
+  // 댓글 수정하기
+  const updateCommentBtn = useCallback(async () => {
+    try {
+      await updateComment({
+        boardId: params,
+        commentId: editingCommentId,
+        content: editingCommentContent
+      });
+
+      setEditingCommentId(null);
+      setEditingCommentContent("");
+
+      showComment();
+    } catch (error) {
+      console.error(error);
+    }
+  }, [params, editingCommentId, editingCommentContent]);
   // 게시글 삭제
   const deleteBoardBtn = useCallback(async () => {
     try {
@@ -199,17 +228,38 @@ export default function page() {
                 <Card.Body style={{ textAlign: "left", margin: "0 10px" }}>
                   {/* <Card.Text> 댓글:{comment._id} </Card.Text> */}
                   <Card.Text>
-                    {comment.content}
-                    <br />
-                    {user && user.nickname === comment.nickname && (
-                      <div
-                        style={{ textAlign: "right", cursor: "pointer" }}
-                        onClick={() => {
-                          deleteCommentBtn(comment._id);
-                        }}
-                      >
-                        삭제
-                      </div>
+                    {editingCommentId === comment._id ? (
+                      // 수정 중인 댓글 표시
+                      <>
+                        <textarea
+                          value={editingCommentContent}
+                          onChange={(e) => setEditingCommentContent(e.target.value)}
+                        />
+                        <br />
+                        <button onClick={updateCommentBtn}>저장</button>
+                        <button onClick={cancelEdit}>취소</button>
+                      </>
+                    ) : (
+                      <>
+                        {comment.content}
+                        <br />
+                        {user && user.nickname === comment.nickname && (
+                          <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
+                            <div
+                              style={{ textAlign: "right", cursor: "pointer", marginRight: "10px" }}
+                              onClick={() => deleteCommentBtn(comment._id)}
+                            >
+                              삭제
+                            </div>
+                            <div
+                              style={{ textAlign: "right", cursor: "pointer" }}
+                              onClick={() => editComment(comment._id, comment.content)}
+                            >
+                              수정
+                            </div>
+                          </div>
+                        )}
+                      </>
                     )}
                   </Card.Text>
                 </Card.Body>
