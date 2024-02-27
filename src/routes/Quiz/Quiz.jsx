@@ -146,7 +146,7 @@ const Quiz = () => {
             <>
               <ImgContainer>
                 <Div></Div>
-                <Img src="public/shinhan1.svg" alt="캐릭터1" />
+                <Img src="shinhan1.svg" alt="캐릭터1" />
               </ImgContainer>
               <QuizContainer>
                 <Question>
@@ -178,7 +178,7 @@ const Quiz = () => {
                 <Row>
                   <TimerContainer>
                     <Column>
-                      <Icon src="public/stopwatch.svg" alt="시계" />
+                      <Icon src="stopwatch.svg" alt="시계" />
                       <Time>{sec}초</Time>
                     </Column>
                     <ProgressBar
@@ -236,7 +236,7 @@ const Quiz = () => {
                 <Row>
                   <TimerContainer>
                     <Column>
-                      <Icon src="public/stopwatch.svg" alt="시계" />
+                      <Icon src="stopwatch.svg" alt="시계" />
                       <Time>{sec}초</Time>
                     </Column>
                     <ProgressBar

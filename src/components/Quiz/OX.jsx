@@ -20,13 +20,13 @@ const OX = ({ check }) => {
       <PopupContainer>
         {check ? (
           <>
-            <Character src="public/shinhan3.svg" alt="정답" />
-            <Answer src="public/O.svg" alt="정답" />
+            <Character src="shinhan3.svg" alt="정답" />
+            <Answer src="O.svg" alt="정답" />
           </>
         ) : (
           <>
-            <Answer src="public/X.svg" alt="오답" />
-            <Character src="public/shinhan2.svg" alt="오답" />
+            <Answer src="X.svg" alt="오답" />
+            <Character src="shinhan2.svg" alt="오답" />
           </>
         )}
       </PopupContainer>

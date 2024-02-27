@@ -55,7 +55,7 @@ const Signup = () => {
     <SignupContainer>
       <Form onSubmit={onSignup}>
         <Label>
-          <Img src="public/Signature.svg" alt="닉네임" />
+          <Img src="Signature.svg" alt="닉네임" />
           <StyledInput
             placeholder="닉네임"
             value={nickname}
@@ -63,7 +63,7 @@ const Signup = () => {
           ></StyledInput>
         </Label>
         <Label>
-          <Img src="public/Envelope.svg" alt="이메일" />
+          <Img src="Envelope.svg" alt="이메일" />
           <StyledInput
             placeholder="이메일"
             value={email}
@@ -71,7 +71,7 @@ const Signup = () => {
           ></StyledInput>
         </Label>
         <Label>
-          <Img src="public/lock.svg" alt="비밀번호" />
+          <Img src="lock.svg" alt="비밀번호" />
           <StyledInput
             placeholder="비밀번호"
             value={password}
@@ -81,7 +81,7 @@ const Signup = () => {
           ></StyledInput>
         </Label>
         <Label>
-          <Img src="public/lock.svg" alt="비밀번호 확인" />
+          <Img src="lock.svg" alt="비밀번호 확인" />
           <StyledInput
             placeholder="비밀번호 확인"
             value={passwordCheck}
