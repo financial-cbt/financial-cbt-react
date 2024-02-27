@@ -8,7 +8,9 @@ const ArticleList = () => {
 
   const fetchArticles = async () => {
     try {
-      const res = await axios.get("http://127.0.0.1:3000/api/article");
+      const res = await axios.get(
+        `${import.meta.env.VITE_APP_HOST}/api/article`
+      );
       setNewArticles(res.data);
     } catch (err) {
       console.error(err);
