@@ -15,6 +15,9 @@ const ProjectTarget = () => {
   const CTI_Q = useScrollFadeIn("up", 1, 0);
   const CTI_A1 = useScrollFadeIn("up", 1, 0);
   const CTI_A2 = useScrollFadeIn("up", 1, 0);
+  const mypage_Q = useScrollFadeIn("up", 1, 0);
+  const mypage_A1 = useScrollFadeIn("up", 1, 0);
+  const mypage_A2 = useScrollFadeIn("up", 1, 0);
 
   return (
     <S.TargetContainer>
@@ -25,59 +28,66 @@ const ProjectTarget = () => {
       <S.BubbleContainer content="question" {...newflow_Q}>
         <S.profileImg src={user_green} />
         <S.speechBubble direction="left">
-          {"1. Netflow 기반 이상 탐지 🌍"}
+          {"1. 경제·금융·상식 퀴즈 제공"}
         </S.speechBubble>
       </S.BubbleContainer>
       <S.BubbleContainer content="answer">
         <S.bubbleBox {...newflow_A}>
           <S.speechBubble direction="right">
-            {
-              "국민대학교 트래픽 데이터를 이용하여 \n 국민대학교를 대상으로하는 사이버공격이나 이상 행위를 **ip의 행동 기반**으로 탐지합니다.\n\n 행동 기반 데이터와 인공지능 모델을 활용하여, \n 이상 행위를 보이는 ip를 감지하여 네트워크 보안을 강화합니다 🖥"
-            }
+            {"✔️ 현재 트렌드에 맞는 다양한 상식 퀴즈를 풀 수 있어요!"}
           </S.speechBubble>
         </S.bubbleBox>
       </S.BubbleContainer>
       <S.BubbleContainer content="question" {...bitcoin_Q}>
         <S.profileImg src={user_green} />
         <S.speechBubble direction="left">
-          {"2. 교내 공적 자원을 이용한 💰 사익 취득 💰 탐지"}
+          {"2. 기사 페이지 제시 후 어려운 키워드 해설 제공"}
         </S.speechBubble>
       </S.BubbleContainer>
       <S.BubbleContainer content="answer">
         <S.bubbleBox {...bitcoin_A1}>
           <S.speechBubble direction="right">
-            {
-              "국민대학교 내 여러 연구실에서 보유한 연구 목적의 고성능 pc와 서버가 \n 악용될 가능성을 배제할 수 없기에, \n **outbound 네트워크 행동 데이터**를 통해 \n 공적 자원을 부정 사익에 악용하는 폐단을 막고자 합니다."
-            }
+            {"✔️ 경제, 금융 등 다양한 분야에 대한 기사를 제공해요!"}
           </S.speechBubble>
         </S.bubbleBox>
         <S.bubbleBox {...bitcoin_A2}>
           <S.speechBubble direction="right">
             {
-              "💸 불법 채굴 방식이 더 교묘해지고 있는 상황에서, \n 단순히 신고에 의지하기 보다는 네트워크 행동 데이터를 활용해 이를 탐지하고자 합니다."
+              "✔️ 기사 내용 중 어려운 단어들은 Tooltip을 통해 뜻을 확인할 수 있어요!"
             }
           </S.speechBubble>
         </S.bubbleBox>
       </S.BubbleContainer>
       <S.BubbleContainer content="question" {...CTI_Q}>
         <S.profileImg src={user_green} />
-        <S.speechBubble direction="left">
-          {"3. CTI 정보 확장 💫"}
-        </S.speechBubble>
+        <S.speechBubble direction="left">{"3. 게시판 기능"}</S.speechBubble>
       </S.BubbleContainer>
       <S.BubbleContainer content="answer">
         <S.bubbleBox {...CTI_A1}>
           <S.speechBubble direction="right">
             {
-              "✔️ CTI(cyber threat information): 사이버 위협 정보 \n\n CTI 정보는 서비스를 제공하는 회사에서 구매하는 정보이기 때문에 \n 현재 국민대학교 네트워크 트래픽에 CTI 정보를 적용하여 악성 행동 패턴을 추출하고, \n 이와 비슷한 행동을 보이는 **unknown ip**를 탐지합니다"
+              "✔️ 게시판에서 모르는 문제에 대해서 다른 사람들과 소통할 수 있어요!"
             }
           </S.speechBubble>
         </S.bubbleBox>
-        <S.bubbleBox {...CTI_A2}>
+      </S.BubbleContainer>
+      <S.BubbleContainer content="question" {...mypage_Q}>
+        <S.profileImg src={user_green} />
+        <S.speechBubble direction="left">
+          {"4. 마이페이지에서 성적표 확인"}
+        </S.speechBubble>
+      </S.BubbleContainer>
+      <S.BubbleContainer content="answer">
+        <S.bubbleBox {...mypage_A1}>
           <S.speechBubble direction="right">
             {
-              "결과적으로 최소비용으로 최대한의 아웃풋을 끌어낼 수 있으며, \n 국민대학교를 타겟으로 하는 위협정보를 확장하여 네트워크 보안을 강화합니다 🔐"
+              "✔️ 마이페이지 내부에서 날짜별로 성적표를 확인하고 취약한 점을 파악해요"
             }
+          </S.speechBubble>
+        </S.bubbleBox>
+        <S.bubbleBox {...mypage_A2}>
+          <S.speechBubble direction="right">
+            {"✔️ 맞은 문제와 틀린 문제를 체크 수 있어서 오답 정리에 유용해요!"}
           </S.speechBubble>
         </S.bubbleBox>
       </S.BubbleContainer>
@@ -93,7 +103,7 @@ const ProjectIntro = () => {
   return (
     <S.InfoContainer>
       <S.CommonTitle {...title}>
-        <span style={{ color: "#69e4d3", fontSize: "39px" }}>39팀 </span>
+        <span style={{ color: "#69e4d3", fontSize: "39px" }}>8조 </span>
         어떤 프로젝트를 만들었을까?
       </S.CommonTitle>
       <S.BubbleContainer content="question" {...questionItem}>
@@ -106,14 +116,14 @@ const ProjectIntro = () => {
         <S.bubbleBox {...answerItemStart}>
           <S.speechBubble direction="right">
             {
-              "저희 팀은 **국민대학교 내부 정보통신처**를 클라이언트로 설정하였고 \n 국민대학교 외부로부터 들어오는 ip의 행동 패턴을 분석하여 \n 공격을 탐지하는 기술을 개발하였습니다 🚀 \n\n 해당 기술은 개발 단계에서 끝나는 것이 아닌,  실제 국민대학교 정보통신처 관계자분들께서 \n**국민대학교의 네트워크 트래픽과 외부로부터 들어오는 ip들에 대한 이상탐지 결과**를 \n 쉽게 접근하고 활용할 수 있도록 서비스화하는 것을 목표로 합니다."
+              "저희 8조는 다양한 경제, 금융 상식들을 유저에게 제공하려는 목적을 가지고 있어요.\n 많은 사이트에서 양질의 정보를 분석 후 유저의 지식적 향상에 도움을 줄 수 있는 프로젝트입니다."
             }
           </S.speechBubble>
         </S.bubbleBox>
         <S.bubbleBox {...answerItemMid}>
           <S.speechBubble direction="right">
             {
-              "더불어 국민대학교 정보통신처 관계자분들이 교내 보안 관련 데이터들에 대해 쉽게 접근하실 수 있도록 \n 해당 서비스 외에도 다양한 기능들을 추가하였습니다. 😀"
+              "더불어 경제, 금융 분야뿐만 아니라 더 많은 분야의 퀴즈가 업데이트될 예정이니 많은 관심 부탁드립니다!😀"
             }
           </S.speechBubble>
         </S.bubbleBox>
@@ -128,7 +138,7 @@ function mainPage() {
       <S.MainContainer>
         <S.titleContainer>
           <S.subTitle>{`신한투자증권 프로디지털 아카데미 미니프로젝트`}</S.subTitle>
-          <S.mainTitle>{"Financial Quiz"}</S.mainTitle>
+          <S.mainTitle>{"Quiz & Article"}</S.mainTitle>
         </S.titleContainer>
         <ProjectIntro />
         <ProjectTarget />
