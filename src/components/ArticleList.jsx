@@ -28,6 +28,7 @@ const ArticleList = () => {
           margin: "auto", // 가운데 정렬을 위해 margin: auto; 추가
         }}
       />
+
       <ArticleListContainer>
         {newArticles.map((newArticle) => (
           <ArticleItem newArticle={newArticle} key={newArticle.num} />
@@ -39,7 +40,13 @@ const ArticleList = () => {
 const ArticleListContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
+  /* justify-content: center; */
+  /* margin: auto; */
   justify-content: space-between;
+
+  @media (max-width: 980px) {
+    justify-content: center;
+  }
 `;
 
 export default ArticleList;
