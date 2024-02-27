@@ -17,6 +17,8 @@ const Visualizer = ({ dateArray }) => {
   const { user } = useAuth();
   const [data, setData] = useState([]);
   const [dates, setDates] = useState([]);
+  const [x, setX] = useState([]);
+  const [y, setY] = useState([]);
 
   useEffect(() => {
     setDates(
@@ -24,11 +26,12 @@ const Visualizer = ({ dateArray }) => {
         ?.map((dateString) => new Date(dateString))
         .sort((a, b) => a.getTime() - b.getTime())
     );
-  }, [user]);
+  }, []);
 
   useEffect(() => {
     let maps = new Map();
-    console.log(dates);
+    let maxY = 0;
+
     if (dates) {
       for (const date of dates) {
         const year = date.getFullYear();
@@ -43,44 +46,43 @@ const Visualizer = ({ dateArray }) => {
         } else {
           maps.set(timestamp, maps.get(timestamp) + 10);
         }
+
+        const nowY = maps.get(timestamp);
+        maxY = maxY > nowY ? maxY : nowY;
       }
     }
 
-    let result = [];
-    for (let key of maps) {
-      result.push({ x: key[0], y: key[1] });
+    const minDate = Math.min(...Array.from(maps.keys()));
+    const maxDate = Math.max(...Array.from(maps.keys()));
+
+    const result = [];
+    const xArray = [];
+    for (let date = minDate; date <= maxDate; date += 86400000) {
+      xArray.push(date);
+      if (!maps.has(date)) {
+        result.push({ x: date, y: 0 });
+      } else {
+        result.push({ x: date, y: maps.get(date) });
+      }
     }
+
     setData(result);
+    setX(xArray);
+    setY([0, maxY + 10]);
   }, [dates]);
-
-  const XtickValues = useMemo(() => {
-    const maxX = Math.max(...data.map((item) => item.x));
-    const minX = Math.min(...data.map((item) => item.x));
-
-    const XAxis = [];
-    for (let i = minX; i <= maxX; i += 86400000) {
-      XAxis.push(i);
-    }
-    return XAxis;
-  }, [data]);
-
-  const YtickValues = useMemo(() => {
-    const maxY = Math.max(...data.map((item) => item.y));
-    return [0, maxY + 10];
-  }, [data]);
 
   return (
     <div className="visualizer-container">
       <XYPlot
-        width={70 * XtickValues.length}
-        height={5 * YtickValues[1]}
-        yDomain={YtickValues}
+        width={70 * x.length}
+        height={5 * y[1]}
+        yDomain={y}
       >
         <HorizontalGridLines style={{ stroke: "#6B6B76", display: "none" }} />
         <VerticalGridLines style={{ stroke: "#6B6B76", display: "none" }} />
         <XAxis
           title="날짜"
-          tickValues={XtickValues}
+          tickValues={x}
           tickFormat={(v) => {
             const date = new Date(v);
             const year = date.getFullYear();
