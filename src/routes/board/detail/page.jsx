@@ -91,7 +91,7 @@ export default function page() {
       await updateComment({
         boardId: params,
         commentId: editingCommentId,
-        content: editingCommentContent
+        content: editingCommentContent,
       });
 
       setEditingCommentId(null);
@@ -251,30 +251,64 @@ export default function page() {
                   <Card.Text>
                     {editingCommentId === comment._id ? (
                       // 수정 중인 댓글 표시
-                      <>
+                      <div
+                        style={{
+                          display: "flex",
+                          flexDirection: "column",
+                          position: "relative",
+                          gap: "5px",
+                        }}
+                      >
                         <textarea
+                          style={{ width: "100%" }}
                           value={editingCommentContent}
-                          onChange={(e) => setEditingCommentContent(e.target.value)}
+                          onChange={(e) =>
+                            setEditingCommentContent(e.target.value)
+                          }
                         />
-                        <br />
-                        <button onClick={updateCommentBtn}>저장</button>
-                        <button onClick={cancelEdit}>취소</button>
-                      </>
+                        <div
+                          style={{ display: "flex", justifyContent: "right" }}
+                        >
+                          <button
+                            style={{ backgroundColor: "#fff", border: "none" }}
+                            onClick={updateCommentBtn}
+                          >
+                            저장
+                          </button>
+                          <button
+                            style={{ backgroundColor: "#fff", border: "none" }}
+                            onClick={cancelEdit}
+                          >
+                            취소
+                          </button>
+                        </div>
+                      </div>
                     ) : (
                       <>
                         {comment.content}
                         <br />
                         {user && user.nickname === comment.nickname && (
-                          <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
+                          <div
+                            style={{
+                              display: "flex",
+                              justifyContent: "flex-end",
+                            }}
+                          >
                             <div
-                              style={{ textAlign: "right", cursor: "pointer", marginRight: "10px" }}
+                              style={{
+                                textAlign: "right",
+                                cursor: "pointer",
+                                marginRight: "10px",
+                              }}
                               onClick={() => deleteCommentBtn(comment._id)}
                             >
                               삭제
                             </div>
                             <div
                               style={{ textAlign: "right", cursor: "pointer" }}
-                              onClick={() => editComment(comment._id, comment.content)}
+                              onClick={() =>
+                                editComment(comment._id, comment.content)
+                              }
                             >
                               수정
                             </div>
