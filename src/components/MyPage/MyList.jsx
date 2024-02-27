@@ -95,11 +95,20 @@ const Container = styled.div`
   justify-content: center;
   align-items: center;
   margin: 100px 100px 0px 100px;
+
+  @media (max-width: 500px) {
+    /* transform: scale(0.5); */
+    margin: -80px auto -10px auto;
+  }
 `;
 
 const AnswerRow = styled.div`
   display: flex;
   gap: 50px;
+
+  @media (max-width: 500px) {
+    gap: 10px;
+  }
 `;
 
 const Wrapper = styled.div`
@@ -110,6 +119,11 @@ const Wrapper = styled.div`
   border-radius: 15px;
   background: #e1f3fd;
   margin-right: 1.5vw;
+
+  @media (max-width: 500px) {
+    width: 100px;
+    height: 100px;
+  }
 `;
 
 const Div = styled.div`
@@ -122,6 +136,10 @@ const Div = styled.div`
   font-weight: 700;
   line-height: normal;
   letter-spacing: -1.263px;
+
+  @media (max-width: 500px) {
+    font-size: 25px;
+  }
 `;
 
 const AnswerDiv = styled.div`
@@ -135,6 +153,10 @@ const AnswerDiv = styled.div`
   font-weight: 700;
   line-height: normal;
   letter-spacing: -2.273px;
+
+  @media (max-width: 500px) {
+    font-size: 25px;
+  }
 `;
 
 const ListContainer = styled.div`
@@ -158,6 +180,16 @@ const ListDiv = styled.div`
   border: 1px solid black;
   margin-bottom: 10px;
 
+  @media (max-width: 500px) {
+    flex-direction: column;
+    font-size: 15px;
+    width: 97vw;
+    height: 23vh;
+    align-items: center;
+    justify-content: center;
+    padding: 0px;
+  }
+
   &:hover {
     background-color: black;
     color: white;
@@ -171,6 +203,10 @@ const ListDiv = styled.div`
     display: flex;
     gap: 50px;
     margin-left: auto;
+
+    @media (max-width: 500px) {
+      margin-left: 0px;
+    }
   }
 `;
 
@@ -178,6 +214,10 @@ const Correction = styled.div`
   display: flex;
   margin: auto 50px auto 50px;
   align-items: center;
+
+  @media (max-width: 500px) {
+    margin: 0px 0px 10px 0px;
+  }
 `;
 
 const Question = styled.div`

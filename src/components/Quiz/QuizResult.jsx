@@ -167,6 +167,13 @@ const PopupBg = styled.div`
   right: 0;
   background: rgba(0, 0, 0, 0.6);
   z-index: 999;
+
+  @media (max-width: 500px) {
+    width: 2000vw;
+    height: 2000vh;
+    top: -100vh;
+    left: -100vw;
+  }
 `;
 
 const PopupContainer = styled.div`
@@ -182,6 +189,11 @@ const PopupContainer = styled.div`
   height: 90vh;
   width: 90vw;
   overflow-y: scroll;
+
+  @media (max-width: 500px) {
+    height: 160vh;
+    width: 200vw;
+  }
 `;
 
 const PopupContent = styled.div`
@@ -306,6 +318,11 @@ const QuestionDiv = styled.div`
   width: 75vw;
   font-size: 20px;
 
+  @media (max-width: 500px) {
+    width: 160vw;
+    height: 15vh;
+  }
+
   &:hover {
     background-color: black;
     color: white;
@@ -319,12 +336,22 @@ const QuestionDiv = styled.div`
     display: flex;
     gap: 50px;
     margin-left: auto;
+
+    @media (max-width: 500px) {
+      align-items: center;
+    }
   }
 `;
 
 const Visible = styled.div``;
 
-const QNum = styled.div``;
+const QNum = styled.div`
+  @media (max-width: 500px) {
+    display: flex;
+    width: 10%;
+    align-items: center;
+  }
+`;
 
 const QContent = styled.div``;
 
@@ -352,5 +379,11 @@ const NavButton = styled.button`
 
   &:hover {
     background: #909090;
+  }
+
+  @media (max-width: 500px) {
+    height: 50px;
+    width: 150px;
+    font-size: 25px;
   }
 `;

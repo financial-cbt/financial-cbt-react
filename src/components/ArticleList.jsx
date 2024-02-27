@@ -42,8 +42,6 @@ const ArticleList = () => {
 const ArticleListContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
-  /* justify-content: center; */
-  /* margin: auto; */
   justify-content: space-between;
 
   @media (max-width: 980px) {

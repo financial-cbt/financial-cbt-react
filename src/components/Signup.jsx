@@ -104,6 +104,10 @@ const SignupContainer = styled.div`
   align-items: center;
   height: calc(100vh - 42px);
   gap: 32px;
+
+  @media (max-width: 500px) {
+    transform: scale(0.8);
+  }
 `;
 
 const Form = styled.form`

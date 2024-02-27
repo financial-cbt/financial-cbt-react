@@ -85,6 +85,10 @@ const SignupContainer = styled.div`
   justify-content: center;
   align-items: center;
   height: cal(100vh - 42px);
+
+  @media (max-width: 500px) {
+    transform: scale(0.8);
+  }
 `;
 
 const LogoImg = styled.img`
