@@ -177,12 +177,33 @@ export default function page() {
                 to={`/board/${params}/edit`}
                 style={{ position: "absolute", right: "90px" }}
               >
-                <Button>수정하기</Button>
+                <Button
+                  style={{
+                    backgroundColor: "#92E1FB",
+                    border: "1px solid #92E1FB",
+                  }}
+                >
+                  수정하기
+                </Button>
               </Link>
             )}
             {user && user.nickname === nickname && (
-              <Link to={"/board"} style={{ position: "absolute", right: "0" }}>
-                <Button onClick={deleteBoardBtn}>삭제하기</Button>
+              <Link
+                to={"/board"}
+                style={{
+                  position: "absolute",
+                  right: "0",
+                }}
+              >
+                <Button
+                  style={{
+                    backgroundColor: "#92E1FB",
+                    border: "1px solid #92E1FB",
+                  }}
+                  onClick={deleteBoardBtn}
+                >
+                  삭제하기
+                </Button>
               </Link>
             )}
           </div>
@@ -204,7 +225,7 @@ export default function page() {
           return (
             <div key={comment._id} style={{ marginBottom: "30px" }}>
               <Card style={{ width: "100%" }} className="mb-2">
-                <Card.Header style={{ backgroundColor: "#DCEDF6" }}>
+                <Card.Header style={{ backgroundColor: "#EBF0F7" }}>
                   <div
                     style={{
                       display: "flex",
@@ -290,20 +311,20 @@ export default function page() {
           variant="dark"
           style={{
             flex: "1",
-            backgroundColor: "#DCEDF6",
+            backgroundColor: "#92E1FB",
             border: "none",
             fontSize: "20px",
-            color: "#000",
+            color: "#fff",
           }}
         >
-          click
+          Click
         </Button>
       </form>
       <br />
       <div style={{ display: "flex", justifyContent: "space-between" }}>
         <Button
           style={{
-            backgroundColor: "#DCEDF6",
+            backgroundColor: "#92E1FB",
             border: "none",
             fontWeight: "600",
           }}
@@ -315,7 +336,7 @@ export default function page() {
         </Button>
         <Button
           style={{
-            backgroundColor: "#DCEDF6",
+            backgroundColor: "#92E1FB",
             border: "none",
             fontWeight: "600",
           }}
