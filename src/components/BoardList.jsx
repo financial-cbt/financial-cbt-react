@@ -63,7 +63,7 @@ export default function BoardList({ fetchBoard }) {
             </Link>
           </div>
         </div>
-        {boards.map((board) => (
+        {boards.slice(0).reverse().map((board) => (
           <BoardItem board={board} key={board._id} />
         ))}
       </Container>
