@@ -40,7 +40,7 @@ export default function Navibar({ brandTitle, offCanvasTitle = undefined }) {
               display: "flex",
               alignItems: "center",
               gap: "5px",
-              marginLeft: "50px",
+              marginLeft: "10px",
               fontWeight: "700",
             }}
           >
@@ -55,7 +55,7 @@ export default function Navibar({ brandTitle, offCanvasTitle = undefined }) {
           style={{
             color: "#4E5968",
             position: "absolute",
-            right: "50px",
+            right: "10px",
           }}
           aria-controls={`Navbar-expand-${EXPAND_BREAKPOINT}`}
         >
