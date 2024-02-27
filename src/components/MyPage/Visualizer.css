@@ -1,9 +1,7 @@
 .visualizer-container {
   width: 800px; /* 화면에 보여지는 너비를 고정 */
   height: 500px;
-  overflow-x: scroll; /* 가로 스크롤 생성 */
-  display: flex;
-  justify-content: center;
+  overflow-x: auto; /* 가로 스크롤 생성 */
 }
 
 .rv-xy-plot__inner {
