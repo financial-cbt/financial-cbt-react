@@ -70,11 +70,7 @@ export const mainRouter = [
       {
         path: "quizground",
         index: true,
-        element: (
-          <PrivateRoute>
-            <Quiz />
-          </PrivateRoute>
-        ),
+        element: <Quiz />,
       },
       {
         path: "board",

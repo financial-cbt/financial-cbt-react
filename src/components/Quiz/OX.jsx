@@ -45,6 +45,13 @@ const PopupBg = styled.div`
   right: 0;
   background: rgba(0, 0, 0, 0.6);
   z-index: 999;
+
+  @media (max-width: 500px) {
+    width: 2000vw;
+    height: 2000vh;
+    top: -100vh;
+    left: -100vw;
+  }
 `;
 
 const PopupContainer = styled.div`
@@ -64,6 +71,10 @@ const PopupContent = styled.div`
   /* gap: 30px; */
 `;
 
-const Character = styled.img``;
+const Character = styled.img`
+  @media (max-width: 500px) {
+    display: none;
+  }
+`;
 
 const Answer = styled.img``;

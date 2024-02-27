@@ -4,6 +4,7 @@ import ProgressBar from "@ramonak/react-progress-bar";
 import OX from "../../components/Quiz/OX";
 import QuizResult from "../../components/Quiz/QuizResult";
 import { fetchQuizList } from "~/lib/apis/quiz";
+import { Desktop, Mobile } from "../../MediaQuery/useMediaQuery";
 
 const Quiz = () => {
   const [sec, setSec] = useState(60);
@@ -142,66 +143,128 @@ const Quiz = () => {
   }, [preventGoBack]);
 
   return (
-    <Container>
-      {currentQuestion ? (
-        <>
-          <ImgContainer>
-            <Div></Div>
-            <Img src="public/shinhan1.svg" alt="캐릭터1" />
-          </ImgContainer>
-          <QuizContainer>
-            <Question>
-              <div style={{ marginBottom: 10 }}>
-                {currentQuestionIdx + 1}번 문제입니다!
-              </div>
-              {currentQuestion.question}
-            </Question>
-            <AnswerContainer>
-              {currentQuestion.option.map((answer, index) => (
-                <Answer
-                  key={index}
-                  onClick={() => handleAnswerClick(index + 1)} // 선택한 답변의 인덱스 전달
-                  selected={answers[currentQuestionIdx] == index + 1}
-                  disabled={showAnswer}
-                >
-                  {answer}
-                </Answer>
-              ))}
-              {end && (
-                <QuizResult
-                  isRight={isRight}
-                  quizList={quizList}
-                  allQuiz={allQuiz}
-                  answers={answers}
-                />
-              )}
-            </AnswerContainer>
-            <Row>
-              <TimerContainer>
-                <Column>
-                  <Icon src="public/stopwatch.svg" alt="시계" />
-                  <Time>{sec}초</Time>
-                </Column>
-                <ProgressBar
-                  completed={(sec / 60) * 100}
-                  bgColor="#002DAB"
-                  width="359px"
-                  height="9px"
-                  isLabelVisible={false}
-                />
-                <NavContainer>
-                  <NavDiv onClick={handlePopupToggle}>정답보기</NavDiv>
-                  <NavDiv onClick={handleNextQuestion}>다음문제</NavDiv>
-                </NavContainer>
-              </TimerContainer>
-            </Row>
-            {popupVisible && <OX check={check} />}
-          </QuizContainer>
-        </>
-      ) : (
-        <>loading...</>
-      )}
-    </Container>
+    <>
+      <Desktop>
+        <Container>
+          {currentQuestion ? (
+            <>
+              <ImgContainer>
+                <Div></Div>
+                <Img src="public/shinhan1.svg" alt="캐릭터1" />
+              </ImgContainer>
+              <QuizContainer>
+                <Question>
+                  <div style={{ marginBottom: 10 }}>
+                    {currentQuestionIdx + 1}번 문제입니다!
+                  </div>
+                  {currentQuestion.question}
+                </Question>
+                <AnswerContainer>
+                  {currentQuestion.option.map((answer, index) => (
+                    <Answer
+                      key={index}
+                      onClick={() => handleAnswerClick(index + 1)} // 선택한 답변의 인덱스 전달
+                      selected={answers[currentQuestionIdx] == index + 1}
+                      disabled={showAnswer}
+                    >
+                      {answer}
+                    </Answer>
+                  ))}
+                  {end && (
+                    <QuizResult
+                      isRight={isRight}
+                      quizList={quizList}
+                      allQuiz={allQuiz}
+                      answers={answers}
+                    />
+                  )}
+                </AnswerContainer>
+                <Row>
+                  <TimerContainer>
+                    <Column>
+                      <Icon src="public/stopwatch.svg" alt="시계" />
+                      <Time>{sec}초</Time>
+                    </Column>
+                    <ProgressBar
+                      completed={(sec / 60) * 100}
+                      bgColor="#002DAB"
+                      width="359px"
+                      height="9px"
+                      isLabelVisible={false}
+                    />
+                    <NavContainer>
+                      <NavDiv onClick={handlePopupToggle}>정답보기</NavDiv>
+                      <NavDiv onClick={handleNextQuestion}>다음문제</NavDiv>
+                    </NavContainer>
+                  </TimerContainer>
+                </Row>
+                {popupVisible && <OX check={check} />}
+              </QuizContainer>
+            </>
+          ) : (
+            <>loading...</>
+          )}
+        </Container>
+      </Desktop>
+      <Mobile>
+        <Container>
+          {currentQuestion ? (
+            <>
+              <QuizContainer>
+                <Question>
+                  <div style={{ marginBottom: 10 }}>
+                    {currentQuestionIdx + 1}번 문제입니다!
+                  </div>
+                  {currentQuestion.question}
+                </Question>
+                <AnswerContainer>
+                  {currentQuestion.option.map((answer, index) => (
+                    <Answer
+                      key={index}
+                      onClick={() => handleAnswerClick(index + 1)} // 선택한 답변의 인덱스 전달
+                      selected={answers[currentQuestionIdx] == index + 1}
+                      disabled={showAnswer}
+                    >
+                      {answer}
+                    </Answer>
+                  ))}
+                  {end && (
+                    <QuizResult
+                      isRight={isRight}
+                      quizList={quizList}
+                      allQuiz={allQuiz}
+                      answers={answers}
+                    />
+                  )}
+                </AnswerContainer>
+                <Row>
+                  <TimerContainer>
+                    <Column>
+                      <Icon src="public/stopwatch.svg" alt="시계" />
+                      <Time>{sec}초</Time>
+                    </Column>
+                    <ProgressBar
+                      completed={(sec / 60) * 100}
+                      bgColor="#002DAB"
+                      width="359px"
+                      height="9px"
+                      isLabelVisible={false}
+                    />
+                    <NavContainer>
+                      <NavDiv onClick={handlePopupToggle}>정답보기</NavDiv>
+                      <NavDiv onClick={handleNextQuestion}>다음문제</NavDiv>
+                    </NavContainer>
+                  </TimerContainer>
+                </Row>
+                {popupVisible && <OX check={check} />}
+              </QuizContainer>
+            </>
+          ) : (
+            <>loading...</>
+          )}
+        </Container>
+      </Mobile>
+    </>
   );
 };
 
@@ -213,6 +276,10 @@ const Container = styled.div`
   align-items: center;
   height: 100vh;
   zoom: 0.9;
+
+  @media (max-width: 500px) {
+    transform: scale(0.5);
+  }
 `;
 
 const ImgContainer = styled.div`
@@ -261,6 +328,14 @@ const Question = styled.div`
   line-height: 40px;
   letter-spacing: -1.263px;
   word-break: keep-all;
+
+  @media (max-width: 500px) {
+    font-size: 40px;
+    line-height: 80px;
+    &::after {
+      display: none;
+    }
+  }
 `;
 
 const AnswerContainer = styled.div`
@@ -270,6 +345,11 @@ const AnswerContainer = styled.div`
   grid-template-rows: repeat(2, auto); /* 두 개의 행 */
   gap: 30px;
   margin-top: 63px;
+
+  @media (max-width: 500px) {
+    display: flex;
+    flex-direction: column;
+  }
 `;
 
 const Answer = styled.button`
@@ -293,15 +373,10 @@ const Answer = styled.button`
     color: white;
   }
 
-  /* &:focus {
-    background-color: #002dab;
-    color: white;
+  @media (max-width: 500px) {
+    height: 105px;
+    pointer-events: ${({ disabled }) => (disabled ? "none" : null)};
   }
-
-  &:active {
-    background-color: #002dab;
-    color: white;
-  } */
 `;
 
 const Row = styled.div`
@@ -334,6 +409,10 @@ const Time = styled.div`
   line-height: normal;
   letter-spacing: -0.758px;
   margin-top: 3px;
+
+  @media (max-width: 500px) {
+    font-size: 25px;
+  }
 `;
 
 const NavContainer = styled.div`
@@ -341,6 +420,11 @@ const NavContainer = styled.div`
   flex-direction: row;
   margin-left: 150px;
   gap: 15px;
+
+  @media (max-width: 500px) {
+    margin-left: 50px;
+    gap: 50px;
+  }
 `;
 
 const NavDiv = styled.div`
@@ -357,5 +441,10 @@ const NavDiv = styled.div`
   font-size: 15px;
   font-style: normal;
   font-weight: 400;
-  /* line-height: normal; */
+
+  @media (max-width: 500px) {
+    font-size: 25px;
+    width: 100px;
+    height: 100px;
+  }
 `;

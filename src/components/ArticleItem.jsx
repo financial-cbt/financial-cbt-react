@@ -25,7 +25,7 @@ const ArticleItem = ({ newArticle }) => {
         <div
           className="card"
           style={{
-            width: "400px",
+            width: "350px",
             height: "430px",
             gap: "20px",
             alignItems: "center",
