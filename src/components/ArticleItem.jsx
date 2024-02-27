@@ -65,7 +65,7 @@ const ArticleItem = ({ newArticle }) => {
                 whiteSpace: "nowrap",
               }}
             >
-              {content}
+              {body}
             </p>
           </div>
         </div>
