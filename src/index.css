@@ -4,8 +4,37 @@
   src: url("./fonts/HakgyoansimEunhasuR.ttf") format("truetype");
 }
 
+@font-face {
+  font-family: "Pretendard";
+  font-style: normal;
+  font-weight: bold;
+  src: url("./fonts/pretendard/Pretendard-Bold.woff") format("woff");
+}
+
+@font-face {
+  font-family: "Pretendard";
+  font-style: normal;
+  font-weight: lighter;
+  src: url("./fonts/pretendard/Pretendard-Light.woff") format("woff");
+}
+
+@font-face {
+  font-family: "Pretendard";
+  font-style: normal;
+  font-weight: normal;
+  src: url("./fonts/pretendard/Pretendard-Regular.woff") format("woff");
+}
+
+@font-face {
+  font-family: "Pretendard";
+  font-style: normal;
+  font-weight: 100;
+  src: url("./fonts/pretendard/Pretendard-Light.woff") format("woff");
+}
+
 body {
-  font-family: "HakgyoansimEunhasuR";
+  font-family: "Pretendard";
+  font-weight: normal;
 }
 /* :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
