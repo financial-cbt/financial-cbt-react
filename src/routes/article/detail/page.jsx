@@ -25,7 +25,7 @@ export default function ArticleDetailpage() {
     console.log(111);
     try {
       const response = await axios.get(
-        `${process.env.REACT_APP_HOST}/api/article/${articleId}`
+        `${import.meta.env.VITE_APP_HOST}/api/article/${articleId}`
       );
       console.log(response.data);
       return response.data[0];

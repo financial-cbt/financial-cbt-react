@@ -8,7 +8,9 @@ const ArticleList = () => {
 
   const fetchArticles = async () => {
     try {
-      const res = await axios.get(`${process.env.REACT_APP_HOST}/api/article`);
+      const res = await axios.get(
+        `${import.meta.env.VITE_APP_HOST}/api/article`
+      );
       setNewArticles(res.data);
     } catch (err) {
       console.error(err);

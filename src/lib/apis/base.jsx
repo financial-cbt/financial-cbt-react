@@ -1,8 +1,7 @@
 import axios from "axios";
 
-const BASE_URL = `${process.env.REACT_APP_HOST}/api`;
 const instance = axios.create({
-  baseURL: BASE_URL,
+  baseURL: import.meta.env.VITE_APP_HOST + "/api",
 });
 
 instance.interceptors.response.use(
