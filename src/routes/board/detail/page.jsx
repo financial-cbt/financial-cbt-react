@@ -234,16 +234,29 @@ export default function page() {
                     }}
                   >
                     <div>{comment.nickname}</div>
-                    <div>
-                      {comment.createdAt.slice(5, 7)}
-                      {"월"}
-                      {comment.createdAt.slice(8, 10)}
-                      {"일"}&ensp;
-                      {comment.createdAt.slice(11, 13)}
-                      {"시"}
-                      {comment.createdAt.slice(14, 16)}
-                      {"분"}
-                    </div>
+                    {comment.updatedAt ? (
+                      <div>
+                        {comment.updatedAt.slice(5, 7)}
+                        {"월"}
+                        {comment.updatedAt.slice(8, 10)}
+                        {"일"}&ensp;
+                        {comment.updatedAt.slice(11, 13)}
+                        {"시"}
+                        {comment.updatedAt.slice(14, 16)}
+                        {"분"}
+                      </div>
+                    ) : (
+                      <div>
+                        {comment.createdAt.slice(5, 7)}
+                        {"월"}
+                        {comment.createdAt.slice(8, 10)}
+                        {"일"}&ensp;
+                        {comment.createdAt.slice(11, 13)}
+                        {"시"}
+                        {comment.createdAt.slice(14, 16)}
+                        {"분"}
+                      </div>
+                    )}
                   </div>
                 </Card.Header>
                 <Card.Body style={{ textAlign: "left", margin: "0 10px" }}>
