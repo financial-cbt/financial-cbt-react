@@ -34,10 +34,8 @@ export default function page() {
 
   // 게시글 불러오기
   const showDetail = useCallback(async () => {
-    // e.preventDefault();
     try {
       const res = await detailBoard(params);
-      console.log(res);
       const { _id, title, content, author, createdAt, nickname } = res;
       setId(_id);
       setTitle(title);
@@ -45,19 +43,17 @@ export default function page() {
       setAuthor(author);
       setCreatedAt(createdAt);
       setNickname(nickname);
-      console.log(id);
     } catch (err) {
-      console.error(err);
+      // console.error(err);
     }
   }, [params]);
   // 댓글 불러오기
   const showComment = useCallback(async () => {
     try {
       const res = await commentView(params);
-      console.log(res);
       setComments(res); // 기존 상태를 유지하면서 새로운 배열을 생성하여 업데이트
     } catch (err) {
-      console.error(err);
+      // console.error(err);
     }
   }, [params, setComments]);
   //댓글 삭제하기
@@ -70,9 +66,8 @@ export default function page() {
           commentId: commentId,
         });
         showComment();
-        // console.log('fid:', id);
       } catch (err) {
-        console.error(err);
+        // console.error(err);
       }
     },
     [params, comments]
@@ -100,7 +95,7 @@ export default function page() {
 
       showComment();
     } catch (error) {
-      console.error(error);
+      // console.error(error);
     }
   }, [params, editingCommentId, editingCommentContent]);
   // 게시글 삭제
@@ -108,7 +103,7 @@ export default function page() {
     try {
       const res = await deleteBoard(params);
     } catch (err) {
-      console.error(err);
+      // console.error(err);
     }
   }, [params]);
   const insertCommentBtn = useCallback(async () => {
@@ -121,7 +116,7 @@ export default function page() {
       });
       showComment();
     } catch (err) {
-      console.error(err);
+      // console.error(err);
     }
   }, [params, showComment, newComment, user]);
 

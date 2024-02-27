@@ -38,7 +38,7 @@ const ArticleItem = ({ newArticle }) => {
             alt={title}
             style={{ height: "300px", padding: 20 }}
           />
-          <p
+          <div
             style={{
               fontSize: "20px",
               width: "90%",
@@ -49,14 +49,14 @@ const ArticleItem = ({ newArticle }) => {
             className="card-title"
           >
             {title}
-          </p>
+          </div>
           <div
             style={{
               width: "90%",
               height: "23px",
             }}
           >
-            <p
+            <div
               style={{
                 fontSize: "15px",
                 textAlign: "left",
@@ -66,7 +66,7 @@ const ArticleItem = ({ newArticle }) => {
               }}
             >
               {body}
-            </p>
+            </div>
           </div>
         </div>
       </CardLink>

@@ -4,14 +4,12 @@ import { Button } from "react-bootstrap";
 import { CaretLeftFill, ArrowLeft } from "react-bootstrap-icons";
 import styled from "styled-components";
 import { useNavigate, useParams } from "react-router-dom";
-import axios from "axios";
 import { Desktop, Mobile } from "../../../MediaQuery/useMediaQuery";
-
+import instance from "../../../lib/apis/base";
 //기자, 시간, 사진
 export default function ArticleDetailpage() {
   const navigate = useNavigate();
   const param = useParams();
-  console.log(param);
   const articleId = param.articleId;
   const [articles, setArticles] = useState({
     body: "",
@@ -21,35 +19,28 @@ export default function ArticleDetailpage() {
     title: "",
     word: [],
   });
-  console.log(1);
   const fetchArticle = async () => {
-    console.log(111);
+    const baseUrl = `/article/${articleId}`;
     try {
-      const response = await axios.get(
-        `${import.meta.env.VITE_APP_HOST}/api/article/${articleId}`
-      );
-      console.log(response.data);
+      const response = await instance.get(baseUrl);
       return response.data[0];
     } catch (err) {
-      console.error(err);
+      // console.error(err);
     }
   };
   useEffect(() => {
     const fetchData = async () => {
       try {
         const data = await fetchArticle();
-        console.log(data);
-        console.log("AB");
         setArticles(data);
       } catch (err) {
-        console.error(err);
+        // console.error(err);
       }
     };
     fetchData();
   }, []);
 
   let { body, date, photoUrl, reporter, title, word } = articles;
-  // const newWord = word.sort((a, b) => a.start - b.start);
 
   const addTooltip = (word, mean, idx) => {
     return (
@@ -120,7 +111,6 @@ export default function ArticleDetailpage() {
     const result = [];
     let cursor = 0;
     word.sort((a, b) => parseInt(a.start) - parseInt(b.start));
-    // word.sort((a, b) => a.start - b.start);
     for (let itemIdx in word) {
       const item = word[itemIdx];
       result.push(body.substring(cursor, item.start));
@@ -130,7 +120,6 @@ export default function ArticleDetailpage() {
       cursor = item.end;
     }
     result.push(body.substring(cursor));
-    // console.log(result);
     return result;
   };
   const article = renderText().map((elem) => {

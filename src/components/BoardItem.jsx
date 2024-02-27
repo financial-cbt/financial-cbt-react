@@ -12,9 +12,8 @@ export default function BoardItem({ board }) {
     try {
       const res = await commentView(_id);
       setComment(res);
-      console.log("comment!!");
     } catch (err) {
-      console.error(err);
+      // console.error(err);
     }
   }, []);
   useEffect(() => {
