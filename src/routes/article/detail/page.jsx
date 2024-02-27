@@ -58,9 +58,11 @@ export default function ArticleDetailpage() {
           key={idx}
           style={{
             fontWeight: "600",
-            background: "linear-gradient(to top, #92e1fb 100%, transparent 5%)",
+            background: "linear-gradient(to top, #cdeeff 100%, transparent 5%)",
             cursor: "pointer",
             position: "relative",
+            padding: 3,
+            borderRadius: 10,
           }}
         >
           {word}
@@ -122,8 +124,9 @@ export default function ArticleDetailpage() {
           <Button
             style={{
               marginRight: "10px",
-              backgroundColor: "#92e1fb",
+              backgroundColor: "#002DAB",
               border: "none",
+              color: "white",
             }}
             variant="dark"
             onClick={() => navigate(-1)}
@@ -140,19 +143,27 @@ export default function ArticleDetailpage() {
           gap: "20px",
           maxWidth: "100%",
           flexDirection: "column",
+          marginTop: 10,
         }}
       >
-        <div style={{ maxWidth: "50%" }}>
-          <img src={photoUrl} alt="11" style={{ minWidth: "500px" }} />
-        </div>
         <div
           style={{
             minWidth: "50%",
             lineBreak: "anywhere",
             fontSize: "20px",
-            lineHeight: "1.7",
+            lineHeight: "1.9",
           }}
         >
+          <img
+            src={photoUrl}
+            alt="11"
+            style={{
+              minWidth: "500px",
+              width: "500px",
+              float: "left",
+              margin: 20,
+            }}
+          />
           {renderText()}
         </div>
       </div>

@@ -13,7 +13,7 @@ const CardLink = styled(Link)`
 const Container = styled.div`
   display: flex;
   flex-wrap: nowrap;
-  margin: 40px 40px 0 40px;
+  margin: 40px;
 `;
 
 const ArticleItem = ({ newArticle }) => {
@@ -26,8 +26,8 @@ const ArticleItem = ({ newArticle }) => {
           className="card"
           style={{
             width: "400px",
-            height: "450px",
-            gap: "30px",
+            height: "430px",
+            gap: "20px",
             alignItems: "center",
             // border: "2px solid rgba(0, 0, 0, 0.175)",
           }}
@@ -36,7 +36,7 @@ const ArticleItem = ({ newArticle }) => {
             src={photoUrl}
             className="card-img-top"
             alt={title}
-            style={{ height: "300px" }}
+            style={{ height: "300px", padding: 20 }}
           />
           <p
             style={{
@@ -53,12 +53,20 @@ const ArticleItem = ({ newArticle }) => {
           <div
             style={{
               width: "90%",
-              padding: "0",
               height: "23px",
-              overflow: "hidden",
             }}
           >
-            <p style={{ fontSize: "15px", textAlign: "left" }}>{body}</p>
+            <p
+              style={{
+                fontSize: "15px",
+                textAlign: "left",
+                overflow: "hidden",
+                textOverflow: "ellipsis",
+                whiteSpace: "nowrap",
+              }}
+            >
+              {content}
+            </p>
           </div>
         </div>
       </CardLink>
