@@ -69,7 +69,7 @@ export default function ArticleDetailpage() {
         <Tooltip
           style={{
             zIndex: "9",
-            backgroundColor: "#002DAB",
+            backgroundColor: "#5078AD",
             fontWeight: "600",
           }}
           anchorSelect={`.my-anchor-element-class-${idx}`}
@@ -143,7 +143,7 @@ export default function ArticleDetailpage() {
         }}
       >
         <div style={{ maxWidth: "50%" }}>
-          <img src={photoUrl} alt="11" style={{ minWidth: "1024px" }} />
+          <img src={photoUrl} alt="11" style={{ minWidth: "500px" }} />
         </div>
         <div
           style={{
