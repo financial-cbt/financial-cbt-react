@@ -48,14 +48,19 @@ export default function BoardList({ fetchBoard }) {
             }}
           >
             <div>날짜</div>
-            <Link to={"/board/write"}>
+            <Link to={"/board/write"} style={{ textDecoration: "none" }}>
               <Button
-                variant="light"
+                className="btn btn-primary no-underline"
                 style={{
+                  display: "flex",
+                  alignItems: "center",
                   height: "40px",
-                  padding: "0",
+                  padding: 10,
                   fontWeight: "600",
                   fontSize: "20px",
+                  border: "1px solid black",
+                  background: "black",
+                  textDecoration: "none",
                 }}
               >
                 글 쓰기
