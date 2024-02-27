@@ -102,7 +102,7 @@ const ProjectIntro = () => {
   return (
     <S.InfoContainer>
       <S.CommonTitle {...title}>
-        <span style={{ color: "#69e4d3", fontSize: "39px" }}>8조 </span>
+        <span style={{ color: "#69e4d3", fontSize: "39px" }}>Q&A팀 </span>
         어떤 프로젝트를 만들었을까?
       </S.CommonTitle>
       <S.BubbleContainer content="question" {...questionItem}>
@@ -115,7 +115,7 @@ const ProjectIntro = () => {
         <S.bubbleBox {...answerItemStart}>
           <S.speechBubble direction="right">
             {
-              "저희 8조는 다양한 경제, 금융 상식들을 유저에게 제공하려는 목적을 가지고 있어요.\n 많은 사이트에서 양질의 정보를 분석 후 유저의 지식적 향상에 도움을 줄 수 있는 프로젝트입니다."
+              "저희 Q&A팀은 다양한 경제, 금융 상식들을 유저에게 제공하려는 목적을 가지고 있어요.\n 많은 사이트에서 양질의 정보를 분석 후 유저의 지식적 향상에 도움을 줄 수 있는 프로젝트입니다."
             }
           </S.speechBubble>
         </S.bubbleBox>

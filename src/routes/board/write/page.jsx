@@ -10,7 +10,6 @@ export default function page() {
   const navigate = useNavigate();
   const { boardId } = useParams();
   const {user} = useAuth();
-  console.log("user", user);
   const onSubmit = useCallback(
     (title, content, author, nickname) => {
       if (boardId) {

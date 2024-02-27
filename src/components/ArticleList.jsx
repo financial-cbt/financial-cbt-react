@@ -1,19 +1,18 @@
 import React, { useState, useCallback, useEffect } from "react";
 import styled from "styled-components";
 import ArticleItem from "./ArticleItem";
-import axios from "axios";
+import instance from "../lib/apis/base";
 
 const ArticleList = () => {
   const [newArticles, setNewArticles] = useState([]);
 
   const fetchArticles = async () => {
+    const baseUrl = "/article";
     try {
-      const res = await axios.get(
-        `${import.meta.env.VITE_APP_HOST}/api/article`
-      );
+      const res = await instance.get(baseUrl);
       setNewArticles(res.data);
     } catch (err) {
-      console.error(err);
+      // console.error(err);
     }
   };
   useEffect(() => {

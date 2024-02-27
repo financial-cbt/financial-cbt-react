@@ -11,10 +11,9 @@ export default function BoardList({ fetchBoard }) {
     const fetchData = async () => {
       try {
         const data = await fetchBoard();
-        console.log(data);
         setBoards(data);
       } catch (error) {
-        console.error("Error fetching data:", error);
+        // console.error("Error fetching data:", error);
       }
     };
 
