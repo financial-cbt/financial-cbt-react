@@ -2,7 +2,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import useAuth from "~/lib/hooks/useAuth";
-
+import test from "../../imgs/test.png";
 const RandomQuiz = () => {
   const { user } = useAuth();
   const navigate = useNavigate();
@@ -20,10 +20,18 @@ const RandomQuiz = () => {
         className="col-lg-2 col-md-6 col-12 mb-4"
         onClick={() => navigate("/quizground")}
       >
-        <Category>A형</Category>
-        <Title>
-          경제 · 금융 <br />~ 상식 퀴즈 ~
-        </Title>
+        <Header>2024 내 상식 능력치는?</Header>
+        <TitleContainer>
+          <div style={{ fontSize: "60px", fontWeight: "100" }}>❮</div>
+          <div style={{ display: "flex", flexDirection: "column" }}>
+            <Title>경제 · 금융 상식 퀴즈</Title>
+            <Category>A형</Category>
+          </div>
+          <div style={{ fontSize: "60px", fontWeight: "100" }}>❯</div>
+        </TitleContainer>
+        <div style={{ marginTop: "20px" }}>
+          <img src={test} alt="1" style={{ width: "100%" }} />
+        </div>
         <Candidate>
           {user ? truncateNickname(user.nickname) : truncateNickname("OOO")}님
         </Candidate>
@@ -32,10 +40,18 @@ const RandomQuiz = () => {
         className="col-lg-2 col-md-6 col-12 mb-4"
         onClick={() => navigate("/quizground")}
       >
-        <Category>B형</Category>
-        <Title>
-          경제 · 금융 <br />~ 상식 퀴즈 ~
-        </Title>
+        <Header>2024 내 상식 능력치는?</Header>
+        <TitleContainer>
+          <div style={{ fontSize: "60px", fontWeight: "100" }}>❮</div>
+          <div style={{ display: "flex", flexDirection: "column" }}>
+            <Title>경제 · 금융 상식 퀴즈</Title>
+            <Category>B형</Category>
+          </div>
+          <div style={{ fontSize: "60px", fontWeight: "100" }}>❯</div>
+        </TitleContainer>
+        <div style={{ marginTop: "20px" }}>
+          <img src={test} alt="1" style={{ width: "100%" }} />
+        </div>
         <Candidate>
           {user ? truncateNickname(user.nickname) : "OOO"}님
         </Candidate>
@@ -46,6 +62,15 @@ const RandomQuiz = () => {
 
 export default RandomQuiz;
 
+const TitleContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  gap: "5px";
+`;
+const Header = styled.div`
+  text-align: center;
+  margin-top: 10px;
+`;
 const Container = styled.div`
   display: flex;
   justify-content: center;
@@ -67,35 +92,36 @@ const QuizBox = styled.div`
 
 const Category = styled.div`
   color: #000;
-  text-align: left;
-  font-size: 35px;
+  text-align: center;
+  font-size: 20px;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
-  margin: 30px auto auto 30px;
+  /* margin: 30px auto auto 30px; */
 `;
 
 const Title = styled.div`
   color: #000;
   text-align: center;
-  font-size: 40px;
+  font-size: 25px;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
-  margin-top: 30px;
+  margin-top: 15px;
 `;
 
 const Candidate = styled.div`
   position: absolute;
-  right: 0;
+  right: 10px;
+  bottom: 20px;
   color: #000;
-  font-size: 30px;
+  font-size: 20px;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
-  margin-top: 150px;
+  /* margin-top: 150px; */
   /* text-align: left; */
-  width: 150px;
+  /* width: 150px; */
   /* white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis; */
