@@ -82,9 +82,13 @@ export async function editBoard({ boardId, title, content, author, nickname }) {
   });
   return response.data;
 }
-export async function deleteBoard({ boardId }) {
-  const response = await axios.delete(
-    `http://127.0.0.1:3000/api/board/${boardId}`
-  );
-  return response.data;
+export async function deleteBoard( boardId ) {
+  const baseUrl = `/board/${boardId}`;
+  try {
+    const response = await instance.delete(baseUrl);
+    console.log(response);
+    return response.data;
+  } catch (err) {
+    console.error(err);
+  }
 }

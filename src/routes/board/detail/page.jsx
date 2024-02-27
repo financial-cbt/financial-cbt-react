@@ -6,6 +6,7 @@ import {
   commentView,
   deleteComment,
   insertComment,
+  deleteBoard,
 } from "../../../lib/apis/board";
 import Card from "react-bootstrap/Card";
 import useAuth from "../../../lib/hooks/useAuth";
@@ -72,7 +73,15 @@ export default function page() {
     },
     [params, comments]
   );
-
+  // 게시글 삭제
+  const deleteBoardBtn = useCallback(async () => {
+    console.log(22);
+    try {
+      const res = await deleteBoard(params);
+    } catch (err) {
+      console.error(err);
+    }
+  }, [params]);
   const insertCommentBtn = useCallback(async () => {
     try {
       const res = await insertComment({
@@ -121,6 +130,7 @@ export default function page() {
               gap: "10px",
               alignItems: "center",
               position: "relative",
+              margin: "0 10px",
             }}
           >
             <img
@@ -137,9 +147,14 @@ export default function page() {
             {user && user.nickname === nickname && (
               <Link
                 to={`/board/${params}/edit`}
-                style={{ position: "absolute", right: "0" }}
+                style={{ position: "absolute", right: "90px" }}
               >
                 <Button>수정하기</Button>
+              </Link>
+            )}
+            {user && user.nickname === nickname && (
+              <Link to={"/board"} style={{ position: "absolute", right: "0" }}>
+                <Button onClick={deleteBoardBtn}>삭제하기</Button>
               </Link>
             )}
           </div>
@@ -147,12 +162,14 @@ export default function page() {
           <div style={{ flex: "1", fontSize: "40px" }}>{title}</div>
         </Card.Header>
         <Card.Body style={{ textAlign: "left" }}>
-          <Card.Text>{content}</Card.Text>
+          <Card.Text style={{ margin: "0 10px" }}>{content}</Card.Text>
         </Card.Body>
       </Card>
       <br />
 
-      <h3 style={{ textAlign: "left" }}>댓글 쓰기({comments.length})</h3>
+      <h3 style={{ textAlign: "left", margin: "5px 10px" }}>
+        댓글 쓰기({comments.length})
+      </h3>
 
       <div>
         {comments.map((comment) => {
@@ -164,13 +181,14 @@ export default function page() {
                     style={{
                       display: "flex",
                       justifyContent: "space-between",
+                      margin: "0 10px",
                     }}
                   >
                     <div>{comment.nickname}</div>
                     <div>{comment.createdAt.slice(0, 10)}</div>
                   </div>
                 </Card.Header>
-                <Card.Body style={{ textAlign: "left" }}>
+                <Card.Body style={{ textAlign: "left", margin: "0 10px" }}>
                   {/* <Card.Text> 댓글:{comment._id} </Card.Text> */}
                   <Card.Text>
                     {comment.content}
