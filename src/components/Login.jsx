@@ -48,10 +48,10 @@ const Login = () => {
 
   return (
     <SignupContainer>
-      <LogoImg src="public/QnALogo.png" alt="로고" />
+      <LogoImg src="QnALogo.png" alt="로고" />
       <Form onSubmit={onLogin}>
         <Label>
-          <Img src="public/Envelope.svg" alt="이메일" />
+          <Img src="Envelope.svg" alt="이메일" />
           <StyledInput
             type="text"
             placeholder="이메일"
@@ -60,7 +60,7 @@ const Login = () => {
           ></StyledInput>
         </Label>
         <Label>
-          <Img src="public/lock.svg" alt="비밀번호" />
+          <Img src="lock.svg" alt="비밀번호" />
           <StyledInput
             type="password"
             placeholder="비밀번호"
