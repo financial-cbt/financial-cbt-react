@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useMemo, useContext } from "react";
-import useAuth from "../../lib/hooks/useAuth";
 import "react-vis/dist/style.css";
 import "react-vis/dist/style.css";
 import "./Visualizer.css";
@@ -10,15 +9,15 @@ import {
   YAxis,
   HorizontalGridLines,
   VerticalGridLines,
-  LineSeries,
+  LineMarkSeries
 } from "react-vis";
 
 const Visualizer = ({ dateArray }) => {
-  const { user } = useAuth();
   const [data, setData] = useState([]);
   const [dates, setDates] = useState([]);
   const [x, setX] = useState([]);
   const [y, setY] = useState([]);
+  const [maxY, setMaxY] = useState([]);
 
   useEffect(() => {
     setDates(
@@ -66,17 +65,23 @@ const Visualizer = ({ dateArray }) => {
       }
     }
 
+    const YArray = [];
+    for (let i = 0; i <= maxY + 10; i += 10) {
+      YArray.push(i);
+    }
+
     setData(result);
     setX(xArray);
-    setY([0, maxY + 10]);
+    setY(YArray);
+    setMaxY([0, maxY + 10]);
   }, [dates]);
 
   return (
     <div className="visualizer-container">
       <XYPlot
-        width={70 * x.length}
-        height={5 * y[1]}
-        yDomain={y}
+        width={70 * x.length > 700 ? 70 * x.length : 700}
+        height={470}
+        yDomain={maxY}
       >
         <HorizontalGridLines style={{ stroke: "#6B6B76", display: "none" }} />
         <VerticalGridLines style={{ stroke: "#6B6B76", display: "none" }} />
@@ -98,13 +103,14 @@ const Visualizer = ({ dateArray }) => {
         />
         <YAxis
           title="문제 수"
+          tickValues={y}
           style={{
             line: { stroke: "#000000" },
             ticks: { stroke: "#6B6B76" },
             text: { stroke: "none", fill: "#6b6b76", fontWeight: 600 },
           }}
         />
-        <LineSeries
+        <LineMarkSeries
           className="first-series"
           data={data}
           style={{
