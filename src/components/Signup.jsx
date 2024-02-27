@@ -25,7 +25,7 @@ const Signup = () => {
       navigate("/");
       window.scrollTo(0, 0);
     } catch (error) {
-      console.error(error);
+      // console.error(error);
     }
   };
 

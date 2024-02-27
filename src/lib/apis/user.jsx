@@ -9,10 +9,10 @@ export const signup = async (email, password, nickname) => {
       nickName: nickname,
     });
     const data = response.data;
-    console.log(data);
+
     return data;
   } catch (err) {
-    console.error(err);
+    // console.error(err);
     return err;
   }
 };
@@ -25,7 +25,7 @@ export const login = async (email, password) => {
       password: password,
     });
     const data = response;
-    console.log(data);
+
     return data;
   } catch (err) {
     // console.error(err);
@@ -38,9 +38,9 @@ export const logout = async () => {
   try {
     const response = await instance.post(baseUrl);
     const data = response.data;
-    console.log(data);
+
     return data;
   } catch (err) {
-    console.error(err);
+    // console.error(err);
   }
 };

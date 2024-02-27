@@ -14,15 +14,14 @@ export default function Navibar({ brandTitle, offCanvasTitle = undefined }) {
   const postLogout = async () => {
     try {
       const response = await logout();
-      console.log(response);
+
       removeCookie("token");
       clientLogout();
       navigate("/");
     } catch (err) {
-      console.error(err);
+      // console.error(err);
     }
   };
-  console.log(user);
 
   return (
     <Navbar
@@ -63,7 +62,6 @@ export default function Navibar({ brandTitle, offCanvasTitle = undefined }) {
         </Navbar.Toggle>
         <Navbar.Offcanvas
           id={`Navbar-expand-${EXPAND_BREAKPOINT}`}
-          // style={{ color: "black" }}
           aria-labelledby={`NavbarLabel-expand-${EXPAND_BREAKPOINT}`}
           placement="end"
         >
@@ -75,10 +73,7 @@ export default function Navibar({ brandTitle, offCanvasTitle = undefined }) {
               {offCanvasTitle || brandTitle}
             </Offcanvas.Title>
           </Offcanvas.Header>
-          <Offcanvas.Body
-            // style={{ color: "#4E5968" }}
-            className="flex-row-reverse"
-          >
+          <Offcanvas.Body className="flex-row-reverse">
             <Nav
               style={{ color: "#4E5968", border: "none", marginRight: "50px" }}
               className={`justify-content-around flex-row pb-4 pb-${EXPAND_BREAKPOINT}-0`}

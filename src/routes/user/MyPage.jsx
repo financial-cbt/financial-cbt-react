@@ -25,11 +25,11 @@ const MyPage = () => {
       setLoading(true);
       if (user) {
         const response = await fetchMyList(user._id);
-        console.log(response);
+
         setData(response);
       }
     } catch (error) {
-      console.error(error);
+      // console.error(error);
     } finally {
       setLoading(false);
     }
@@ -47,8 +47,6 @@ const MyPage = () => {
     userAnswer: data.userArray[index],
   }));
 
-  console.log("questionObjects", questionObjects);
-
   const trueQuestions = questionObjects?.filter(
     (question) => question.accuracy === true
   );
@@ -61,9 +59,6 @@ const MyPage = () => {
     correctNum: data?.correctNum,
     wrongNum: data?.wrongNum,
   };
-
-  console.log("trueQuestions", trueQuestions);
-  console.log("falseQuestions", falseQuestions);
 
   const postsData = () => {
     let filteredPosts = [];
@@ -82,7 +77,7 @@ const MyPage = () => {
           filteredPosts = [];
       }
     }
-    console.log("filteredPosts", filteredPosts);
+
     let result = filteredPosts.slice(offset, offset + limit);
 
     return { filteredPosts: result, filteredPostsLength: filteredPosts.length };
@@ -113,7 +108,7 @@ const MyPage = () => {
       </SpinnerContainer>
     );
   }
-  console.log("data.dateArray", data?.dateArray);
+
   return (
     <Container>
       {data?.questionArray.length != 0 ? (

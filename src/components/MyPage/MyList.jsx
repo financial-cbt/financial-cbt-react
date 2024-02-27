@@ -3,8 +3,6 @@ import styled from "styled-components";
 import Select from "react-select";
 
 const MyList = ({ options, handleSelectOptionChange, list, numbersObject }) => {
-  console.log("list", list);
-  console.log("numbersObjects", numbersObject);
   return (
     <Container>
       <AnswerRow>

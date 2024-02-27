@@ -31,12 +31,10 @@ const Login = () => {
         navigate("/");
         window.scrollTo(0, 0);
       }
-      console.log(response.data);
 
-      console.log(response);
       return response;
     } catch (err) {
-      console.error(err);
+      // console.error(err);
     }
   };
 

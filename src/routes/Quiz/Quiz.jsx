@@ -19,10 +19,10 @@ const Quiz = () => {
   const fetchQuizData = async () => {
     try {
       const quizData = await fetchQuizList();
-      console.log(quizData);
+
       setQuizList(quizData);
     } catch (error) {
-      console.error(error);
+      // console.error(error);
     }
   };
 
@@ -111,10 +111,6 @@ const Quiz = () => {
   );
 
   const currentQuestion = quizList[currentQuestionIdx];
-  console.log(currentQuestion);
-
-  console.log(answers);
-  console.log(isRight);
 
   const preventClose = useCallback((e) => {
     e.preventDefault();
@@ -163,7 +159,7 @@ const Quiz = () => {
                   {currentQuestion.option.map((answer, index) => (
                     <Answer
                       key={index}
-                      onClick={() => handleAnswerClick(index + 1)} // 선택한 답변의 인덱스 전달
+                      onClick={() => handleAnswerClick(index + 1)}
                       selected={answers[currentQuestionIdx] == index + 1}
                       disabled={showAnswer}
                     >
@@ -221,7 +217,7 @@ const Quiz = () => {
                   {currentQuestion.option.map((answer, index) => (
                     <Answer
                       key={index}
-                      onClick={() => handleAnswerClick(index + 1)} // 선택한 답변의 인덱스 전달
+                      onClick={() => handleAnswerClick(index + 1)}
                       selected={answers[currentQuestionIdx] == index + 1}
                       disabled={showAnswer}
                     >

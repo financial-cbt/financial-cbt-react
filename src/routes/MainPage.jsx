@@ -1,6 +1,5 @@
 import React from "react";
 import * as S from "./styles";
-// import { GlobalStyle } from "../../fonts/fonts";
 import user_green from "../imgs/user_green.png";
 import user_blue from "../imgs/user_blue.png";
 import useScrollFadeIn from "../hooks/useScrollFadeIn";

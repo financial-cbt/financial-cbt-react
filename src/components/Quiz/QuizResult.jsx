@@ -8,7 +8,6 @@ const QuizResult = ({ isRight, quizList, allQuiz, answers }) => {
   const [visibleQuestionList, setVisibleQuestionList] = useState("all");
   const navigate = useNavigate();
   const { user } = useAuth();
-  console.log("quizList", quizList);
 
   useEffect(() => {
     document.body.style.cssText = `
@@ -37,7 +36,6 @@ const QuizResult = ({ isRight, quizList, allQuiz, answers }) => {
   };
 
   const resultList = quizResult(quizList, answers);
-  console.log("resultList", resultList);
 
   const rightLength = isRight.filter((element) => true === element).length;
   const wrongLength = isRight.filter((element) => false === element).length;
@@ -53,17 +51,11 @@ const QuizResult = ({ isRight, quizList, allQuiz, answers }) => {
     }
   });
 
-  console.log("userId", user._id);
-  console.log("allQuiz", allQuiz);
-  console.log("accuracy", isRight);
-  console.log("userAnswer", answers);
-
   const postMyAnswers = async (userId, allQuiz, accuracy, userAnswer) => {
     try {
       const res = await postMyQuiz(userId, allQuiz, accuracy, userAnswer);
-      console.log(res);
     } catch (error) {
-      console.error(error);
+      // console.error(error);
     }
   };
 
@@ -81,7 +73,6 @@ const QuizResult = ({ isRight, quizList, allQuiz, answers }) => {
   };
 
   const combinedList = combineResultsWithQuiz(resultList, quizList);
-  console.log(combinedList);
 
   return (
     <>

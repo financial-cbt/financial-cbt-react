@@ -10,7 +10,7 @@ instance.interceptors.response.use(
   },
   function (error) {
     if (error.response.status === 500) {
-      console.error("서버 에러 발생");
+      // console.error("서버 에러 발생");
     }
     return Promise.reject(error);
   }

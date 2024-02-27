@@ -9,7 +9,7 @@ export const fetchQuizList = async () => {
 
     return data;
   } catch (err) {
-    console.error(err);
+    // console.error(err);
   }
 };
 
@@ -22,10 +22,10 @@ export const postMyQuiz = async (userId, allQuiz, accuracy, userAnswer) => {
       userAnswer,
     });
     const data = response.data;
-    console.log("post", data);
+
     return data;
   } catch (err) {
-    console.error("postMyQuiz Error:", err);
+    // console.error("postMyQuiz Error:", err);
     throw err;
   }
 };
