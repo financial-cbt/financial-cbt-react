@@ -15,6 +15,7 @@ export const fetchBoard = async () => {
 
 export const detailBoard = async (boardId) => {
   const baseUrl = `/board/${boardId}`;
+  console.log(baseUrl);
   try {
     const response = await instance.get(baseUrl);
     // console.log(response);

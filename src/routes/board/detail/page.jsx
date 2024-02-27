@@ -75,7 +75,6 @@ export default function page() {
   );
   // 게시글 삭제
   const deleteBoardBtn = useCallback(async () => {
-    console.log(22);
     try {
       const res = await deleteBoard(params);
     } catch (err) {
