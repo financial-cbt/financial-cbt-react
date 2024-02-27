@@ -17,11 +17,11 @@ const Container = styled.div`
 `;
 
 const ArticleItem = ({ newArticle }) => {
-  const { id, title, content, photoUrl } = newArticle;
+  const { num, title, body, photoUrl } = newArticle;
 
   return (
     <Container>
-      <CardLink to={`${id}`}>
+      <CardLink to={`${num}`}>
         <div
           className="card"
           style={{
@@ -58,7 +58,7 @@ const ArticleItem = ({ newArticle }) => {
               overflow: "hidden",
             }}
           >
-            <p style={{ fontSize: "15px", textAlign: "left" }}>{content}</p>
+            <p style={{ fontSize: "15px", textAlign: "left" }}>{body}</p>
           </div>
         </div>
       </CardLink>
