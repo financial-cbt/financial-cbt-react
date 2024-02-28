@@ -8,6 +8,6 @@ export const Desktop = ({ children }) => {
 };
 
 export const Mobile = ({ children }) => {
-  const isMobile = useMediaQuery({ maxWidth: 500 });
+  const isMobile = useMediaQuery({ maxWidth: 1025 });
   return isMobile ? children : null;
 };
