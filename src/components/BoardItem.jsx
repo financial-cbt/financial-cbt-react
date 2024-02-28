@@ -60,7 +60,6 @@ export default function BoardItem({ board }) {
               style={{
                 display: "flex",
                 flexDirection: "column",
-                width: "90vw",
                 marginBottom: "10px",
               }}
             >

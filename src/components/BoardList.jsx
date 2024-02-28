@@ -84,7 +84,7 @@ export default function BoardList({ fetchBoard }) {
             style={{
               display: "flex",
               padding: "0 20px 0 30px",
-              marginBottom: "20px",
+              margin: "0px auto 20px auto",
             }}
           >
             <Link to={"/board/write"} style={{ textDecoration: "none" }}>

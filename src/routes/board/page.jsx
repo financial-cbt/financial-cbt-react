@@ -20,7 +20,7 @@ export default function page() {
         </div>
       </Desktop>
       <Mobile>
-        <div style={{ width: "100vw", margin: "0 auto" }}>
+        <div style={{ width: "90vw", margin: "0 auto" }}>
           <h1 style={{ textAlign: "center" }}>질문해봐요</h1>
           <hr
             style={{
