@@ -85,10 +85,10 @@ export default function Navibar({ brandTitle, offCanvasTitle = undefined }) {
           </Offcanvas.Header>
           <Offcanvas.Body className="flex-row-reverse">
             <Nav
-              style={{ color: "#4E5968", border: "none", marginRight: "50px" }}
+              style={{ color: "#4E5968", border: "none" }}
               className={`justify-content-around flex-row pb-4 pb-${EXPAND_BREAKPOINT}-0`}
             >
-              <>
+              <div className="navDirection">
                 <Link
                   to="/quiz"
                   className="text-decoration-none flex-grow-1 text-center border border-dark border-end-0"
@@ -197,22 +197,23 @@ export default function Navibar({ brandTitle, offCanvasTitle = undefined }) {
                         마이페이지
                       </Nav.Link>
                     </Link>
-                    <Nav.Link
-                      style={{
-                        color: "#4E5968",
-                        border: "none",
-                        fontWeight: "500",
-                        fontSize: "20px",
-                      }}
-                      as="div"
-                      className="text-decoration-none flex-grow-1 text-center border border-dark border-end-0"
-                      onClick={postLogout}
-                    >
-                      로그아웃
-                    </Nav.Link>
+                    <Link className="text-decoration-none flex-grow-1 text-center border border-dark border-end-0">
+                      <Nav.Link
+                        style={{
+                          color: "#4E5968",
+                          border: "none",
+                          fontWeight: "500",
+                          fontSize: "20px",
+                        }}
+                        as="div"
+                        onClick={postLogout}
+                      >
+                        로그아웃
+                      </Nav.Link>
+                    </Link>
                   </>
                 )}
-              </>
+              </div>
             </Nav>
           </Offcanvas.Body>
         </Navbar.Offcanvas>
