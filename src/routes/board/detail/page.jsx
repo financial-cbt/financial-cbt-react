@@ -205,7 +205,9 @@ export default function page() {
                 )}
               </div>
 
-              <div style={{ flex: "1", fontSize: "40px" }}>{title}</div>
+              <div style={{ flex: "1", fontSize: "30px", padding: "15px" }}>
+                {title}
+              </div>
             </Card.Header>
             <Card.Body style={{ textAlign: "left" }}>
               <Card.Text style={{ margin: "0 10px" }}>{content}</Card.Text>
@@ -269,7 +271,7 @@ export default function page() {
                             }}
                           >
                             <textarea
-                              style={{ width: "100%" }}
+                              style={{ width: "100%", resize: "none" }}
                               value={editingCommentContent}
                               onChange={(e) =>
                                 setEditingCommentContent(e.target.value)
@@ -472,7 +474,9 @@ export default function page() {
                 </div>
               </div>
 
-              <div style={{ flex: "1", fontSize: "20px" }}>{title}</div>
+              <div style={{ flex: "1", fontSize: "20px", padding: "15px" }}>
+                {title}
+              </div>
             </Card.Header>
             <Card.Body style={{ textAlign: "left" }}>
               <Card.Text style={{ margin: "0 10px" }}>{content}</Card.Text>

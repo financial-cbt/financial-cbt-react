@@ -9,7 +9,7 @@ export default function page() {
   const [content, setContent] = useState("");
   const navigate = useNavigate();
   const { boardId } = useParams();
-  const {user} = useAuth();
+  const { user } = useAuth();
   const onSubmit = useCallback(
     (title, content, author, nickname) => {
       if (boardId) {
@@ -81,6 +81,7 @@ export default function page() {
                 value={content}
                 as="textarea"
                 rows={10}
+                style={{ resize: "none" }}
               />
             </Form.Group>
             <Button
