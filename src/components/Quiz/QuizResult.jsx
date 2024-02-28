@@ -373,7 +373,7 @@ const NavButton = styled.button`
   }
 
   @media (max-width: 500px) {
-    height: 50px;
+    height: fit-content;
     width: 150px;
     font-size: 25px;
   }
