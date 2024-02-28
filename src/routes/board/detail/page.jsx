@@ -628,7 +628,7 @@ export default function page() {
             <input
               placeholder="댓글을 입력하세요."
               type="text"
-              style={{ flex: "4" }}
+              style={{ flex: "3" }}
               onChange={(e) => setNewComment(e.target.value)}
               value={newComment}
             />
