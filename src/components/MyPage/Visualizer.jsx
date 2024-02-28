@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo, useContext } from "react";
+import React, { useState, useEffect } from "react";
 import "react-vis/dist/style.css";
 import "react-vis/dist/style.css";
 import "./Visualizer.css";
@@ -9,7 +9,7 @@ import {
   YAxis,
   HorizontalGridLines,
   VerticalGridLines,
-  LineMarkSeries
+  LineMarkSeries,
 } from "react-vis";
 
 const Visualizer = ({ dateArray }) => {

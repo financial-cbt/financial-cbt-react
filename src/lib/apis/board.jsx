@@ -1,7 +1,5 @@
-import React, { useState } from "react";
-import axios from "axios";
 import instance from "./base";
-//port 번호 바꾸기
+
 export const fetchBoard = async () => {
   const baseUrl = "/board";
   try {
@@ -43,7 +41,7 @@ export const updateComment = async ({ boardId, commentId, content }) => {
   const baseUrl = `/board/${boardId}/comment/${commentId}`;
   try {
     const response = await instance.put(baseUrl, {
-      content
+      content,
     });
     return response;
   } catch (err) {

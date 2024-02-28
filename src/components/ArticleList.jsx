@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import ArticleItem from "./ArticleItem";
 import instance from "../lib/apis/base";
@@ -26,7 +26,7 @@ const ArticleList = () => {
         style={{
           border: "solid 4px blue",
           width: "20%",
-          margin: "auto", // 가운데 정렬을 위해 margin: auto; 추가
+          margin: "auto",
         }}
       />
 

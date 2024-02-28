@@ -1,7 +1,6 @@
 import React from "react";
 import { fetchBoard } from "../../lib/apis/board";
 import BoardList from "../../components/BoardList";
-import { Button } from "react-bootstrap";
 import { Desktop, Mobile } from "../../MediaQuery/useMediaQuery";
 
 export default function page() {
@@ -14,7 +13,7 @@ export default function page() {
             style={{
               border: "solid 4px blue",
               width: "15%",
-              margin: "auto", // 가운데 정렬을 위해 margin: auto; 추가
+              margin: "auto",
             }}
           />
           <BoardList fetchBoard={fetchBoard} />
@@ -27,7 +26,7 @@ export default function page() {
             style={{
               border: "solid 4px blue",
               width: "15%",
-              margin: "auto", // 가운데 정렬을 위해 margin: auto; 추가
+              margin: "auto",
             }}
           />
           <BoardList fetchBoard={fetchBoard} />

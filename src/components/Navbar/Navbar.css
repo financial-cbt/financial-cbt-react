@@ -1,12 +1,10 @@
-/* 해당 스타일은 Navbar.Toggle를 클릭했을 때의 스타일을 변경합니다. */
-
 button:focus {
   outline: none !important;
 }
 
 .navbar-toggler:focus {
-  outline: none !important; /* 클릭 시 나타나는 focus 효과 제거 */
-  box-shadow: none; /* 클릭 시 나타나는 box shadow 제거 */
+  outline: none !important;
+  box-shadow: none;
   box-shadow: none !important;
 }
 .border-dark {

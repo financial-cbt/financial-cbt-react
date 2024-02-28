@@ -7,7 +7,6 @@ const ButtonWrap = styled.div`
 const Button = styled.button`
   color: black;
   margin: 5px;
-  /* padding: 8px; */
   border: none;
   background: none;
   cursor: pointer;

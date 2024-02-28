@@ -1,5 +1,5 @@
 import React from "react";
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 import { Link } from "react-router-dom";
 
 const CardLink = styled(Link)`
@@ -29,7 +29,6 @@ const ArticleItem = ({ newArticle }) => {
             height: "430px",
             gap: "20px",
             alignItems: "center",
-            // border: "2px solid rgba(0, 0, 0, 0.175)",
           }}
         >
           <img

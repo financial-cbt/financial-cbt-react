@@ -325,8 +325,8 @@ const Question = styled.div`
 const AnswerContainer = styled.div`
   display: grid;
   width: 721px;
-  grid-template-columns: repeat(2, 1fr); /* 두 개의 열 */
-  grid-template-rows: repeat(2, auto); /* 두 개의 행 */
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, auto);
   gap: 30px;
   margin-top: 63px;
 

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
 import Select from "react-select";
 
@@ -95,7 +95,6 @@ const Container = styled.div`
   margin: 100px 100px 0px 100px;
 
   @media (max-width: 500px) {
-    /* transform: scale(0.5); */
     margin: -80px auto -10px auto;
   }
 `;
@@ -157,9 +156,7 @@ const AnswerDiv = styled.div`
   }
 `;
 
-const ListContainer = styled.div`
-  /* background-color: yellow; */
-`;
+const ListContainer = styled.div``;
 
 const ListItem = styled.div`
   display: flex;

@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { RouterProvider } from "react-router-dom";
 import router from "./routers/main-router";
 import AuthProvider from "./components/AuthProvider";

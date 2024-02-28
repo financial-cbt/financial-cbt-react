@@ -1,5 +1,5 @@
 import React from "react";
-import { List, Coin } from "react-bootstrap-icons";
+import { List } from "react-bootstrap-icons";
 import { Link, useNavigate } from "react-router-dom";
 import { Container, Nav, Navbar, Offcanvas } from "react-bootstrap";
 import useAuth from "~/lib/hooks/useAuth";

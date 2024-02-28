@@ -1,5 +1,5 @@
 import React, { useCallback, useState, useEffect } from "react";
-import { Button, Container } from "react-bootstrap";
+import { Button } from "react-bootstrap";
 import { useNavigate, useParams, Link } from "react-router-dom";
 import {
   detailBoard,
@@ -51,7 +51,7 @@ export default function page() {
   const showComment = useCallback(async () => {
     try {
       const res = await commentView(params);
-      setComments(res); // 기존 상태를 유지하면서 새로운 배열을 생성하여 업데이트
+      setComments(res);
     } catch (err) {
       // console.error(err);
     }
@@ -138,7 +138,6 @@ export default function page() {
       <Desktop>
         <div style={{ padding: "50px" }}>
           <Card
-            // bg={variant.toLowerCase()}
             text={"Light".toLowerCase() === "light" ? "dark" : "white"}
             style={{ width: "100%", textAlign: "left" }}
             className="mb-2"
@@ -258,7 +257,6 @@ export default function page() {
                       </div>
                     </Card.Header>
                     <Card.Body style={{ textAlign: "left", margin: "0 10px" }}>
-                      {/* <Card.Text> 댓글:{comment._id} </Card.Text> */}
                       <Card.Text>
                         {editingCommentId === comment._id ? (
                           // 수정 중인 댓글 표시
@@ -441,7 +439,6 @@ export default function page() {
             )}
           </div>
           <Card
-            // bg={variant.toLowerCase()}
             text={"Light".toLowerCase() === "light" ? "dark" : "white"}
             style={{ width: "100%", textAlign: "left" }}
             className="mb-2"
@@ -527,7 +524,6 @@ export default function page() {
                       </div>
                     </Card.Header>
                     <Card.Body style={{ textAlign: "left", margin: "0 10px" }}>
-                      {/* <Card.Text> 댓글:{comment._id} </Card.Text> */}
                       <Card.Text>
                         {editingCommentId === comment._id ? (
                           // 수정 중인 댓글 표시

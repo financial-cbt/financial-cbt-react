@@ -9,7 +9,7 @@ const Login = () => {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const { user, clientLogin } = useAuth();
+  const { clientLogin } = useAuth();
 
   const postLogin = async (email, password) => {
     try {

@@ -97,7 +97,6 @@ const Category = styled.div`
   font-style: normal;
   font-weight: 400;
   line-height: normal;
-  /* margin: 30px auto auto 30px; */
 `;
 
 const Title = styled.div`
@@ -119,10 +118,4 @@ const Candidate = styled.div`
   font-style: normal;
   font-weight: 400;
   line-height: normal;
-  /* margin-top: 150px; */
-  /* text-align: left; */
-  /* width: 150px; */
-  /* white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis; */
 `;

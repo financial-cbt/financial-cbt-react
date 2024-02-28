@@ -66,11 +66,6 @@ const PopupContainer = styled.div`
   z-index: 1000;
 `;
 
-const PopupContent = styled.div`
-  /* text-align: center; */
-  /* gap: 30px; */
-`;
-
 const Character = styled.img`
   @media (max-width: 500px) {
     display: none;

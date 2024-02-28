@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Tooltip } from "react-tooltip";
 import { Button } from "react-bootstrap";
-import { CaretLeftFill, ArrowLeft } from "react-bootstrap-icons";
 import styled from "styled-components";
 import { useNavigate, useParams } from "react-router-dom";
 import { Desktop, Mobile } from "../../../MediaQuery/useMediaQuery";
@@ -61,7 +60,7 @@ export default function ArticleDetailpage() {
           >
             {word}
           </span>
-          {/* &nbsp; */}
+
           <Tooltip
             style={{
               zIndex: "9",
@@ -89,7 +88,7 @@ export default function ArticleDetailpage() {
           >
             {word}
           </span>
-          {/* &nbsp; */}
+
           <Tooltip
             style={{
               zIndex: "9",
@@ -268,10 +267,8 @@ const ArticleContainer = styled.div`
   flex-direction: "column";
   align-items: center;
   justify-content: center;
-  /* padding: 50px 200px; */
   padding: 50px 20px;
   margin: 0 auto;
-  /* max-width: 100%; */
   width: 1040px;
 
   box-sizing: content-box;
@@ -281,10 +278,6 @@ const ArticleContainer = styled.div`
   }
 `;
 
-const StyledParagraph = styled.p`
-  font-weight: 400;
-  margin: 0;
-`;
 const DetailContainer = styled.div`
   display: flex;
   flex-direction: column;
