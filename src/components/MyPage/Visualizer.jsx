@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import "react-vis/dist/style.css";
-import "react-vis/dist/style.css";
 import "./Visualizer.css";
 
 import {
