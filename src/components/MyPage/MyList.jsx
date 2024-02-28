@@ -178,7 +178,7 @@ const ListDiv = styled.div`
   @media (max-width: 500px) {
     flex-direction: column;
     font-size: 15px;
-    width: 97vw;
+    width: 90vw;
     height: 23vh;
     align-items: center;
     justify-content: center;
