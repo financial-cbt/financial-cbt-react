@@ -60,7 +60,6 @@ export const mainTitle = styled.div`
 export const subTitle = styled.div`
   white-space: pre-line;
   font-size: 30px;
-  font-family: "AppleSDGothicNeoL";
   line-height: 30px;
   color: #000;
   opacity: 0.7;
@@ -166,7 +165,6 @@ export const speechBubble = styled.div`
     props.direction === "left" ? "#FFE925" : "#3476f6"};
   border-radius: 100px;
   white-space: pre-line;
-  font-family: "AppleSDGothicNeoL";
   font-size: 20px;
   line-height: ${(props) => (props.direction === "left" ? "80px" : "30px")};
   color: #000;
