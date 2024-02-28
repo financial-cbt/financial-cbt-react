@@ -1,38 +1,38 @@
 @font-face {
   font-family: "HakgyoansimEunhasuR";
   font-weight: normal;
-  src: url("/src/fonts/HakgyoansimEunhasuR.ttf") format("truetype");
+  src: url("../src/fonts/HakgyoansimEunhasuR.ttf") format("truetype");
 }
 
 @font-face {
   font-family: "Pretendard";
   font-style: normal;
   font-weight: bold;
-  src: url("/src/fonts/Pretendard-Bold.woff") format("woff");
+  src: url("../src/fonts/Pretendard-Bold.woff") format("woff");
 }
 
 @font-face {
   font-family: "Pretendard";
   font-style: normal;
   font-weight: lighter;
-  src: url("/src/fonts/Pretendard-Light.woff") format("woff");
+  src: url("../src/fonts/Pretendard-Light.woff") format("woff");
 }
 
 @font-face {
   font-family: "Pretendard";
   font-style: normal;
   font-weight: normal;
-  src: url("/src/fonts/Pretendard-Regular.woff") format("woff");
+  src: url("../src/fonts/Pretendard-Regular.woff") format("woff");
 }
 
 @font-face {
   font-family: "Pretendard";
   font-style: normal;
   font-weight: 100;
-  src: url("/src/fonts/Pretendard-Light.woff") format("woff");
+  src: url("../src/fonts/Pretendard-Light.woff") format("woff");
 }
 
-body {
+* {
   font-family: "Pretendard";
   font-weight: normal;
 }

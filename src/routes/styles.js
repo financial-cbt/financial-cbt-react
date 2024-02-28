@@ -46,7 +46,6 @@ export const titleContainer = styled.div`
 export const mainTitle = styled.div`
   font-size: 64px;
   font-weight: 400;
-  font-family: "GangwonEduPowerExtraBoldA";
   line-height: 105px;
   color: #000;
   white-space: pre-line;
@@ -122,7 +121,6 @@ export const TargetContainer = styled.div`
 export const CommonTitle = styled.div`
   white-space: pre-line;
   font-size: 35px;
-  font-family: "AppleSDGothicNeoM";
   line-height: 40px;
   color: #000;
   position: relative;
