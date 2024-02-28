@@ -407,7 +407,11 @@ export default function page() {
         </div>
       </Desktop>
       <Mobile>
-        <div style={{ padding: "50px" }}>
+        <div
+          style={{
+            padding: "50px",
+          }}
+        >
           <div
             style={{
               margin: "0px auto 20px auto",
@@ -628,7 +632,7 @@ export default function page() {
             <input
               placeholder="댓글을 입력하세요."
               type="text"
-              style={{ flex: "3" }}
+              style={{ width: "80%" }}
               onChange={(e) => setNewComment(e.target.value)}
               value={newComment}
             />
@@ -636,14 +640,14 @@ export default function page() {
               type="submit"
               variant="dark"
               style={{
-                flex: "1",
+                width: "20%",
                 backgroundColor: "#92E1FB",
                 border: "none",
-                fontSize: "20px",
+                fontSize: "15px",
                 color: "#fff",
               }}
             >
-              Click
+              등록
             </Button>
           </form>
           <br />
