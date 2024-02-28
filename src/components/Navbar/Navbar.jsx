@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { List } from "react-bootstrap-icons";
 import { Link, useNavigate } from "react-router-dom";
 import { Container, Nav, Navbar, Offcanvas } from "react-bootstrap";
@@ -11,6 +11,8 @@ const EXPAND_BREAKPOINT = "md";
 export default function Navibar({ brandTitle, offCanvasTitle = undefined }) {
   const { user, clientLogout } = useAuth();
   const navigate = useNavigate();
+  const [showOffcanvas, setShowOffcanvas] = useState(false);
+
   const postLogout = async () => {
     try {
       const response = await logout();
@@ -18,9 +20,14 @@ export default function Navibar({ brandTitle, offCanvasTitle = undefined }) {
       removeCookie("token");
       clientLogout();
       navigate("/");
+      handleNavItemClick();
     } catch (err) {
       // console.error(err);
     }
+  };
+
+  const handleNavItemClick = () => {
+    setShowOffcanvas(false);
   };
 
   return (
@@ -57,10 +64,13 @@ export default function Navibar({ brandTitle, offCanvasTitle = undefined }) {
             right: "10px",
           }}
           aria-controls={`Navbar-expand-${EXPAND_BREAKPOINT}`}
+          onClick={() => setShowOffcanvas(!showOffcanvas)}
         >
           <List />
         </Navbar.Toggle>
         <Navbar.Offcanvas
+          show={showOffcanvas}
+          onHide={() => setShowOffcanvas(false)}
           id={`Navbar-expand-${EXPAND_BREAKPOINT}`}
           aria-labelledby={`NavbarLabel-expand-${EXPAND_BREAKPOINT}`}
           placement="end"
@@ -82,6 +92,7 @@ export default function Navibar({ brandTitle, offCanvasTitle = undefined }) {
                 <Link
                   to="/quiz"
                   className="text-decoration-none flex-grow-1 text-center border border-dark border-end-0"
+                  onClick={handleNavItemClick}
                 >
                   <Nav.Link
                     style={{
@@ -98,6 +109,7 @@ export default function Navibar({ brandTitle, offCanvasTitle = undefined }) {
                 <Link
                   to="/articlelist"
                   className="text-decoration-none flex-grow-1 text-center border border-dark border-end-0"
+                  onClick={handleNavItemClick}
                 >
                   <Nav.Link
                     style={{
@@ -116,6 +128,7 @@ export default function Navibar({ brandTitle, offCanvasTitle = undefined }) {
                     <Link
                       to="/login"
                       className="text-decoration-none flex-grow-1 text-center border border-dark border-end-0"
+                      onClick={handleNavItemClick}
                     >
                       <Nav.Link
                         style={{
@@ -132,6 +145,7 @@ export default function Navibar({ brandTitle, offCanvasTitle = undefined }) {
                     <Link
                       to="/signup"
                       className="text-decoration-none flex-grow-1 text-center border border-dark"
+                      onClick={handleNavItemClick}
                     >
                       <Nav.Link
                         style={{
@@ -152,6 +166,7 @@ export default function Navibar({ brandTitle, offCanvasTitle = undefined }) {
                     <Link
                       to="/board"
                       className="text-decoration-none flex-grow-1 text-center border border-dark border-end-0"
+                      onClick={handleNavItemClick}
                     >
                       <Nav.Link
                         style={{
@@ -168,6 +183,7 @@ export default function Navibar({ brandTitle, offCanvasTitle = undefined }) {
                     <Link
                       to="/mypage"
                       className="text-decoration-none flex-grow-1 text-center border border-dark border-end-0"
+                      onClick={handleNavItemClick}
                     >
                       <Nav.Link
                         style={{
