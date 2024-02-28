@@ -22,12 +22,12 @@ const RandomQuiz = () => {
       >
         <Header>2024 내 상식 능력치는?</Header>
         <TitleContainer>
-          <div style={{ fontSize: "60px", fontWeight: "100" }}>❮</div>
+          <div style={{ fontSize: "60px", fontWeight: "100" }}></div>
           <div style={{ display: "flex", flexDirection: "column" }}>
             <Title>경제 · 금융 상식 퀴즈</Title>
             <Category>A형</Category>
           </div>
-          <div style={{ fontSize: "60px", fontWeight: "100" }}>❯</div>
+          <div style={{ fontSize: "60px", fontWeight: "100" }}></div>
         </TitleContainer>
         <div style={{ marginTop: "20px" }}>
           <img src={test} alt="1" style={{ width: "100%" }} />
@@ -42,12 +42,12 @@ const RandomQuiz = () => {
       >
         <Header>2024 내 상식 능력치는?</Header>
         <TitleContainer>
-          <div style={{ fontSize: "60px", fontWeight: "100" }}>❮</div>
+          <div style={{ fontSize: "60px", fontWeight: "100" }}></div>
           <div style={{ display: "flex", flexDirection: "column" }}>
             <Title>경제 · 금융 상식 퀴즈</Title>
             <Category>B형</Category>
           </div>
-          <div style={{ fontSize: "60px", fontWeight: "100" }}>❯</div>
+          <div style={{ fontSize: "60px", fontWeight: "100" }}></div>
         </TitleContainer>
         <div style={{ marginTop: "20px" }}>
           <img src={test} alt="1" style={{ width: "100%" }} />
