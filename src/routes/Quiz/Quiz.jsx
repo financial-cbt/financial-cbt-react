@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useCallback } from "react";
 import styled from "styled-components";
-import ProgressBar from "@ramonak/react-progress-bar";
+// import ProgressBar from "@ramonak/react-progress-bar";
 import OX from "../../components/Quiz/OX";
 import QuizResult from "../../components/Quiz/QuizResult";
 import { fetchQuizList } from "~/lib/apis/quiz";
@@ -181,13 +181,13 @@ const Quiz = () => {
                       <Icon src="stopwatch.svg" alt="시계" />
                       <Time>{sec}초</Time>
                     </Column>
-                    <ProgressBar
+                    {/* <ProgressBar
                       completed={(sec / 60) * 100}
                       bgColor="#002DAB"
                       width="359px"
                       height="9px"
                       isLabelVisible={false}
-                    />
+                    /> */}
                     <NavContainer>
                       <NavDiv onClick={handlePopupToggle}>정답보기</NavDiv>
                       <NavDiv onClick={handleNextQuestion}>다음문제</NavDiv>
@@ -239,13 +239,13 @@ const Quiz = () => {
                       <Icon src="stopwatch.svg" alt="시계" />
                       <Time>{sec}초</Time>
                     </Column>
-                    <ProgressBar
+                    {/* <ProgressBar
                       completed={(sec / 60) * 100}
                       bgColor="#002DAB"
                       width="359px"
                       height="9px"
                       isLabelVisible={false}
-                    />
+                    /> */}
                     <NavContainer>
                       <NavDiv onClick={handlePopupToggle}>정답보기</NavDiv>
                       <NavDiv onClick={handleNextQuestion}>다음문제</NavDiv>
