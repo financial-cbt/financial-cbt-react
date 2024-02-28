@@ -350,6 +350,10 @@ const ButtonWrapper = styled.div`
   display: flex;
   margin-top: 40px;
   gap: 40px;
+
+  @media (max-width: 500px) {
+    margin-bottom: 10vh;
+  }
 `;
 
 const NavButton = styled.button`
