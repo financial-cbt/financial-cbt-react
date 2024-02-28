@@ -229,11 +229,13 @@ const Quiz = () => {
                 </AnswerContainer>
                 <Row>
                   <TimerContainer>
-                    <Column>
-                      <Icon src="stopwatch.svg" alt="시계" />
-                      <Time>{sec}초</Time>
-                    </Column>
-                    <ProgressBar percentage={(sec / 60) * 100} />
+                    <TimeDiv>
+                      <Column>
+                        <Icon src="stopwatch.svg" alt="시계" />
+                        <Time>{sec}초</Time>
+                      </Column>
+                      <ProgressBar percentage={(sec / 60) * 100} />
+                    </TimeDiv>
                     <NavContainer>
                       <NavDiv onClick={handlePopupToggle}>정답보기</NavDiv>
                       <NavDiv onClick={handleNextQuestion}>다음문제</NavDiv>
@@ -371,6 +373,18 @@ const TimerContainer = styled.div`
   display: flex;
   align-items: center;
   margin-top: 40px;
+
+  @media (max-width: 500px) {
+    width: 100%;
+  }
+`;
+
+const TimeDiv = styled.div`
+  display: flex;
+  align-items: center;
+  @media (max-width: 500px) {
+    width: 60%;
+  }
 `;
 
 const Column = styled.div`
@@ -393,6 +407,8 @@ const Time = styled.div`
   line-height: normal;
   letter-spacing: -0.758px;
   margin-top: 3px;
+  width: 60px;
+  text-align: center;
 
   @media (max-width: 500px) {
     font-size: 25px;
@@ -408,6 +424,7 @@ const NavContainer = styled.div`
   @media (max-width: 500px) {
     margin-left: 50px;
     gap: 50px;
+    width: 40%;
   }
 `;
 
