@@ -34,13 +34,14 @@ const Quiz = () => {
 
   useEffect(() => {
     if (sec === 0 && !alertShown) {
-      const interval = setInterval(() => {
+      const timeout = setTimeout(() => {
         setShowAnswer(false);
         setAlertShown(true);
         alert("넘어가기");
         handleNextQuestion();
-        clearInterval(interval);
       }, 0);
+
+      return () => clearTimeout(timeout);
     }
   }, [sec, alertShown]);
 
