@@ -4,7 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { Container, Nav, Navbar, Offcanvas } from "react-bootstrap";
 import useAuth from "~/lib/hooks/useAuth";
 import { logout } from "../../lib/apis/user";
-import { removeCookie } from "../../lib/apis/cookie";
+import { getCookie, removeCookie } from "../../lib/apis/cookie";
 import "./Navbar.css";
 const EXPAND_BREAKPOINT = "md";
 
