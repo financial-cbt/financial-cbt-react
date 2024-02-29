@@ -12,6 +12,7 @@ export default function Navibar({ brandTitle, offCanvasTitle = undefined }) {
   const { user, clientLogout } = useAuth();
   const navigate = useNavigate();
   const [showOffcanvas, setShowOffcanvas] = useState(false);
+  const isLogin = !!getCookie("token");
 
   const postLogout = async () => {
     try {
@@ -123,7 +124,7 @@ export default function Navibar({ brandTitle, offCanvasTitle = undefined }) {
                     기사
                   </Nav.Link>
                 </Link>
-                {!user ? (
+                {!isLogin ? (
                   <>
                     <Link
                       to="/login"
