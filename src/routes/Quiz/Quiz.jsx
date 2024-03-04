@@ -2,9 +2,10 @@ import React, { useEffect, useState, useCallback } from "react";
 import styled from "styled-components";
 import OX from "../../components/Quiz/OX";
 import QuizResult from "../../components/Quiz/QuizResult";
-import { fetchQuizList } from "~/lib/apis/quiz";
+import { fetchQuizList, postMyQuiz } from "~/lib/apis/quiz";
 import { Desktop, Mobile } from "../../MediaQuery/useMediaQuery";
 import ProgressBar from "../../components/Quiz/ProgressBar";
+import useAuth from "~/lib/hooks/useAuth";
 
 const Quiz = () => {
   const [sec, setSec] = useState(60);
@@ -15,6 +16,8 @@ const Quiz = () => {
   const [isRight, setIsRight] = useState([]);
   const [showAnswer, setShowAnswer] = useState(false); // 정답 확인 후 변경 못하게
   const [quizList, setQuizList] = useState([]);
+
+  const { user } = useAuth();
 
   const fetchQuizData = async () => {
     try {
@@ -77,7 +80,7 @@ const Quiz = () => {
     }
   }, [answers, currentQuestionIdx, popupVisible, quizList]);
 
-  const handleNextQuestion = useCallback(() => {
+  const handleNextQuestion = useCallback(async () => {
     if (answers[currentQuestionIdx] == -1 && alertShown) {
       alert("정답을 선택해주세요.");
     } else if (currentQuestionIdx === 9) {
@@ -88,6 +91,7 @@ const Quiz = () => {
       setAlertShown(true);
       setEnd(true);
       setSec(0);
+      await postMyAnswers(user._id, allQuiz, isRight, answers);
     } else {
       setShowAnswer(false);
       setAlertShown(false);
@@ -139,6 +143,14 @@ const Quiz = () => {
     };
   }, [preventGoBack]);
 
+  const postMyAnswers = async (userId, allQuiz, accuracy, userAnswer) => {
+    try {
+      const res = await postMyQuiz(userId, allQuiz, accuracy, userAnswer);
+    } catch (error) {
+      // console.error(error);
+    }
+  };
+
   return (
     <>
       <Desktop>
@@ -171,7 +183,6 @@ const Quiz = () => {
                     <QuizResult
                       isRight={isRight}
                       quizList={quizList}
-                      allQuiz={allQuiz}
                       answers={answers}
                     />
                   )}

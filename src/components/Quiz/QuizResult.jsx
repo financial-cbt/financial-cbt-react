@@ -4,10 +4,9 @@ import styled from "styled-components";
 import { postMyQuiz } from "~/lib/apis/quiz";
 import useAuth from "~/lib/hooks/useAuth";
 
-const QuizResult = ({ isRight, quizList, allQuiz, answers }) => {
+const QuizResult = ({ isRight, quizList, answers }) => {
   const [visibleQuestionList, setVisibleQuestionList] = useState("all");
   const navigate = useNavigate();
-  const { user } = useAuth();
 
   useEffect(() => {
     document.body.style.cssText = `
@@ -50,19 +49,6 @@ const QuizResult = ({ isRight, quizList, allQuiz, answers }) => {
       wrongIdx.push(index);
     }
   });
-
-  const postMyAnswers = async (userId, allQuiz, accuracy, userAnswer) => {
-    try {
-      const res = await postMyQuiz(userId, allQuiz, accuracy, userAnswer);
-    } catch (error) {
-      // console.error(error);
-    }
-  };
-
-  const onClick = (path) => {
-    postMyAnswers(user._id, allQuiz, isRight, answers);
-    navigate(path);
-  };
 
   const combineResultsWithQuiz = (resultList, quizList) => {
     return resultList.map((resultItem, index) => ({
@@ -128,14 +114,14 @@ const QuizResult = ({ isRight, quizList, allQuiz, answers }) => {
           <ButtonWrapper>
             <NavButton
               onClick={() => {
-                onClick("/");
+                navigate("/");
               }}
             >
               홈으로 이동
             </NavButton>
             <NavButton
               onClick={() => {
-                onClick("/mypage");
+                navigate("/mypage");
               }}
             >
               성적표 확인
